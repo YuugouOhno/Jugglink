@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="css/index.css">
-        <title>Jugglink</title>
+        <title>comment</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
@@ -34,7 +34,6 @@
             </div>
             <div class='center_container'>
                 <div class='post'>
-                    @foreach ($posts as $post)
                     <div class='user'>
                         <image class='icon_image' src=''></image>
                         <p class='user_name'>{{ $post->user_id }}</p>
@@ -50,10 +49,9 @@
                     </div>
                     <div class='post_reaction'>
                         <div class='favorite'>いいね</div>
-                        <div class='coment'><a href="/posts/{{ $post->id }}">コメント</a></div>
+                        <div class="back_index"><a href="/">戻る</a></div>
                         <div class='bookmark'>ブックマーク</div>
                     </div>
-                    @endforeach
                 </div>
             </div>
             <div class='right_container'>
@@ -61,27 +59,7 @@
                     <image class='serch_image' src=''></image>
                 </div>
                 <div class='recommendation'>
-                    <div class='post'>
-                    @foreach ($posts as $post)
-                    <div class='user'>
-                        <image class='icon_image' src=''></image>
-                        <p class='user_name'>{{ $post->user_id }}</p>
-                    </div>
-                    <div class='post_title'>
-                        <p class='tool_number'>{{ $post->tool_number }}</p>
-                        <p class='tool_name'>{{ $post->tool_name }}</p>
-                        <p class='technique_name'>{{ $post->technique }}</p>
-                    </div>
-                    <div class='post_body'>
-                        <video class='post_video' src=''></video>
-                        <p class='post_text'>{{ $post->post_text }}</p>
-                    </div>
-                    <div class='post_reaction'>
-                        <div class='favorite'>いいね</div>
-                        <div class='coment'><a href="/posts/{{ $post->id }}">コメント</a></div>
-                        <div class='bookmark'>ブックマーク</div>
-                    </div>
-                    @endforeach
+                    <p>コントローラーでpostかpostsか問題で先延ばし</p>
                 </div>
             </div>
         </div>
