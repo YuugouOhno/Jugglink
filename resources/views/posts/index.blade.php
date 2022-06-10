@@ -4,32 +4,30 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="css/index.css">
         <title>Jugglink</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
         <div class='main'>
             <div class='left_container'>
                 <div class='menues'>
-                    <div class='menue btnbox'>
+                    <div class='menue btnBox'>
                         <image class='menue_image' src=''></image>
                         <a href='' class='menue_type'>ホーム</a>
                     </div>
-                    <div class='menue btnbox'>
+                    <div class='menue btnBox'>
                         <image class='menue_image' src=''></image>
                         <a href='' class='menue_type'>プロフィール</a>
                     </div>
-                    <div class='menue btnbox'>
+                    <div class='menue btnBox'>
                         <image class='menue_image' src=''></image>
                         <a href='' class='menue_type'>ブックマーク</a>
                     </div>
-                    <div class='menue btnbox'>
+                    <div class='menue btnBox'>
                         <image class='menue_image' src=''></image>
                         <a href='' class='menue_type'>ジャグラー分布</a>
                     </div>
                 </div>
-                <div class='create_post'>
-                    <input type='button' value='投稿する' onclick="buttonClick()">
+                <div class='create_post btnBox'>
+                    <a href='/posts/create'>投稿する</a>
                 </div>
             </div>
             <div class='center_container'>
