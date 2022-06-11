@@ -19,10 +19,12 @@
                     <div class="title">
                         <h2>技名</h2>
                         <input type="text" name="post[technique]" placeholder="技名"/>
+                        <p class="title__error" style="color:red">{{ $errors->first('post.title') }}</p>
                     </div>
                     <div class="body">
                         <h2>コメント</h2>
                         <textarea name="post[post_text]" placeholder="この技のコツは..."></textarea>
+                        <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
                     </div>
                     <input type="submit" value="投稿"/>
                 </form>

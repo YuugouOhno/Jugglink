@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class='create_post btnBox'>
-                    <a href='/posts/create'>投稿する</a>
+                    <p><a href='/create'>投稿する</a></p>
                 </div>
             </div>
             <div class='center_container'>
@@ -51,6 +51,11 @@
                         <div class='coment'><a href="/posts/{{ $post->id }}">コメント</a></div>
                         <div class='bookmark'>ブックマーク</div>
                     </div>
+                    <form id="form" action='/posts/{{$post->id}}' method='POST'>
+                        @csrf
+                        @method('DELETE')
+                        <input type='button' value='delete' onclick="buttonClick()">
+                    </form>
                     @endforeach
                 </div>
                 <div class='paginate'>
@@ -86,5 +91,12 @@
                 </div>
             </div>
         </div>
+    <script>
+        function buttonClick(){
+            if(confirm("削除しますか？")){
+                document.getElementById("form").submit();
+            }
+        }
+	</script>
     </body>
 </html>
