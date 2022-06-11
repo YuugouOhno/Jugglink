@@ -53,6 +53,9 @@
                     </div>
                     @endforeach
                 </div>
+                <div class='paginate'>
+                    {{ $posts->links() }}
+                </div>
             </div>
             <div class='right_container'>
                 <div class='serch'>
