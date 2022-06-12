@@ -16,4 +16,29 @@ class Post extends Model
     // updated_atで降順に並べたあと、limitで件数制限をかける
         return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
+    
+    public function tool()
+    {
+        return $this->belongTo('App\Tool');
+    }
+    
+     public function user()
+    {
+        return $this->belongTo('App\User');
+    }
+    
+    public function bookmarks()
+    {
+        return $this->hasOne('App\Bookmark');
+    }
+    
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+    
+    public function favorites()
+    {
+        return $this->hasOne('App\Favorite');
+    }
 }
