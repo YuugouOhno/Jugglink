@@ -16,3 +16,5 @@ Route::get('/posts/{post}', 'PostController@comment');
 Route::get('/create', 'PostController@create');
 Route::post('/posts', 'PostController@store');
 Route::delete('/posts/{post}', 'PostController@delete');
+
+Route::get('/tools/{tool}', 'ToolController@index');

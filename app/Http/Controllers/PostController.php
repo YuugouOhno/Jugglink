@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Tool;
+
 use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
@@ -17,11 +19,11 @@ class PostController extends Controller
         return view('posts/comment')->with(['post' => $post]);
     }
     
-    public function create(Post $post)
+    public function create(Tool $tool)
     {
-        return view('posts/create');
+        return view('posts/create')->with(['tools' => $tool->get()]);
     }
-    
+        
     public function store(Post $post, PostRequest $request)
     {
         $input = $request['post'];
