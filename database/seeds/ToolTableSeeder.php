@@ -1,5 +1,7 @@
 <?php
 use Illuminate\Database\Seeder;
+use App\Model\Tool;
+
 class ToolTableSeeder extends Seeder
 {
     /**
@@ -12,19 +14,19 @@ class ToolTableSeeder extends Seeder
         DB::table('tools')->insert([
             [
             'id'=>1,
-    		'tool_name'=> 'シガーボックス',
+    		'name'=> 'シガーボックス',
     		],
     		[
     		'id'=>2,
-    		'tool_name'=> 'ディアボロ',
+    		'name'=> 'ディアボロ',
     		],
     		[
     		'id'=>3,
-    		'tool_name'=> 'ボール',
+    		'name'=> 'ボール',
     		],
     		[
     		'id'=>4,
-    		'tool_name'=> 'クラブ',
+    		'name'=> 'クラブ',
     		],
     		[
     		'id'=>5,
@@ -40,19 +42,19 @@ class ToolTableSeeder extends Seeder
     		],
     		[
     		'id'=>8,
-    		'tool_name'=> 'ヨーヨー',
+    		'name'=> 'ヨーヨー',
     		],
     		[
     		'id'=>9,
-    		'tool_name'=> 'コンタクト',
+    		'name'=> 'コンタクト',
     		],
     		[
     		'id'=>10,
-    		'tool_name'=> 'ハット',
+    		'name'=> 'ハット',
     		],
     		[
     		'id'=>11,
-    		'tool_name'=> 'スピニングブレード',
+    		'name'=> 'スピニングブレード',
     		],
     		[
     		'id'=>12,
@@ -60,27 +62,27 @@ class ToolTableSeeder extends Seeder
     		],
     		[
     		'id'=>13,
-    		'tool_name'=> 'シェイカーカップ',
+    		'name'=> 'シェイカーカップ',
     		],
     		[
     		'id'=>14,
-    		'tool_name'=> 'リング',
+    		'name'=> 'リング',
     		],
     		[
     		'id'=>15,
-    		'tool_name'=> 'エイトリング',
+    		'name'=> 'エイトリング',
     		],
     		[
     		'id'=>16,
-    		'tool_name'=> 'けん玉',
+    		'name'=> 'けん玉',
     		],
     		[
     		'id'=>17,
-    		'tool_name'=> 'ダイス',
+    		'name'=> 'ダイス',
     		],
     		[
     		'id'=>18,
-    		'tool_name'=> 'ダポクト',
+    		'name'=> 'ダポクト',
     		]
     		
 		]);

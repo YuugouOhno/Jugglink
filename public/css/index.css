@@ -1,21 +1,16 @@
-.main{
+body{
     display:flex;
     width:100%;
 }
 
-.left_container{
+.menues_container{
     background-color:#eaa47e;
-    width:30%;
-}
-
-.center_container{
-    background-color:#ede98e;
     width:40%;
 }
 
-.right_container{
-    background-color:#a7d87b;
-    width:30%;
+.main_container{
+    background-color:#ede98e;
+    width:60%;
 }
 
 .btnBox{
