@@ -12,5 +12,7 @@
 */
 
 Route::get('/', 'PostController@index');
-Route::get('/posts/{post}', 'PostController@show');
-
+Route::get('/posts/{post}', 'PostController@comment');
+Route::get('/create', 'PostController@create');
+Route::post('/posts', 'PostController@store');
+Route::delete('/posts/{post}', 'PostController@delete');
