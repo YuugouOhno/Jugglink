@@ -1,7 +1,7 @@
 @extends('others.menue')
 
 @section('title')
-    <link rel="stylesheet" href="css/.css">
+    <link rel="stylesheet" href="{{secure_asset('css/index.css')}}">
     <title>Comment</title>
 @endsection
 
@@ -27,6 +27,6 @@
         </div>
     </div>
     <div class='comment'>
-        <p>{{ $post->comment->post_text }}</p>
+        {{--<p>{{ $post->comment->post_text }}</p>--}}
     </div>
 @endsection
