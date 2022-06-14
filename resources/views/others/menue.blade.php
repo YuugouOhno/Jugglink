@@ -9,15 +9,15 @@
             <div class='menues'>
                 <div class='menue btnBox'>
                     <image class='menue_image' src=''></image>
-                    <a href='' class='menue_type'>ホーム</a>
+                    <a href='/' class='menue_type'>ホーム</a>
                 </div>
                 <div class='menue btnBox'>
                     <image class='menue_image' src=''></image>
-                    <a href='' class='menue_type'>プロフィール</a>
+                    <a href='/user' class='menue_type'>プロフィール</a>
                 </div>
                 <div class='menue btnBox'>
                     <image class='menue_image' src=''></image>
-                    <a href='' class='menue_type'>ブックマーク</a>
+                    <a href='/bookmark' class='menue_type'>ブックマーク</a>
                 </div>
                 <div class='menue btnBox'>
                     <image class='menue_image' src=''></image>

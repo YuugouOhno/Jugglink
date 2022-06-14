@@ -2,7 +2,7 @@
 use Illuminate\Database\Seeder;
 use App\Model\Tool;
 
-class ToolTableSeeder extends Seeder
+class ToolsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

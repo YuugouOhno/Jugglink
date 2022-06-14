@@ -18,3 +18,16 @@ Route::post('/posts', 'PostController@store');
 Route::delete('/posts/{post}', 'PostController@delete');
 
 Route::get('/tools/{tool}', 'ToolController@index');
+
+Route::get('/user', 'UserController@index');
+Route::get('/favo', 'FavoriteController@index');
+Route::get('/bookmark', 'BookmarkController@index');
+Route::get('/map', 'MapController@index');
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
