@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration
             $table->integer('tool_number');
             $table->string('technique', 20);
             $table->string('video', 1);
-            $table->string('post_text', 100)->nullable();
+            $table->string('text', 100)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

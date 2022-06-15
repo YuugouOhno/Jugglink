@@ -1,7 +1,7 @@
 @extends('others.menue')
 
 @section('title')
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="{{secure_asset('css/index.css')}}">
     <title>tool</title>
 @endsection
 
@@ -10,11 +10,11 @@
         @foreach ($posts as $post)
         <div class='user'>
             <image class='icon_image' src=''></image>
-            {{--<p class='user_name'>{{ $post->user->name }}</p>--}}
+            <p class='user_name'>{{ $post->user->name }}
         </div>
         <div class='post_title'>
             <p class='tool_number'>{{ $post->tool_number }}</p>
-            {{--<a href="/tools/{{ $post->tool->id }}">{{ $post->tool->name }}</a>--}}
+            <a href="/tools/{{ $post->tool->id }}">{{ $post->tool->name }}</a>
             <p class='technique_name'>{{ $post->technique }}</p>
         </div>
         <div class='post_body'>

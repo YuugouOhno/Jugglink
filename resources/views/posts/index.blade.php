@@ -9,8 +9,9 @@
     <div class='post'>
         @foreach ($posts as $post)
         <div class='user'>
-            <image class='icon_image' src=''></image>
-            {{--<p class='user_name'>{{ $post->user->name }}</p>--}}
+            {{--<image class='icon_image' src=''></image>--}}
+            <p class='icon_image'>{{ $post->user->icon }}</p>
+            <p class='user_name'>{{ $post->user->name }}</p>
         </div>
         <div class='post_title'>
             <p class='tool_number'>{{ $post->tool_number }}</p>
@@ -18,7 +19,8 @@
             <p class='technique_name'>{{ $post->technique }}</p>
         </div>
         <div class='post_body'>
-            <video class='post_video' src=''></video>
+            {{--<video class='post_video' src=''></video>--}}
+            <p class='post_video'>{{ $post->video }}</p>
             <p class='post_text'>{{ $post->post_text }}</p>
         </div>
         <div class='post_reaction'>

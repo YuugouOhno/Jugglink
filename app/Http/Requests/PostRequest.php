@@ -1,4 +1,4 @@
-<<?php
+<?php
 
 namespace App\Http\Requests;
 
@@ -9,8 +9,11 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'post.title' => 'required|string|max:100',
-            'post.body' => 'required|string|max:4000',
+            'post.video' => 'required|string|max:1',
+            'post.technique' => 'required|string|max:20',
+            'post.tool_id' => 'required',
+            'post.tool_number' => 'required',
+            'post.text' => 'required|string|max:100'
         ];
     }
 }

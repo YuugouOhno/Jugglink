@@ -43,6 +43,11 @@ class User extends Authenticatable
         return $this::with('posts')->find(Auth::id())->posts()->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
     
+    public function getOwnUser()
+    {
+        return $this::with('tool')->get();
+    }
+    
     public function tool()
     {
         return $this->belongsTo('App\Tool');
