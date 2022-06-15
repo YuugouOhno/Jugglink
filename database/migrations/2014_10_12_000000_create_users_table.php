@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable();
-            $table->integer('tool_id')->unsigned()->nullable();
-            $table->string('icon', 1)->nullable();
+            $table->integer('tool_id')->default('1')->unsigned()->nullable();
+            $table->string('icon', 1)->default('i');
             $table->string('introduce', 100)->nullable();
             $table->date('start_date')->nullable();
             $table->timestamps();

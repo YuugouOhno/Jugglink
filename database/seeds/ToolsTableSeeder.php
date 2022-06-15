@@ -31,15 +31,15 @@ class ToolsTableSeeder extends Seeder
     		],
     		[
     		'id'=>5,
-    		'tool_name'=> 'ポイ',
+    		'name'=> 'ポイ',
     		],
     		[
     		'id'=>6,
-    		'tool_name'=> 'フラワースティック',
+    		'name'=> 'フラワースティック',
     		],
     		[
     		'id'=>7,
-    		'tool_name'=> 'デビルスティック',
+    		'name'=> 'デビルスティック',
     		],
     		[
     		'id'=>8,
@@ -59,7 +59,7 @@ class ToolsTableSeeder extends Seeder
     		],
     		[
     		'id'=>12,
-    		'tool_name'=> 'スタッフ',
+    		'name'=> 'スタッフ',
     		],
     		[
     		'id'=>13,

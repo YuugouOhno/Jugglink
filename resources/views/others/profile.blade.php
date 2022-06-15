@@ -1,27 +1,22 @@
 @extends('others.menue')
 
 @section('title')
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="{{secure_asset('css/index.css')}}">
     <title>profile</title>
 @endsection
 
 @section('main')
     <div>
-        <image src='{{$user->icon}}'></image>
-        <p class='name'>{{$user->name}}</p>
-        <p class='tool'>道具{{$user->tool->name}}</p>
-        <p class='start_date'>ジャグリング歴</p>
-        <?php
-        date_default_timezone_set('Asia/Tokyo');
-        $today = new DateTime('now');
-        $diff = {{$user->start_date}}->diff($today);
-        echo $diff->days;
-        ?>
-        <p class='introduce'>{{$user->introduce}}</p>
+        {{--<image src='{{$user->icon}}'></image>--}}
+        <p class='icon'>{{Auth::user()->icon}}</p>
+        <p class='name'>{{Auth::user()->name}}</p>
+        <p class='tool'>道具{{Auth::user()->tool->name}}</p>
+        <p class='start_date'>ジャグリング歴{{Auth::user()->start_date}}</p>
+        <p class='introduce'>{{Auth::user()->introduction}}</p>
     </div>
     <div>
-        <a href="" class='following'>フォロー{{}}</a>
-        <a href="" class='followed'>フォロワー{{}}</a>
+        <a href="" class='following'>フォロー</a>
+        <a href="" class='followed'>フォロワー</a>
     </div>
     <div>
         <a href="/user" class='own_posts'>投稿</a>

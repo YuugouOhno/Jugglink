@@ -27,6 +27,10 @@
         </div>
     </div>
     <div class='comment'>
-        {{--<p>{{ $post->comment->post_text }}</p>--}}
+        @foreach ($post->comments as $comment)
+            <p>{{ $comment->user->icon }}</p>
+            <p>{{ $comment->user->name }}</p>
+            <p>{{ $comment->text }}</p>
+        @endforeach
     </div>
 @endsection

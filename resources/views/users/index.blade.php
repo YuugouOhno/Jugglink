@@ -9,7 +9,7 @@
         </div>
         <div class='post_title'>
             <p class='tool_number'>{{ $post->tool_number }}</p>
-            {{--<a href="/tools/{{ $post->tool->id }}">{{ $post->tool->name }}</a>--}}
+            --<a href="/tools/{{ $post->tool->id }}">{{ $post->tool->name }}</a>
             <p class='technique_name'>{{ $post->technique }}</p>
         </div>
         <div class='post_body'>

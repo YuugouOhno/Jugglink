@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Tool;
+use App\Comment;
 
 use App\Http\Requests\PostRequest;
 
@@ -14,9 +15,9 @@ class PostController extends Controller
         return view('posts/index')->with(['posts' => $post->getPaginateByLimit()]);
     }
     
-    public function comment(Post $post)
+    public function comment(Post $post, Comment $comment)
     {
-        return view('posts/comment')->with(['post' => $post]);
+        return view('posts/comment')->with(['post' => $post, 'comments' => $comment->getCommentPaginateByLimit()]);
     }
     
     public function create(Tool $tool)

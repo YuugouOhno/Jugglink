@@ -7,16 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
+        'user_id',
+        'video',
         'technique',
-        'post_text',
         'tool_id',
-        'user_id'
+        'tool_number',
+        'text'
     ];
     
     public function getPaginateByLimit(int $limit_count = 1)
     {
     // updated_atで降順に並べたあと、limitで件数制限をかける
-        return $this::with('tool')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        return $this::with('tool', 'user')->orderBy('updated_at', 'DESC')->paginate($limit_count);
         //return $this::with('user')->orderBy('updated_at', 'DESC')->paginate($limit_count);
         //return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
