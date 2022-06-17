@@ -13,7 +13,7 @@
             </div>
             <div class='menue btnBox'>
                 <image class='menue_image' src=''></image>
-                <a href='/users/{{Auth::user()->id}}' class='menue_type'>プロフィール</a>
+                <a href='/profiles/users/{{Auth::user()->id}}' class='menue_type'>プロフィール</a>
             </div>
             <div class='menue btnBox'>
                 <image class='menue_image' src=''></image>
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class='create_post btnBox'>
-            <p><a href='/create'>投稿する</a></p>
+            <p><a href='/posts/create'>投稿する</a></p>
         </div>
     </div>
     <div class='main_container'>

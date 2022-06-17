@@ -26,6 +26,16 @@
             <div class='bookmark'>ブックマーク</div>
         </div>
     </div>
+    <div class='create_comment'>
+        <form action="/comment" method="POST">
+            @csrf
+            <div>
+                <textarea name="comment[text]" placeholder="コメント"></textarea>
+                <p class="video__error" style="color:red">{{ $errors->first('post.video') }}</p>
+                <input type="submit" value="コメントを投稿"/>
+            </div>
+        </form>
+    </div>
     <div class='comment'>
         @foreach ($post->comments as $comment)
             <p>{{ $comment->user->icon }}</p>
