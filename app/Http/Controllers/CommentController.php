@@ -12,10 +12,10 @@ class CommentController extends Controller
 {
     public function store(Comment $comment, Post $post, CommentRequest $request)
     {
-        $input = $request['comment'];
-        $input += ['user_id' => $request->user()->id];
-        $input += [$post->id];
-        $comment->fill($input)->save();
+        $input_comment = $request['comment'];
+        $input_comment += ['user_id' => $request->user()->id];
+        $input_comment += ['post_id' => $post->id];
+        $comment->fill($input_comment)->save();
         return redirect('/posts/' . $post->id);
     }
 }
