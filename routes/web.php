@@ -11,17 +11,20 @@
 |
 */
 Route::group(['middleware' => ['auth']], function(){
+    //ホーム画面
     Route::get('/', 'PostController@index');
+    //コメント
     Route::get('/posts/{post}', 'PostController@comment');
     Route::post('/comment', 'CommentController@store');
-    Route::get('/posts/create', 'PostController@create');
+    //投稿の作成削除
+    Route::get('/create', 'PostController@create');
     Route::post('/posts', 'PostController@store');
     Route::delete('/posts/{post}', 'PostController@delete');
-    
+    //道具ごと
     Route::get('/tools/{tool}', 'ToolController@index');
-    
+    //プロフィール
     Route::get('/profiles/users/{user}', 'UserController@index');
-    
+    //いいね
     Route::get('/favorite', 'FavoriteController@index');
     Route::get('/bookmark', 'BookmarkController@index');
     Route::get('/map', 'MapController@index');

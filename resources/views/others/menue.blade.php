@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class='create_post btnBox'>
-            <p><a href='/posts/create'>投稿する</a></p>
+            <p><a href='/create'>投稿する</a></p>
         </div>
     </div>
     <div class='main_container'>

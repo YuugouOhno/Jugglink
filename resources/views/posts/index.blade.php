@@ -28,11 +28,13 @@
             <div class='coment'><a href="/posts/{{ $post->id }}">コメント</a></div>
             <div class='bookmark'>ブックマーク</div>
         </div>
+        @if($post->user->id == Auth::user()->id)
         <form id="form" action='/posts/{{$post->id}}' method='POST'>
             @csrf
             @method('DELETE')
             <input type='button' value='delete' onclick="buttonClick()">
         </form>
+        @endif
         @endforeach
     </div>
     <div class='paginate'>
