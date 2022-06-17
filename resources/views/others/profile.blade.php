@@ -13,6 +13,9 @@
         <p class='tool'>道具{{$user->tool->name}}</p>
         <p class='start_date'>ジャグリング歴{{$user->start_date}}</p>
         <p class='introduce'>{{$user->introduction}}</p>
+        @if($user->id == Auth::user()->id)
+        <a href="/profiles/users/{{$user->id}}/edit">プロフィールを編集</a>
+        @endif
     </div>
     <div>
         <a href="" class='following'>フォロー</a>

@@ -24,6 +24,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/tools/{tool}', 'ToolController@index');
     //プロフィール
     Route::get('/profiles/users/{user}', 'UserController@index');
+    Route::get('/profiles/users/{user}/edit', 'UserController@edit');
+    Route::put('/profiles/users/{user}', 'UserController@update');
     //いいね
     Route::get('/favorite', 'FavoriteController@index');
     Route::get('/bookmark', 'BookmarkController@index');
