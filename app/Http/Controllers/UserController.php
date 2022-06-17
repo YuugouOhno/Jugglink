@@ -8,8 +8,8 @@ use App\Post;
 
 class UserController extends Controller
 {
-    public function index(User $user)
+    public function index(User $user, Post $post)
     {
-        return view('users.index')->with(['user' => $user->getOwnUser(), 'own_posts' => $user->getOwnPaginateByLimit()]);
+        return view('users.index')->with(['user' => $user, 'posts' => $post->getPaginateByLimit()]);
     }
 }

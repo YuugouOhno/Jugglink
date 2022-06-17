@@ -19,7 +19,7 @@ Route::group(['middleware' => ['auth']], function(){
     
     Route::get('/tools/{tool}', 'ToolController@index');
     
-    Route::get('/user', 'UserController@index');
+    Route::get('/users/{user}', 'UserController@index');
     Route::get('/favo', 'FavoriteController@index');
     Route::get('/bookmark', 'BookmarkController@index');
     Route::get('/map', 'MapController@index');

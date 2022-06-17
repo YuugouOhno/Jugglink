@@ -11,7 +11,7 @@
         <div class='user'>
             {{--<image class='icon_image' src=''></image>--}}
             <p class='icon_image'>{{ $post->user->icon }}</p>
-            <p class='user_name'>{{ $post->user->name }}</p>
+            <a href='/users/{{$post->user->id}}' class='user_name'>{{ $post->user->name }}</a>
         </div>
         <div class='post_title'>
             <p class='tool_number'>{{ $post->tool_number }}</p>

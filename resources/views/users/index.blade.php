@@ -2,7 +2,7 @@
 
 @section('profile_menue')
     <div class='post'>
-        @foreach ($own_posts as $post)
+        @foreach ($user->posts as $post)
         <div class='user'>
             <image class='icon_image' src=''></image>
             <p class='user_name'>{{ $post->user->name }}</p>
@@ -29,6 +29,16 @@
         @endforeach
     </div>
     <div class='paginate'>
-        {{ $own_posts->links() }}
+        {{ $posts->links() }}
     </div>
+@endsection
+
+@section('script')
+    <script>
+        function buttonClick(){
+            if(confirm("削除しますか？")){
+                document.getElementById("form").submit();
+            }
+        }
+	</script>
 @endsection

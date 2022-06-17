@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    public function getCommentPaginateByLimit(int $limit_count = 1)
+    public function getCommentPaginateByLimit(int $limit_count = 3)
     {
         return $this::with('post')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
