@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Http\Controllers;
+
+
+use App\Comment;
+use App\Post;
+
+use App\Http\Requests\CommentRequest;
+
+class CommentController extends Controller
+{
+    public function store(Comment $comment, Post $post, CommentRequest $request)
+    {
+        $input_comment = $request['comment'];
+        $input_comment += ['user_id' => $request->user()->id];
+        $input_comment += ['post_id' => $post->id];
+        $comment->fill($input_comment)->save();
+        return redirect('/posts/' . $post->id);
+    }
+    
+    public function delete(Comment $comment)
+    {
+        $comment->delete();
+        return redirect('/');
+    }
+    
+}

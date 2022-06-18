@@ -7,7 +7,7 @@ use App\Post;
 
 class Tool extends Model
 {
-    public function getByTool(int $limit_count = 1)
+    public function getByTool(int $limit_count = 3)
     {
          return $this->posts()->with('tool')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }

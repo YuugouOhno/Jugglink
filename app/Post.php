@@ -15,7 +15,7 @@ class Post extends Model
         'text'
     ];
     
-    public function getPaginateByLimit(int $limit_count = 1)
+    public function getPaginateByLimit(int $limit_count = 3)
     {
     // updated_atで降順に並べたあと、limitで件数制限をかける
         return $this::with('tool', 'user')->orderBy('updated_at', 'DESC')->paginate($limit_count);
@@ -45,6 +45,6 @@ class Post extends Model
     
     public function favorites()
     {
-        return $this->hasOne('App\Favorite');
+        return $this->hasmany('App\Favorite');
     }
 }

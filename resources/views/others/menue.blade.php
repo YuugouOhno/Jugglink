@@ -13,7 +13,7 @@
             </div>
             <div class='menue btnBox'>
                 <image class='menue_image' src=''></image>
-                <a href='/user' class='menue_type'>プロフィール</a>
+                <a href='/profiles/users/{{Auth::user()->id}}' class='menue_type'>プロフィール</a>
             </div>
             <div class='menue btnBox'>
                 <image class='menue_image' src=''></image>

@@ -26,11 +26,38 @@
             <div class='bookmark'>ブックマーク</div>
         </div>
     </div>
+    <div class='create_comment'>
+        <form action="/comments" method="POST">
+            @csrf
+            <div>
+                <textarea name="comment[text]" placeholder="コメント"></textarea>
+                <p class="video__error" style="color:red">{{ $errors->first('post.video') }}</p>
+                <input type="submit" value="コメントを投稿"/>
+            </div>
+        </form>
+    </div>
     <div class='comment'>
         @foreach ($post->comments as $comment)
             <p>{{ $comment->user->icon }}</p>
             <p>{{ $comment->user->name }}</p>
             <p>{{ $comment->text }}</p>
+            @if($comment->user->id == Auth::user()->id)
+            <form id="comments_delete_form" action='/comments/posts/{{$comment->post->id}}' method='POST'>
+                @csrf
+                @method('DELETE')
+                <input type='button' value='delete' onclick="buttonClick()">
+            </form>
+            @endif
         @endforeach
     </div>
+@endsection
+
+@section('script')
+    <script>
+        function buttonClick(){
+            if(confirm("削除しますか？")){
+                document.getElementById("comments_delete_form").submit();
+            }
+        }
+	</script>
 @endsection

@@ -11,7 +11,7 @@
         <div class='user'>
             {{--<image class='icon_image' src=''></image>--}}
             <p class='icon_image'>{{ $post->user->icon }}</p>
-            <p class='user_name'>{{ $post->user->name }}</p>
+            <a href='/profiles/users/{{$post->user->id}}' class='user_name'>{{ $post->user->name }}</a>
         </div>
         <div class='post_title'>
             <p class='tool_number'>{{ $post->tool_number }}</p>
@@ -21,18 +21,20 @@
         <div class='post_body'>
             {{--<video class='post_video' src=''></video>--}}
             <p class='post_video'>{{ $post->video }}</p>
-            <p class='post_text'>{{ $post->post_text }}</p>
+            <p class='post_text'>{{ $post->text }}</p>
         </div>
         <div class='post_reaction'>
             <div class='favorite'>いいね</div>
-            <div class='coment'><a href="/posts/{{ $post->id }}">コメント</a></div>
+            <div class='coment'><a href="/comments/posts/{{ $post->id }}">コメント</a></div>
             <div class='bookmark'>ブックマーク</div>
         </div>
-        <form id="form" action='/posts/{{$post->id}}' method='POST'>
+        @if($post->user->id == Auth::user()->id)
+        <form id="posts_delete_form" action='/posts/{{$post->id}}' method='POST'>
             @csrf
             @method('DELETE')
             <input type='button' value='delete' onclick="buttonClick()">
         </form>
+        @endif
         @endforeach
     </div>
     <div class='paginate'>
@@ -44,7 +46,7 @@
     <script>
         function buttonClick(){
             if(confirm("削除しますか？")){
-                document.getElementById("form").submit();
+                document.getElementById("posts_delete_form").submit();
             }
         }
 	</script>

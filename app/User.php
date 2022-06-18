@@ -17,9 +17,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'icon','name', 'email', 'password','tool_id','introduce'
     ];
-
+    
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -38,14 +38,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
-    public function getOwnPaginateByLimit(int $limit_count = 1)
+    public function getOwnPaginateByLimit(int $limit_count = 3)
     {
-        return $this::with('posts')->find(Auth::id())->posts()->orderBy('updated_at', 'DESC')->paginate($limit_count);
-    }
-    
-    public function getOwnUser()
-    {
-        return $this::with('tool')->get();
+        return $this::with('posts')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
     
     public function tool()

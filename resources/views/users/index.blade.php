@@ -2,14 +2,14 @@
 
 @section('profile_menue')
     <div class='post'>
-        @foreach ($own_posts as $post)
+        @foreach ($user->posts as $post)
         <div class='user'>
             <image class='icon_image' src=''></image>
             <p class='user_name'>{{ $post->user->name }}</p>
         </div>
         <div class='post_title'>
             <p class='tool_number'>{{ $post->tool_number }}</p>
-            --<a href="/tools/{{ $post->tool->id }}">{{ $post->tool->name }}</a>
+            <a href="/tools/{{ $post->tool->id }}">{{ $post->tool->name }}</a>
             <p class='technique_name'>{{ $post->technique }}</p>
         </div>
         <div class='post_body'>
@@ -29,6 +29,16 @@
         @endforeach
     </div>
     <div class='paginate'>
-        {{ $own_posts->links() }}
+        {{ $posts->links() }}
     </div>
+@endsection
+
+@section('script')
+    <script>
+        function buttonClick(){
+            if(confirm("削除しますか？")){
+                document.getElementById("form").submit();
+            }
+        }
+	</script>
 @endsection
