@@ -45,6 +45,6 @@ class Post extends Model
     
     public function favorites()
     {
-        return $this->hasOne('App\Favorite');
+        return $this->hasmany('App\Favorite');
     }
 }

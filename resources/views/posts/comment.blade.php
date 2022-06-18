@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class='create_comment'>
-        <form action="/comment" method="POST">
+        <form action="/comments" method="POST">
             @csrf
             <div>
                 <textarea name="comment[text]" placeholder="コメント"></textarea>
@@ -41,6 +41,23 @@
             <p>{{ $comment->user->icon }}</p>
             <p>{{ $comment->user->name }}</p>
             <p>{{ $comment->text }}</p>
+            @if($comment->user->id == Auth::user()->id)
+            <form id="comments_delete_form" action='/comments/posts/{{$comment->post->id}}' method='POST'>
+                @csrf
+                @method('DELETE')
+                <input type='button' value='delete' onclick="buttonClick()">
+            </form>
+            @endif
         @endforeach
     </div>
+@endsection
+
+@section('script')
+    <script>
+        function buttonClick(){
+            if(confirm("削除しますか？")){
+                document.getElementById("comments_delete_form").submit();
+            }
+        }
+	</script>
 @endsection

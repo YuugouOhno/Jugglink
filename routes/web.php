@@ -14,8 +14,9 @@ Route::group(['middleware' => ['auth']], function(){
     //ホーム画面
     Route::get('/', 'PostController@index');
     //コメント
-    Route::get('/posts/{post}', 'PostController@comment');
-    Route::post('/comment', 'CommentController@store');
+    Route::get('/comments/posts/{post}', 'PostController@comment');
+    Route::post('/comments', 'CommentController@store');
+    Route::delete('/comments/posts/{post}', 'CommentController@delete');
     //投稿の作成削除
     Route::get('/create', 'PostController@create');
     Route::post('/posts', 'PostController@store');
