@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Like;
 
 class Post extends Model
 {
@@ -35,7 +36,7 @@ class Post extends Model
     
     public function bookmarks()
     {
-        return $this->hasOne('App\Bookmark');
+        return $this->hasmany('App\Bookmark');
     }
     
     public function comments()
@@ -43,8 +44,12 @@ class Post extends Model
         return $this->hasMany('App\Comment');
     }
     
-    public function favorites()
+    public function likes()
     {
-        return $this->hasmany('App\Favorite');
+        return $this->hasmany('App\Like');
+    }
+    
+    public function isLikedBy($user): bool {
+        return Like::where('user_id', $user->id)->where('post_id', $this->id)->first() !==null;
     }
 }

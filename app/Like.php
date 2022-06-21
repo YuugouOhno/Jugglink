@@ -4,12 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Favorite extends Model
+class Like extends Model
 {
-    public function getFavoritePaginateByLimit(int $limit_count = 1)
+    protected $fillable = [
+        'user_id',
+        'post_id'
+    ];
+    
+    public function getLikePaginateByLimit(int $limit_count = 1)
     {
         $auths = Auth::id();
-        return $this->$favorite->where('user_id', $auths)->posts()->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        return $this->$like->where('user_id', $auths)->posts()->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
     
     public function user()

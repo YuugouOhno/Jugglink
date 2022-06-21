@@ -12,7 +12,11 @@ class PostController extends Controller
 {
     public function index(Post $post)
     {
-        return view('posts/index')->with(['posts' => $post->getPaginateByLimit()]);
+        $posts = Post::withCount('likes')->orderBy('id', 'desc')->paginate(10);
+        $param = [
+            'posts' => $posts,
+        ];
+        return view('posts/index', $param)->with(['posts' => $post->getPaginateByLimit()]);
     }
     
     public function comment(Post $post, Comment $comment)
@@ -37,6 +41,11 @@ class PostController extends Controller
     {
         $post->delete();
         return redirect('/');
+    }
+    
+    public function test()
+    {
+        return view('tests/index');
     }
 
 }

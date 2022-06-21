@@ -12,27 +12,39 @@
 */
 Route::group(['middleware' => ['auth']], function(){
     //ホーム画面
-    Route::get('/', 'PostController@index');
-    //コメント
-    Route::get('/comments/posts/{post}', 'PostController@comment');
-    Route::post('/comments', 'CommentController@store');
-    Route::delete('/comments/posts/{post}', 'CommentController@delete');
-    //投稿の作成削除
-    Route::get('/create', 'PostController@create');
-    Route::post('/posts', 'PostController@store');
-    Route::delete('/posts/{post}', 'PostController@delete');
-    //道具ごと
-    Route::get('/tools/{tool}', 'ToolController@index');
-    //プロフィール
-    Route::get('/profiles/users/{user}', 'UserController@index');
-    Route::get('/profiles/users/{user}/edit', 'UserController@edit');
-    Route::put('/profiles/users/{user}', 'UserController@update');
+    Route::get('/', 'PostController@index')->name('home');
+    
+    //コメント一覧＆コメントの作成
+    Route::get('/posts/{post}/comments', 'PostController@comment')->name('comments.create');
+    //コメントの投稿
+    Route::post('/posts/{post}/comment/create', 'CommentController@store')->name('');
+    //コメントの削除
+    Route::delete('/posts/{post}/comment/delete', 'CommentController@delete')->name('');
+    
+    //投稿内容の作成画面
+    Route::get('/posts/create/index', 'PostController@create')->name('posts.create.index');
+    //投稿
+    Route::post('/posts/create', 'PostController@store')->name('');
+    //投稿の削除
+    Route::delete('/posts/{post}/delete', 'PostController@delete')->name('');
+    //道具ごとの投稿
+    Route::get('/tools/{tool}', 'ToolController@index')->name('');
+    
+    //プロフィール（自分の投稿一覧）
+    Route::get('/users/{user}/profile/posts', 'UserController@index')->name('profile.posts');
+    //プロフィールの編集画面
+    Route::get('/users/{user}/profile/edit', 'UserController@edit')->name('');
+    //プロフィールの変更
+    Route::put('/users/{user}/profile', 'UserController@update')->name('');
+    
     //いいね
-    Route::get('/favorite', 'FavoriteController@index');
-    Route::get('/bookmark', 'BookmarkController@index');
-    Route::get('/map', 'MapController@index');
-});
+    Route::post('/posts/{post}/like', 'LikeController@like')->name('');
+    //ブックマーク
+    Route::get('/posts/{post}/bookmark', 'BookmarkController@index')->name('');
+    //ジャグラー分布図
+    Route::get('/map', 'MapController@index')->name('');
 
+});
 
 Auth::routes();
 

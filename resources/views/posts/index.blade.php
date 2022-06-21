@@ -7,6 +7,7 @@
 
 @section('main')
     <div class='post'>
+        <example-component></example-component>
         @foreach ($posts as $post)
         <div class='user'>
             {{--<image class='icon_image' src=''></image>--}}
@@ -25,7 +26,24 @@
         </div>
         <div class='post_reaction'>
             <div class='favorite'>いいね</div>
-            <div class='coment'><a href="/comments/posts/{{ $post->id }}">コメント</a></div>
+            @if (!$post->isLikedBy(Auth::user()))
+                <span class="likes">
+                    <div class='like' method='POST'>
+                        <i class="fas fa-heart like-toggle"></i>
+                        <a　data-post-id="{{ $post->id }}"></a>
+                    </div>
+                    <span class="like-counter">{{$post->like_count}}</span>
+                </span><!-- /.likes -->
+            @else
+                <span class="likes">
+                    <div class='like' method='POST'>
+                        <i class="fas fa-heart like-toggle"></i>
+                        <a data-post-id="{{ $post->id }}">unlike</a>
+                    </div>
+                    <span class="like-counter">{{$post->like_count}}</span>
+                </span><!-- /.likes -->
+            @endif
+            <div class='coment'><a href="/posts/{{ $post->id }}/comments"><i class="fa-regular fa-comment"></i></a></div>
             <div class='bookmark'>ブックマーク</div>
         </div>
         @if($post->user->id == Auth::user()->id)
@@ -43,11 +61,12 @@
 @endsection
 
 @section('script')
+    <script src="{{ secure_asset('js/app.js') }}" type="module"></script>
     <script>
         function buttonClick(){
             if(confirm("削除しますか？")){
                 document.getElementById("posts_delete_form").submit();
             }
         }
-	</script>
+    </script>
 @endsection
