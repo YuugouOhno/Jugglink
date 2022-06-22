@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bookmark extends Model
 {
+    protected $fillable = [
+        'user_id',
+        'post_id'
+    ];
+    
     public function getBookmarkPaginateByLimit(int $limit_count = 1)
     {
         $auths = Auth::id();

@@ -11,11 +11,11 @@
         <div class='user'>
             {{--<image class='icon_image' src=''></image>--}}
             <p class='icon_image'>{{ $post->user->icon }}</p>
-            <a href='{{ route("profile.posts", ["user" => ($post->user->id)])}}' class='user_name'>{{ $post->user->name }}</a>
+            <a href='{{ route("profile.posts", ["user" => ($post->user->id)]) }}' class='user_name'>{{ $post->user->name }}</a>
         </div>
         <div class='post_title'>
             <p class='tool_number'>{{ $post->tool_number }}</p>
-            <a href="/tools/{{ $post->tool->id }}">{{ $post->tool->name }}</a>
+            <a href='{{ route("tools.show", ["tool" => ($post->tool->id)]) }}'>{{ $post->tool->name }}</a>
             <p class='technique_name'>{{ $post->technique }}</p>
         </div>
         <div class='post_body'>
@@ -24,10 +24,9 @@
             <p class='post_text'>{{ $post->text }}</p>
         </div>
         <div class='post_reaction'>
-            <div class='favorite'>いいね</div>
             <like-component :post="{{ json_encode($post)}}"></like-component>
             <div class='coment'><a href='{{ route("comments.show", ["post" => ($post->id)])}}'><i class="fa-regular fa-comment"></i></a></div>
-            <div class='bookmark'>ブックマーク</div>
+            <bookmark-component :post="{{ json_encode($post)}}"></bookmark-component>
         </div>
         @if($post->user->id == Auth::user()->id)
         <form id="posts_delete_form" action='{{ route("posts.delete", ["post" => ($post->id)]) }}' method='POST'>

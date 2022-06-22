@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth']], function(){
     //投稿の削除
     Route::delete('/posts/{post}/delete', 'PostController@delete')->name('posts.delete');
     //道具ごとの投稿
-    Route::get('/tools/{tool}', 'ToolController@index')->name('');
+    Route::get('/tools/{tool}', 'ToolController@index')->name('tools.show');
     
     //プロフィール（自分の投稿一覧）
     Route::get('/users/{user}/profile/posts', 'UserController@index')->name('profile.posts');
@@ -47,7 +47,12 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('posts/{post}/haslikes', 'LikeController@haslikes');
     
     //ブックマーク
-    Route::get('/posts/{post}/bookmark', 'BookmarkController@index')->name('');
+    Route::get('/posts/{post}/bookmarks', 'BookmarkController@store')->name('bookmarks');
+    //ブックマーク解除
+    Route::delete('/posts/{post}/unbookmarks', 'BookmarkController@delete')->name('unbookmarks');
+    //ブックマークの有無
+    Route::get('posts/{post}/hasbookmarks', 'BookmarkController@hasbookmarks');
+    
     //ジャグラー分布図
     Route::get('/map', 'MapController@index')->name('');
 
