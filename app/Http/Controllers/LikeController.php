@@ -8,28 +8,48 @@ use Auth;
 
 class likeController extends Controller
 {
-    public function like(Request $request)
+    public function store(Post $post, Like $like)
     {
-        $user_id = Auth::user()->id; //1.ログインユーザーのid取得
-        $post_id = $request->post_id; //2.投稿idの取得
-        $already_liked = Like::where('user_id', $user_id)->where('post_id', $post_id)->first(); //3.
-        
-        if (!$already_liked) { //もしこのユーザーがこの投稿にまだいいねしてなかったら
-            $like = new Like; //4.Likeクラスのインスタンスを作成
-            $like->post_id = $post_id; //Likeインスタンスにreview_id,user_idをセット
-            $like->user_id = $user_id;
-            $like->save();
-        } else { //もしこのユーザーがこの投稿に既にいいねしてたらdelete
-            Like::where('post_id', $post_id)->where('user_id', $user_id)->delete();
-        }
-        //5.この投稿の最新の総いいね数を取得
-        $post_likes_count = Post::withCount('likes')->findOrFail($post_id)->likes_count;
-        $param = [
-            'post_likes_count' => $post_likes_count,
-        ];
-        return response()->json($param); //6.JSONデータをjQueryに返す
+        $input_like = new Like();
+        $input_like = ['user_id' =>(Auth::id()), 'post_id' => $post->id];
+        $like->fill($input_like)->save();
+        $count = $like->where('post_id', $post->id)->count();
+        $result = true;
+        return response()->json([
+            'result' => $result,
+            'count' => $count
+        ]);
     }
     
+    public function delete(Post $post, Like $like)
+    {
+        $like->where('post_id', $post->id)->where('user_id', Auth::id())->delete();
+        $count = $like->where('post_id', $post->id)->count();
+        $result = false;
+        return response()->json([
+            'result' => $result,
+            'count' => $count
+        ]);
+    }
+    
+    public function countlikes(Post $post, Like $like) //以下追加
+    {
+        $post = Post::find($post->id);
+        $count = $like->where('post_id', $post->id)->count();
+        return response()->json($count);
+    }
+    
+    public function haslikes(Post $post, Like $like)
+    {
+        $post = Post::find($post->id);
+        if ($like->where('post_id', $post->id)->where('user_id', Auth::id())->count() != 0) {
+            $result = true;
+        } else {
+            $result = false;
+        }
+        return response()->json($result);
+    }
+        
     public function index(Like $like)
     {
         return view('likes.index')->with(['like_posts' => $like->getLikePaginateByLimit()]);

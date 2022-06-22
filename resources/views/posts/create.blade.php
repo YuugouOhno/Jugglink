@@ -11,7 +11,7 @@
         <div class="back_index"><a href="/">戻る</a></div>
     </div>
     <div class='post_content'>
-        <form action="/posts" method="POST">
+        <form action='{{ route("posts.create") }}' method="POST">
             @csrf
             <div class="video">
                 <h2>動画</h2>

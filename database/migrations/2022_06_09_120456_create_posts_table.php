@@ -25,7 +25,7 @@ class CreatePostsTable extends Migration
                     ->references('id')
                     ->on('tools');
             $table->integer('tool_number');
-            $table->integer('like_count')->default(0);
+            $table->integer('count')->default(0);
             $table->string('technique', 20);
             $table->string('video', 1);
             $table->string('text', 100)->nullable();

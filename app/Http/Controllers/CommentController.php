@@ -16,13 +16,13 @@ class CommentController extends Controller
         $input_comment += ['user_id' => $request->user()->id];
         $input_comment += ['post_id' => $post->id];
         $comment->fill($input_comment)->save();
-        return redirect('/posts/' . $post->id . '/comments');
+        return redirect()->route('comments.show', ['post' => ($post->id)]);
     }
     
     public function delete(Comment $comment)
     {
         $comment->delete();
-        return redirect('/posts/' . $post->id . '/comments');
+        return redirect()->route('comments.show', ['post' => ($comment->post->id)]);
     }
     
 }

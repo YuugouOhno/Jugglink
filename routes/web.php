@@ -15,30 +15,37 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/', 'PostController@index')->name('home');
     
     //コメント一覧＆コメントの作成
-    Route::get('/posts/{post}/comments', 'PostController@comment')->name('comments.create');
+    Route::get('/posts/{post}/comments', 'PostController@comment')->name('comments.show');
     //コメントの投稿
-    Route::post('/posts/{post}/comment/create', 'CommentController@store')->name('');
+    Route::post('/posts/{post}/comments/create', 'CommentController@store')->name('comments.create');
     //コメントの削除
-    Route::delete('/posts/{post}/comment/delete', 'CommentController@delete')->name('');
+    Route::delete('/posts/comments/{comment}/delete', 'CommentController@delete')->name('comments.delete');
     
     //投稿内容の作成画面
     Route::get('/posts/create/index', 'PostController@create')->name('posts.create.index');
     //投稿
-    Route::post('/posts/create', 'PostController@store')->name('');
+    Route::post('/posts/create', 'PostController@store')->name('posts.create');
     //投稿の削除
-    Route::delete('/posts/{post}/delete', 'PostController@delete')->name('');
+    Route::delete('/posts/{post}/delete', 'PostController@delete')->name('posts.delete');
     //道具ごとの投稿
     Route::get('/tools/{tool}', 'ToolController@index')->name('');
     
     //プロフィール（自分の投稿一覧）
     Route::get('/users/{user}/profile/posts', 'UserController@index')->name('profile.posts');
     //プロフィールの編集画面
-    Route::get('/users/{user}/profile/edit', 'UserController@edit')->name('');
+    Route::get('/users/{user}/profile/edit', 'UserController@edit')->name('profile.edit');
     //プロフィールの変更
-    Route::put('/users/{user}/profile', 'UserController@update')->name('');
+    Route::put('/users/{user}/profile/update', 'UserController@update')->name('profile.update');
     
     //いいね
-    Route::post('/posts/{post}/like', 'LikeController@like')->name('');
+    Route::get('/posts/{post}/likes', 'LikeController@store')->name('likes');
+    //いいね解除
+    Route::delete('/posts/{post}/unlikes', 'LikeController@delete')->name('unlikes');
+    //いいね数のカウント
+    Route::get('/posts/{post}/countlikes', 'LikeController@countlikes')->name('likes.count');
+    //いいねの有無
+    Route::get('posts/{post}/haslikes', 'LikeController@haslikes');
+    
     //ブックマーク
     Route::get('/posts/{post}/bookmark', 'BookmarkController@index')->name('');
     //ジャグラー分布図
@@ -48,6 +55,6 @@ Route::group(['middleware' => ['auth']], function(){
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index');
 
 

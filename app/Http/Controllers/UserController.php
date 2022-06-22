@@ -25,6 +25,6 @@ class UserController extends Controller
     {
         $input_user = $request['user'];
         $user->fill($input_user)->save();
-        return redirect('/profiles/users/' . $user->id);
+        return redirect()->route('profile.posts', ['user'=>$user->id]);
     }
 }

@@ -1,4 +1,4 @@
-@extends('others.profile')
+@extends('users.profile')
 
 @section('profile_menue')
     <div class='post'>

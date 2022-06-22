@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class='create_comment'>
-        <form action="/posts/{{$post->id}}/comment/create" method="POST">
+        <form action="/posts/{{$post->id}}/comments/create" method="POST">
             @csrf
             <div>
                 <textarea name="comment[text]" placeholder="コメント"></textarea>
@@ -42,7 +42,7 @@
             <a href='/profiles/users/{{$comment->user->id}}' class='user_name'>{{ $comment->user->name }}</a>
             <p>{{ $comment->text }}</p>
             @if($comment->user->id == Auth::user()->id)
-            <form id="comments_delete_form" action='/posts/{{$comment->post->id}}/comment/delete' method='POST'>
+            <form id="comments_delete_form" action="/posts/comments/{{$comment->id}}/delete" method='POST'>
                 @csrf
                 @method('DELETE')
                 <input type='button' value='delete' onclick="buttonClick()">
