@@ -78,5 +78,6 @@
         @yield('content')
     </div>
     @yield('script')
+    <script src="{{ secure_asset('js/app.js') }}" type="module"></script>
 </body>
 </html>

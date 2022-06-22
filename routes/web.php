@@ -14,13 +14,6 @@ Route::group(['middleware' => ['auth']], function(){
     //ホーム画面
     Route::get('/', 'PostController@index')->name('home');
     
-    //コメント一覧＆コメントの作成
-    Route::get('/posts/{post}/comments', 'PostController@comment')->name('comments.show');
-    //コメントの投稿
-    Route::post('/posts/{post}/comments/create', 'CommentController@store')->name('comments.create');
-    //コメントの削除
-    Route::delete('/posts/comments/{comment}/delete', 'CommentController@delete')->name('comments.delete');
-    
     //投稿内容の作成画面
     Route::get('/posts/create/index', 'PostController@create')->name('posts.create.index');
     //投稿
@@ -30,6 +23,13 @@ Route::group(['middleware' => ['auth']], function(){
     //道具ごとの投稿
     Route::get('/tools/{tool}', 'ToolController@index')->name('tools.show');
     
+    //コメント一覧＆コメントの作成
+    Route::get('/posts/{post}/comments', 'PostController@comment')->name('comments.show');
+    //コメントの投稿
+    Route::post('/posts/{post}/comments/create', 'CommentController@store')->name('comments.create');
+    //コメントの削除
+    Route::delete('/posts/comments/{comment}/delete', 'CommentController@delete')->name('comments.delete');
+
     //プロフィール（自分の投稿一覧）
     Route::get('/users/{user}/profile/posts', 'UserController@index')->name('profile.posts');
     //プロフィールの編集画面

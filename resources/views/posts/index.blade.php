@@ -29,11 +29,12 @@
             <bookmark-component :post="{{ json_encode($post)}}"></bookmark-component>
         </div>
         @if($post->user->id == Auth::user()->id)
-        <form id="posts_delete_form" action='{{ route("posts.delete", ["post" => ($post->id)]) }}' method='POST'>
+        {{--<form id="posts_delete_form" action='{{ route("posts.delete", ["post" => ($post->id)]) }}' method='POST'>
             @csrf
             @method('DELETE')
             <input type='button' value='delete' onclick="buttonClick()">
-        </form>
+        </form>--}}
+        <deletepost-component :post="{{ json_encode($post)}}"></deletepost-component>
         @endif
         @endforeach
     </div>
@@ -43,12 +44,11 @@
 @endsection
 
 @section('script')
-    <script src="{{ secure_asset('js/app.js') }}" type="module"></script>
-    <script>
+    {{--<script>
         function buttonClick(){
             if(confirm("削除しますか？")){
                 document.getElementById("posts_delete_form").submit();
             }
         }
-    </script>
+    </script>--}}
 @endsection
