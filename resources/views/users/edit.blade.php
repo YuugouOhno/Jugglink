@@ -8,7 +8,7 @@
 @section('main')
 <h1 class="title">編集画面</h1>
     <div class="content">
-        <form action="/profiles/users/{{ $user->id }}" method="POST">
+        <form action='{{ route("profile.update", ["user" => ($user->id)]) }}' method="POST">
             @csrf
             @method('PUT')
             <h2>アイコン</h2>

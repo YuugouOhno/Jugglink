@@ -1,31 +1,37 @@
-@extends('others.profile')
+@extends('users.profile')
 
 @section('profile_menue')
     <div class='post'>
+        <a href='{{ route("profile.likes", ["user" => $user->id]) }}'>{{$user->name}}のいいね一覧</a>
         @foreach ($user->posts as $post)
         <div class='user'>
-            <image class='icon_image' src=''></image>
-            <p class='user_name'>{{ $post->user->name }}</p>
+            {{--<image class='icon_image' src=''></image>--}}
+            <p class='icon_image'>{{ $post->user->icon }}</p>
+            <a href='{{ route("profile.posts", ["user" => ($post->user->id)]) }}' class='user_name'>{{ $post->user->name }}</a>
         </div>
         <div class='post_title'>
             <p class='tool_number'>{{ $post->tool_number }}</p>
-            <a href="/tools/{{ $post->tool->id }}">{{ $post->tool->name }}</a>
+            <a href='{{ route("tools.show", ["tool" => ($post->tool->id)]) }}'>{{ $post->tool->name }}</a>
             <p class='technique_name'>{{ $post->technique }}</p>
         </div>
         <div class='post_body'>
-            <video class='post_video' src=''></video>
-            <p class='post_text'>{{ $post->post_text }}</p>
+            {{--<video class='post_video' src=''></video>--}}
+            <p class='post_video'>{{ $post->video }}</p>
+            <p class='post_text'>{{ $post->text }}</p>
         </div>
         <div class='post_reaction'>
-            <div class='favorite'>いいね</div>
-            <div class='coment'><a href="/posts/{{ $post->id }}">コメント</a></div>
-            <div class='bookmark'>ブックマーク</div>
+            <like-component :post="{{ json_encode($post)}}"></like-component>
+            <div class='coment'><a href='{{ route("comments.show", ["post" => ($post->id)])}}'><i class="fa-regular fa-comment"></i></a></div>
+            <bookmark-component :post="{{ json_encode($post)}}"></bookmark-component>
         </div>
-        <form id="form" action='/posts/{{$post->id}}' method='POST'>
+        @if($post->user->id == Auth::user()->id)
+        {{--<form id="posts_delete_form" action='{{ route("posts.delete", ["post" => ($post->id)]) }}' method='POST'>
             @csrf
             @method('DELETE')
             <input type='button' value='delete' onclick="buttonClick()">
-        </form>
+        </form>--}}
+        <deletepost-component :post="{{ json_encode($post)}}"></deletepost-component>
+        @endif
         @endforeach
     </div>
     <div class='paginate'>
@@ -34,11 +40,11 @@
 @endsection
 
 @section('script')
-    <script>
+    {{--<script>
         function buttonClick(){
             if(confirm("削除しますか？")){
                 document.getElementById("form").submit();
             }
         }
-	</script>
+	</script>--}}
 @endsection

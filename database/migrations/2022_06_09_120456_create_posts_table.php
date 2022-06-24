@@ -15,9 +15,17 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('tool_id')->unsigned();
+            $table->unsignedinteger('user_id');
+            $table->foreign('user_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onDelete('cascade');
+            $table->unsignedinteger('tool_id');
+            $table->foreign('tool_id')
+                    ->references('id')
+                    ->on('tools');
             $table->integer('tool_number');
+            $table->integer('count')->default(0);
             $table->string('technique', 20);
             $table->string('video', 1);
             $table->string('text', 100)->nullable();

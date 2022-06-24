@@ -9,11 +9,11 @@
         <div class='menues'>
             <div class='menue btnBox'>
                 <image class='menue_image' src=''></image>
-                <a href='/' class='menue_type'>ホーム</a>
+                <a href='{{ route("home")}}' class='menue_type'>ホーム</a>
             </div>
             <div class='menue btnBox'>
                 <image class='menue_image' src=''></image>
-                <a href='/profiles/users/{{Auth::user()->id}}' class='menue_type'>プロフィール</a>
+                <a href='{{ route("profile.posts", ["user" => (Auth::user()->id)]) }}' class='menue_type'>プロフィール</a>
             </div>
             <div class='menue btnBox'>
                 <image class='menue_image' src=''></image>
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class='create_post btnBox'>
-            <p><a href='/create'>投稿する</a></p>
+            <p><a href='{{ route("posts.create.index")}}'>投稿する</a></p>
         </div>
     </div>
     <div class='main_container'>

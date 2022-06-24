@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class='create_comment'>
-        <form action="/comments" method="POST">
+        <form action="/posts/{{$post->id}}/comments/create" method="POST">
             @csrf
             <div>
                 <textarea name="comment[text]" placeholder="コメント"></textarea>
@@ -39,10 +39,10 @@
     <div class='comment'>
         @foreach ($post->comments as $comment)
             <p>{{ $comment->user->icon }}</p>
-            <p>{{ $comment->user->name }}</p>
+            <a href='/profiles/users/{{$comment->user->id}}' class='user_name'>{{ $comment->user->name }}</a>
             <p>{{ $comment->text }}</p>
             @if($comment->user->id == Auth::user()->id)
-            <form id="comments_delete_form" action='/comments/posts/{{$comment->post->id}}' method='POST'>
+            <form id="comments_delete_form" action="/posts/comments/{{$comment->id}}/delete" method='POST'>
                 @csrf
                 @method('DELETE')
                 <input type='button' value='delete' onclick="buttonClick()">

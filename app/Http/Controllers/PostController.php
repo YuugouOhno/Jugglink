@@ -30,14 +30,13 @@ class PostController extends Controller
         $input = $request['post'];
         $input += ['user_id' => $request->user()->id];
         $post->fill($input)->save();
-        return redirect('/');
+        return redirect()->route('home');
     }
     
     public function delete(Post $post)
     {
         $post->delete();
-        return redirect('/');
+        return redirect()->route('home');
     }
-
 }
 ?>
