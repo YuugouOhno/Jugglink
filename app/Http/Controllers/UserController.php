@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Post;
 use App\Tool;
+use App\Like;
 
 use App\Http\Requests\UserRequest;
 

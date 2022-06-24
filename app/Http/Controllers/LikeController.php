@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Like;
 use App\Post;
+use App\User;
 use Auth;
 
 class likeController extends Controller
@@ -49,9 +50,9 @@ class likeController extends Controller
         }
         return response()->json($result);
     }
-        
-    public function index(Like $like)
+    
+    public function index(Post $post, User $user)
     {
-        return view('likes.index')->with(['like_posts' => $like->getLikePaginateByLimit()]);
+        return view('likes/index')->with(['user' => $user, 'posts' => $post->getPaginateByLimit()]);
     }
 }

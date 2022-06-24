@@ -38,11 +38,5 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('home');
     }
-    
-    public function test()
-    {
-        return view('tests/index');
-    }
-
 }
 ?>
