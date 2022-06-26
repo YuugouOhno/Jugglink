@@ -11,13 +11,13 @@
         <div class="back_index"><a href="/">戻る</a></div>
     </div>
     <div class='post_content'>
-        <form action='{{ route("posts.create") }}' method="POST">
-            @csrf
+        <form action='{{ route("posts.create") }}' method="POST"  enctype="multipart/form-data">
+            
             <div class="video">
                 <h2>動画</h2>
-                <textarea name="post[video]" placeholder="v"></textarea>
-                <p class="video__error" style="color:red">{{ $errors->first('post.video') }}</p>
+                <input type='file' name="video">
             </div>
+            @csrf
             <div class='technique_type'>
                 <p>
                    <label><input type="radio" value="1" onclick="checkradio('inline');" >技</label>
@@ -58,7 +58,7 @@
                 <textarea name="post[text]" placeholder="この技のコツは..."></textarea>
                 <p class="text__error" style="color:red">{{ $errors->first('post.text') }}</p>
             </div>
-            <input type="submit" value="投稿"/>
+            <button type="submit">投稿する</button>
         </form>
     </div>
 @endsection
