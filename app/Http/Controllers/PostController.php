@@ -32,7 +32,7 @@ class PostController extends Controller
         $image = $request->file('video');
 
         // // バケットの`example`フォルダへアップロードする
-        $path = Storage::disk('s3')->putFile('example', $image, 'public');
+        $path = Storage::disk('s3')->putFile('video', $image, 'public');
         // // アップロードした画像のフルパスを取得
         $post->video_path = Storage::disk('s3')->url($path);
         $post->video_delete = $path;

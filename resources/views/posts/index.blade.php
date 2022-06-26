@@ -9,8 +9,7 @@
     <div class='post'>
         @foreach ($posts as $post)
         <div class='user'>
-            {{--<image class='icon_image' src=''></image>--}}
-            <p class='icon_image'>{{ $post->user->icon }}</p>
+            <img src="{{ $post->user->icon_path }}">
             <a href='{{ route("profile.posts", ["user" => ($post->user->id)]) }}' class='user_name'>{{ $post->user->name }}</a>
         </div>
         <div class='post_title'>
