@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Tool;
 use App\Comment;
+use Storage;
 
 use App\Http\Requests\PostRequest;
 
@@ -27,14 +28,25 @@ class PostController extends Controller
         
     public function store(Post $post, PostRequest $request)
     {
+
+        $image = $request->file('video');
+
+        // // バケットの`example`フォルダへアップロードする
+        $path = Storage::disk('s3')->putFile('example', $image, 'public');
+        // // アップロードした画像のフルパスを取得
+        $post->video_path = Storage::disk('s3')->url($path);
+        $post->video_delete = $path;
         $input = $request['post'];
         $input += ['user_id' => $request->user()->id];
+        //$input += ['video_path' => Storage::disk('s3')->url($path)];
         $post->fill($input)->save();
         return redirect()->route('home');
     }
     
     public function delete(Post $post)
     {
+        $video = $post->video_delete;
+        Storage::disk('s3')->delete($video);
         $post->delete();
         return redirect()->route('home');
     }

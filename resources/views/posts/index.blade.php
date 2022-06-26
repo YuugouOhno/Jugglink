@@ -20,7 +20,7 @@
         </div>
         <div class='post_body'>
             {{--<video class='post_video' src=''></video>--}}
-            <p class='post_video'>{{ $post->video }}</p>
+            <img src="{{ $post->video_path }}">
             <p class='post_text'>{{ $post->text }}</p>
         </div>
         <div class='post_reaction'>
@@ -29,12 +29,11 @@
             <bookmark-component :post="{{ json_encode($post)}}"></bookmark-component>
         </div>
         @if($post->user->id == Auth::user()->id)
-        {{--<form id="posts_delete_form" action='{{ route("posts.delete", ["post" => ($post->id)]) }}' method='POST'>
+        <form id="posts_delete_form" action='{{ route("posts.delete", ["post" => ($post->id)]) }}' method='POST' enctype="multipart/form-data">
             @csrf
             @method('DELETE')
             <input type='button' value='delete' onclick="buttonClick()">
-        </form>--}}
-        <deletepost-component :post="{{ json_encode($post)}}"></deletepost-component>
+        </form>
         @endif
         @endforeach
     </div>
@@ -44,11 +43,11 @@
 @endsection
 
 @section('script')
-    {{--<script>
+    <script>
         function buttonClick(){
             if(confirm("削除しますか？")){
                 document.getElementById("posts_delete_form").submit();
             }
         }
-    </script>--}}
+    </script>
 @endsection

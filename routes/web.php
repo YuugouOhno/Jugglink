@@ -14,10 +14,10 @@ Route::group(['middleware' => ['auth']], function(){
     //ホーム画面
     Route::get('/', 'PostController@index')->name('home');
     
-    //投稿内容の作成画面
-    Route::get('/posts/create/index', 'PostController@create')->name('posts.create.index');
     //投稿
     Route::post('/posts/create', 'PostController@store')->name('posts.create');
+    //投稿内容の作成画面
+    Route::get('/posts/create/index', 'PostController@create')->name('posts.create.index');
     //投稿の削除
     Route::delete('/posts/{post}/delete', 'PostController@delete')->name('posts.delete');
     //道具ごとの投稿
