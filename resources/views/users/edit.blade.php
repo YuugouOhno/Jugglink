@@ -8,17 +8,20 @@
 @section('main')
 <h1 class="title">編集画面</h1>
     <div class="content">
-        <form action='{{ route("profile.update", ["user" => ($user->id)]) }}' method="POST">
+        <form action='{{ route("profile.update", ["user" => ($user->id)]) }}' method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <h2>アイコン</h2>
-            <input type='text' name='user[icon]' value="{{ $user->icon }}">
+            <div class="icon">
+                <h2>アイコン</h2>
+                <input type='file' name="icon">
+            </div>
+            
             <h2>名前</h2>
             <input type='text' name='user[name]' value="{{ $user->name }}">
             <h2>道具</h2>
             <select name="user[tool_id]">
                 @foreach($tools as $tool)
-                    <option value="{{ $tool->id }}"　@if($tool->id == $user->tool->id){echo 'selected'}@endif>{{ $tool->name }}</option>
+                    <option value="{{ $tool->id }}">{{ $tool->name }}</option>
                 @endforeach
             </select>
             <h2>コメント(サブ道具などあれば)</h2>

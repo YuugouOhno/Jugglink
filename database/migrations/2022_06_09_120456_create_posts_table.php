@@ -25,8 +25,7 @@ class CreatePostsTable extends Migration
                     ->references('id')
                     ->on('tools');
             $table->integer('tool_number');
-            $table->integer('count')->default(0);
-            $table->string('technique', 20);
+            $table->string('technique', 50)->default('シークエンス');
             $table->string('video_path', 100);
             $table->string('video_delete', 100);
             $table->string('text', 100)->nullable();

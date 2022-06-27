@@ -28,9 +28,7 @@
             <p><a href='{{ route("posts.create.index")}}'>投稿する</a></p>
         </div>
     </div>
-    <div class='main_container'>
-        @yield('main')
-    </div>
+    @yield('main')
 @endsection
 
 @section('script')

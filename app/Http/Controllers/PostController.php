@@ -31,14 +31,15 @@ class PostController extends Controller
 
         $image = $request->file('video');
 
-        // // バケットの`example`フォルダへアップロードする
-        $path = Storage::disk('s3')->putFile('example', $image, 'public');
-        // // アップロードした画像のフルパスを取得
+        // バケットの`example`フォルダへアップロードする
+        $path = Storage::disk('s3')->putFile('video', $image, 'public');
+        // アップロードした画像のフルパスを取得
         $post->video_path = Storage::disk('s3')->url($path);
+        // 発明！！
         $post->video_delete = $path;
         $input = $request['post'];
         $input += ['user_id' => $request->user()->id];
-        //$input += ['video_path' => Storage::disk('s3')->url($path)];
+        // $input += ['video_path' => Storage::disk('s3')->url($path)];
         $post->fill($input)->save();
         return redirect()->route('home');
     }
