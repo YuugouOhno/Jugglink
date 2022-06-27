@@ -25,6 +25,7 @@ class UserController extends Controller
     
     public function update(UserRequest $request, User $user)
     {
+        // 解禁！！！
         if($user->icon_delete != 0)
         {
             $icon = $user->icon_delete;
@@ -32,9 +33,11 @@ class UserController extends Controller
         }
         
         $image = $request->file('icon');
-
+        
+        $user_id= $user->id;
+        
         // // バケットの`example`フォルダへアップロードする
-        $path = Storage::disk('s3')->putFile('icon', $image, 'public');
+        $path = Storage::disk('s3')->putFile('icon/'.$user_id, $image, 'public');
        
         $input_user = $request['user'];
          // // アップロードした画像のフルパスを取得

@@ -4,10 +4,10 @@
             <div class="col-md-12">
                 <div>
                     <button @click="unlike()" class='btn btn-danger' v-if="result">
-                        いいね解除
+                        <i class="fa-solid fa-heart"></i>
                     </button>
                     <button @click="like()" class='btn btn-success' v-else>
-                        いいね
+                        <i class="fa-regular fa-heart"></i>
                     </button>
                     <p>いいね数：{{count}}</p>
                 </div>

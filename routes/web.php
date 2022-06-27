@@ -13,6 +13,10 @@
 Route::group(['middleware' => ['auth']], function(){
     //ホーム画面
     Route::get('/', 'PostController@index')->name('home');
+    //投稿の検索画面
+    Route::get('/search/index/technique/', 'SearchController@index_technique')->name('search.index.technique');
+    //投稿の検索
+    Route::get('/search/technique', 'SearchController@serch_technique')->name('search.technique');
     
     //投稿
     Route::post('/posts/create', 'PostController@store')->name('posts.create');

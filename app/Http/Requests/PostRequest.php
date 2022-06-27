@@ -9,7 +9,6 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'post.technique' => 'required|string|max:20',
             'post.tool_id' => 'required',
             'post.tool_number' => 'required',
             'post.text' => 'required|string|max:100'

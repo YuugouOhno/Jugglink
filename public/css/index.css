@@ -8,22 +8,49 @@
     width:40%;
 }
 
-.main_container{
+.posts_container{
     background-color:#ede98e;
     width:60%;
 }
 
-.btnBox{
-    width: 200px;
-}
- 
-.btnBox > a{
-    display: block;
-    width: 100%;
-    padding-top: 20px;
-    padding-bottom: 20px;
+.post_container{
+    padding:0 16px;
 }
 
-.liked {
-  color:red;
+.user{
+    display:flex;
+}
+
+.user_icon{
+    width:50px;
+    height:50px;
+    display: inline-block;
+}
+
+.user_name{
+    font-size:20px;
+    margin:auto 0;
+    display: inline-block;
+}
+
+video{
+    width:100%;
+    height: auto;
+}
+
+.post_title{
+    display:flex;
+    padding:auto;
+}
+
+.tool_number{
+    margin:auto 0;
+}
+
+.tool_name{
+    margin:auto 0;
+}
+
+.technique_name{
+    margin:auto 0;
 }
