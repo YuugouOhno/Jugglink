@@ -20,8 +20,9 @@
             <input type='text' name='user[name]' value="{{ $user->name }}">
             <h2>道具</h2>
             <select name="user[tool_id]">
+                <option value="">未選択</option>
                 @foreach($tools as $tool)
-                    <option value="{{ $tool->id }}">{{ $tool->name }}</option>
+                    <option value="{{ $tool->id }}">{{ $tool->tool_name }}</option>
                 @endforeach
             </select>
             <h2>コメント(サブ道具などあれば)</h2>

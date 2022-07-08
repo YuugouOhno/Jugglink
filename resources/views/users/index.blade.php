@@ -2,7 +2,6 @@
 
 @section('profile_menue')
     <div class='post'>
-        <a href='{{ route("profile.likes", ["user" => $user->id]) }}'>{{$user->name}}のいいね一覧</a>
         @foreach ($user->posts as $post)
         <div class='user'>
             {{--<image class='icon_image' src=''></image>--}}

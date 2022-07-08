@@ -1,17 +1,11 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center mt-1">
-            <div class="col-md-12">
-                <div>
-                    <button @click="unbookmark()" class='btn btn-danger' v-if="result">
-                        ブックマーク解除
-                    </button>
-                    <button @click="bookmark()" class='btn btn-success' v-else>
-                        ブックマーク
-                    </button>
-                </div>
-            </div>
-        </div>
+    <div>
+        <button @click="unbookmark()" class='btn' v-if="result">
+            <i class="fa-solid fa-bookmark" style="color:blue;"></i>
+        </button>
+        <button @click="bookmark()" class='btn' v-else>
+            <i class="fa-regular fa-bookmark" style="color:blue;"></i>
+        </button>
     </div>
 </template>
 <script>

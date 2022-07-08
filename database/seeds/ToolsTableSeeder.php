@@ -15,75 +15,75 @@ class ToolsTableSeeder extends Seeder
         DB::table('tools')->insert([
             [
             'id'=>1,
-    		'name'=> 'シガーボックス',
+    		'tool_name'=> 'シガーボックス',
     		],
     		[
     		'id'=>2,
-    		'name'=> 'ディアボロ',
+    		'tool_name'=> 'ディアボロ',
     		],
     		[
     		'id'=>3,
-    		'name'=> 'ボール',
+    		'tool_name'=> 'ボール',
     		],
     		[
     		'id'=>4,
-    		'name'=> 'クラブ',
+    		'tool_name'=> 'クラブ',
     		],
     		[
     		'id'=>5,
-    		'name'=> 'ポイ',
+    		'tool_name'=> 'ポイ',
     		],
     		[
     		'id'=>6,
-    		'name'=> 'フラワースティック',
+    		'tool_name'=> 'フラワースティック',
     		],
     		[
     		'id'=>7,
-    		'name'=> 'デビルスティック',
+    		'tool_name'=> 'デビルスティック',
     		],
     		[
     		'id'=>8,
-    		'name'=> 'ヨーヨー',
+    		'tool_name'=> 'ヨーヨー',
     		],
     		[
     		'id'=>9,
-    		'name'=> 'コンタクト',
+    		'tool_name'=> 'コンタクト',
     		],
     		[
     		'id'=>10,
-    		'name'=> 'ハット',
+    		'tool_name'=> 'ハット',
     		],
     		[
     		'id'=>11,
-    		'name'=> 'スピニングブレード',
+    		'tool_name'=> 'スピニングブレード',
     		],
     		[
     		'id'=>12,
-    		'name'=> 'スタッフ',
+    		'tool_name'=> 'スタッフ',
     		],
     		[
     		'id'=>13,
-    		'name'=> 'シェイカーカップ',
+    		'tool_name'=> 'シェイカーカップ',
     		],
     		[
     		'id'=>14,
-    		'name'=> 'リング',
+    		'tool_name'=> 'リング',
     		],
     		[
     		'id'=>15,
-    		'name'=> 'エイトリング',
+    		'tool_name'=> 'エイトリング',
     		],
     		[
     		'id'=>16,
-    		'name'=> 'けん玉',
+    		'tool_name'=> 'けん玉',
     		],
     		[
     		'id'=>17,
-    		'name'=> 'ダイス',
+    		'tool_name'=> 'ダイス',
     		],
     		[
     		'id'=>18,
-    		'name'=> 'ダポクト',
+    		'tool_name'=> 'ダポクト',
     		]
     		
 		]);

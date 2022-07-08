@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Bookmark;
 use App\Post;
+use App\User;
 use Auth;
 
 class BookmarkController extends Controller
@@ -38,5 +39,11 @@ class BookmarkController extends Controller
             $result = false;
         }
         return response()->json($result);
+    }
+    
+    public function index(Request $request, Bookmark $bookmark, User $user)
+    {
+        $bookmarks = $bookmark->getByBookmarks();
+        return view('bookmarks.index')->with(['user' => $user, 'bookmarks' => $bookmarks]);
     }
 }

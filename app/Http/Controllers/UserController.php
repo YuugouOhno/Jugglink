@@ -36,15 +36,17 @@ class UserController extends Controller
         
         $user_id= $user->id;
         
-        // // バケットの`example`フォルダへアップロードする
-        $path = Storage::disk('s3')->putFile('icon/'.$user_id, $image, 'public');
-       
-        $input_user = $request['user'];
-         // // アップロードした画像のフルパスを取得
-        $user->icon_path = Storage::disk('s3')->url($path);
-        $user->icon_delete = $path;
+        if(!empty($request->input('icon'))){
+            // // バケットの`example`フォルダへアップロードする
+            $path = Storage::disk('s3')->putFile('icon/'.$user_id, $image, 'public');
+             // // アップロードした画像のフルパスを取得
+            $user->icon_path = Storage::disk('s3')->url($path);
+            $user->icon_delete = $path;
+        }
         
+        $input_user = $request['user'];
         $user->fill($input_user)->save();
+        
         return redirect()->route('profile.posts', ['user'=>$user->id]);
     }
 }

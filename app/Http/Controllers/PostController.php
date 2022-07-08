@@ -11,7 +11,7 @@ use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
-    public function index(Post $post)
+    public function index(Post $post, Comment $comment)
     {
         return view('posts/index')->with(['posts' => $post->getPaginateByLimit()]);
     }
@@ -28,9 +28,7 @@ class PostController extends Controller
         
     public function store(Post $post, PostRequest $request)
     {
-
         $image = $request->file('video');
-
         // バケットの`example`フォルダへアップロードする
         $path = Storage::disk('s3')->putFile('video', $image, 'public');
         // アップロードした画像のフルパスを取得

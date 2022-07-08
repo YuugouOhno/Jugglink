@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Post;
+use Auth;
 
 class Like extends Model
 {
@@ -12,9 +13,9 @@ class Like extends Model
         'post_id'
     ];
     
-    public function getByLike(int $limit_count = 3)
+    public function getByLikes()
     {
-        return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        return $this->with('post')->where('user_id', Auth::id())->orderBy('updated_at', 'desc')->get();
     }
     
     public function user()

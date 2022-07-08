@@ -1,18 +1,12 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center mt-1">
-            <div class="col-md-12">
-                <div>
-                    <button @click="unlike()" class='btn btn-danger' v-if="result">
-                        <i class="fa-solid fa-heart"></i>
-                    </button>
-                    <button @click="like()" class='btn btn-success' v-else>
-                        <i class="fa-regular fa-heart"></i>
-                    </button>
-                    <p>いいね数：{{count}}</p>
-                </div>
-            </div>
-        </div>
+    <div class='like_container'>
+        <button @click="unlike()" class='btn like_btn' v-if="result">
+            <i class="fa-solid fa-heart" style="color:red;"></i>
+        </button>
+        <button @click="like()" class='btn like_btn' v-else>
+            <i class="fa-regular fa-heart" style="color:red;"></i>
+        </button>
+        <p class='like_counts'>{{count}}</p>
     </div>
 </template>
 <script>

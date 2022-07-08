@@ -9,9 +9,6 @@
 
     @yield('title')
 
-    <!-- Scripts -->
-    
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -24,12 +21,11 @@
         <div>
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
-                    <a class="navbar-brand" href="{{ route("home") }}">
+                    <!--<a class="navbar-brand" href="{{ route("home") }}">
+                        <img  class='user_icon' src="https://jugglinkbucket.s3.amazonaws.com/jugglink_icon/icondayo.jpg">
                         Jugglink
-                    </a>
-                    <a class="serch" href="{{ route("search.index.technique") }}">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </a>
+                    </a> -->
+                    @yield('header')
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
                     </button>

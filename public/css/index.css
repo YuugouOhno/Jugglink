@@ -54,3 +54,36 @@ video{
 .technique_name{
     margin:auto 0;
 }
+
+.post_text{
+    margin:0;
+}
+
+.post_reaction{
+    display:flex;
+    float:right;
+}
+
+.like_container{
+    display:flex;
+}
+
+.like_counts{
+    margin:auto 0;
+}
+
+.comment{
+    margin:auto 0;
+}
+
+.bookmark{
+    margin:auto 0;
+}
+
+.bookmark_counts{
+    margin:auto 0;
+}
+
+.delete{
+    margin:auto 0;
+}

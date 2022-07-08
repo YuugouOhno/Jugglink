@@ -13,10 +13,10 @@
 Route::group(['middleware' => ['auth']], function(){
     //ホーム画面
     Route::get('/', 'PostController@index')->name('home');
-    //投稿の検索画面
-    Route::get('/search/index/technique/', 'SearchController@index_technique')->name('search.index.technique');
     //投稿の検索
-    Route::get('/search/technique', 'SearchController@serch_technique')->name('search.technique');
+    Route::get('/search/index/technique/', 'SearchController@search_technique')->name('search.technique');
+    //ユーザーの検索
+    Route::get('/search/index/user/', 'SearchController@search_user')->name('search.user');
     
     //投稿
     Route::post('/posts/create', 'PostController@store')->name('posts.create');
@@ -58,9 +58,13 @@ Route::group(['middleware' => ['auth']], function(){
     Route::delete('/posts/{post}/unbookmarks', 'BookmarkController@delete')->name('unbookmarks');
     //ブックマークの有無
     Route::get('posts/{post}/hasbookmarks', 'BookmarkController@hasbookmarks');
+    //
+    Route::get('/bookmarks/{user}/posts', 'BookmarkController@index')->name('bookmarks.show');
     
     //ジャグラー分布図
-    Route::get('/map', 'MapController@index')->name('');
+    Route::get('/map', 'PlaceController@index')->name('map');
+    Route::post('/map/addPin', 'PlaceController@store')->name('map.addPin');
+    Route::delete('/map/delete', 'PlaceController@delete')->name('map.delete');
 
 });
 

@@ -19,7 +19,7 @@
             </div>
             <div class='post_title'>
                 <p class='tool_number'>{{ $post->tool_number }}</p>
-                <a class='tool_name' href='{{ route("tools.show", ["tool" => ($post->tool->id)]) }}'>{{ $post->tool->name }}</a>
+                <a class='tool_name' href='{{ route("tools.show", ["tool" => ($post->tool->id)]) }}'>{{ $post->tool->tool_name }}</a>
                 <p class='technique_name'>{{ $post->technique }}</p>
             </div>
             <div class='post_body'>
@@ -30,16 +30,20 @@
             </div>
             <div class='post_reaction'>
                 <like-component :post="{{ json_encode($post)}}"></like-component>
-                <div class='coment'><a href='{{ route("comments.show", ["post" => ($post->id)])}}'><i class="fa-regular fa-comment"></i></a></div>
-                <bookmark-component :post="{{ json_encode($post)}}"></bookmark-component>
+                <button class='btn' onclick="location.href='{{ route("comments.show", ["post" => ($post->id)])}}'">
+                    <i class="fa-regular fa-comment" style="color:purple;"></i>
+                </button>
+                <bookmark-component class='bookmark' :post="{{ json_encode($post)}}"></bookmark-component>
+                @if($post->user->id == Auth::user()->id)
+                <form class='delete' id="posts_delete_form" action='{{ route("posts.delete", ["post" => ($post->id)]) }}' method='POST' enctype="multipart/form-data">
+                    @csrf
+                    @method('DELETE')
+                    <button class='btn' onclick="buttonClick()">
+                        <i class="fa-regular fa-trash-can" style="color:glay;"></i>
+                    </button>
+                </form>
+                @endif
             </div>
-            @if($post->user->id == Auth::user()->id)
-            <form id="posts_delete_form" action='{{ route("posts.delete", ["post" => ($post->id)]) }}' method='POST' enctype="multipart/form-data">
-                @csrf
-                @method('DELETE')
-                <input type='button' value='delete' onclick="buttonClick()">
-            </form>
-            @endif
         </div>
         @endforeach
     </div>

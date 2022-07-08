@@ -18,17 +18,20 @@
                 <input type='file' name="video">
             </div>
             @csrf
-            <div class='technique_type'>
-                <p>
-                   <label><input type="radio" value="1" onclick="checkradio('inline');" >技</label>
-                   <label><input type="radio" name="post[technique]" value="2" onclick="checkradio('none');">シークエンス</label>
-                </p>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="maker" value="technique" onclick="formSwitch()" checked>
+                <label class="form-check-label"> 技</label>
             </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="maker" value="sequence" onclick="formSwitch()">
+                <label class="form-check-label"> シークエンス</label>
+            </div>
+        
             <div class="tool_name">
                 <h2>道具</h2>
                 <select name="post[tool_id]">
                     @foreach($tools as $tool)
-                        <option value="{{ $tool->id }}">{{ $tool->name }}</option>
+                        <option value="{{ $tool->id }}">{{ $tool->tool_name }}</option>
                     @endforeach
                 </select>
                 <p class="tool_name__error" style="color:red">{{ $errors->first('post.tool_name') }}</p>
@@ -48,10 +51,14 @@
                 </select>
                 <p class="tool_number__error" style="color:red">{{ $errors->first('post.tool_number') }}</p>
             </div>
-            <div id="technique" class="technique">
-                <h2>技名</h2>
-                <input type="text" name="post[technique]" placeholder="技名"/>
+            <div class="technique">
+                <h2 id='not_sequence'>技名</h2>
+                <input id="technique" type="text" name="post[technique]" placeholder="技名"/>
                 <p class="technique__error" style="color:red">{{ $errors->first('post.technique') }}</p>
+            </div>
+            <div class="sequence">
+                <h2 id='not_technique'>シークエンス</h2>
+                <input id="sequence" type="text" name="post[technique]" value="シークエンス"/>
             </div>
             <div class="text">
                 <h2>コメント</h2>
@@ -65,8 +72,30 @@
 
 @section('script')
     <script>
-        function checkradio( disp ) {
-           document.getElementById('technique').style.display = disp;
+    function formSwitch() {
+        hoge = document.getElementsByName('maker')
+        if (hoge[0].checked) {
+
+            document.getElementById('technique').style.display = "";
+            document.getElementById('sequence').style.display = "none";
+            document.getElementById('not_technique').style.display = "none";
+            document.getElementById('not_sequence').style.display = "";
+            document.getElementById('sequence').setAttribute("disabled", true);
+        } else if (hoge[1].checked) {
+
+            document.getElementById('technique').style.display = "none";
+            document.getElementById('sequence').style.display = "none";
+            document.getElementById('not_technique').style.display = "";
+            document.getElementById('not_sequence').style.display = "none";
+            document.getElementById('sequence').removeAttribute("disabled");
+        } else {
+            document.getElementById('technique').style.display = "none";
+            document.getElementById('sequence').style.display = "none";
+            document.getElementById('not_technique').style.display = "none";
+            document.getElementById('not_sequence').style.display = "none";
         }
+    }
+    window.addEventListener('load', formSwitch());
+        
     </script>
 @endsection
