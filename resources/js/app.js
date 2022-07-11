@@ -23,6 +23,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('like-component', require('./components/LikeComponent.vue').default);
 Vue.component('bookmark-component', require('./components/BookmarkComponent.vue').default);
 Vue.component('map-component', require('./components/MapComponent.vue').default);
+Vue.component('infinity-component', require('./components/InfinityComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

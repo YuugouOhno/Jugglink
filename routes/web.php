@@ -50,14 +50,14 @@ Route::group(['middleware' => ['auth']], function(){
     //いいね数のカウント
     Route::get('/posts/{post}/countlikes', 'LikeController@countlikes')->name('likes.count');
     //いいねの有無
-    Route::get('posts/{post}/haslikes', 'LikeController@haslikes');
+    Route::get('/posts/{post}/haslikes', 'LikeController@haslikes');
     
     //ブックマーク
     Route::get('/posts/{post}/bookmarks', 'BookmarkController@store')->name('bookmarks');
     //ブックマーク解除
     Route::delete('/posts/{post}/unbookmarks', 'BookmarkController@delete')->name('unbookmarks');
     //ブックマークの有無
-    Route::get('posts/{post}/hasbookmarks', 'BookmarkController@hasbookmarks');
+    Route::get('/posts/{post}/hasbookmarks', 'BookmarkController@hasbookmarks');
     //
     Route::get('/bookmarks/{user}/posts', 'BookmarkController@index')->name('bookmarks.show');
     

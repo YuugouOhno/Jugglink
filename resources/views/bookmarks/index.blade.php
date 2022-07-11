@@ -1,6 +1,14 @@
 @extends('others.menue')
 
-@section('main')
+@section('title2')
+    <title>ブックマークの一覧/Jugglink</title>
+@endsection
+
+@section('header2')
+    <h4>ブックマークの一覧</h4>
+@endsection
+
+@section('main2')
     <div class='posts_container'>
         @foreach ($bookmarks as $bookmark)
         <div class='post_container'>

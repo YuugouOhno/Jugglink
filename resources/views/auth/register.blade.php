@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
-@section('content')
+@section('title1')
+    <title>新規登録/Jugglink</title>
+@endsection
+
+@section('main1')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
