@@ -1,12 +1,19 @@
 @extends('others.menue')
 
-@section('title')
-    <link rel="stylesheet" href="{{secure_asset('css/index.css')}}">
-    <title>tool</title>
+@section('title2')
+    <title>道具/Jugglink</title>
 @endsection
 
-@section('main')
-    <div class='post'>
+@section('header2')
+    <h4>道具</h4>
+@endsection
+
+@section('main2')
+    <div>
+        <infinity-component :url="{{ json_encode('/infinity_tools/')}}" :id='{{ json_encode($tool)}}'></infinity-component>
+    </div>
+@endsection
+{{--<div class='post'>
         @foreach ($posts as $post)
         <div class='user'>
             <image class='icon_image' src=''></image>
@@ -30,5 +37,4 @@
     </div>
     <div class='paginate'>
         {{ $posts->links() }}
-    </div>
-@endsection
+    </div>--}}

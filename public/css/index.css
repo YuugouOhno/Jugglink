@@ -88,6 +88,7 @@ body{
 
 .user{
     margin:auto 0px;
+    display:flex;
 }
 
 .user_icon{

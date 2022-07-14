@@ -50,14 +50,14 @@
             </div>
             <div class='reaction_icon'>
                 @if($post->user->id == Auth::user()->id)
-            <form id="posts_delete_form" action='{{ route("posts.delete", ["post" => ($post->id)]) }}' method='POST' enctype="multipart/form-data">
-                @csrf
-                @method('DELETE')
-                <button class='btn' onclick="buttonClick()">
-                    <i class="fa-regular fa-trash-can color_gray"></i>
-                </button>
-            </form>
-            @endif
+                <form id="posts_delete_form" action='{{ route("posts.delete", ["post" => ($post->id)]) }}' method='POST' enctype="multipart/form-data">
+                    @csrf
+                    @method('DELETE')
+                    <button class='btn' onclick="buttonClick()">
+                        <i class="fa-regular fa-trash-can color_gray"></i>
+                    </button>
+                </form>
+                @endif
             </div>
         </div>
     </div>

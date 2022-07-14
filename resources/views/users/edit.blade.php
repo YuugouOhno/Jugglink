@@ -1,11 +1,15 @@
 @extends('others.menue')
 
-@section('title')
+@section('title2')
     <link rel="stylesheet" href="{{secure_asset('css/index.css')}}">
     <title>Jugglink</title>
 @endsection
 
-@section('main')
+@section('header2')
+    <h4>プロフィールの編集dayoyoyoyoyoyo</h4>
+@endsection
+
+@section('main2')
 <h1 class="title">編集画面</h1>
     <div class="content">
         <form action='{{ route("profile.update", ["user" => ($user->id)]) }}' method="POST" enctype="multipart/form-data">

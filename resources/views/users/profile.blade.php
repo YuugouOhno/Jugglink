@@ -1,11 +1,15 @@
 @extends('others.menue')
 
-@section('title')
+@section('title2')
     <link rel="stylesheet" href="{{secure_asset('css/index.css')}}">
     <title>profile</title>
 @endsection
 
-@section('main')
+@section('header2')
+    <h4>プロフィールdayoyoyoyoyoyo</h4>
+@endsection
+
+@section('main2')
     <div class='posts_container'>
         <div>
             @if($user->icon_path !=0)
@@ -14,10 +18,10 @@
                 <i class="fa-solid fa-circle-user" style="font-size:50px;"></i>
             @endif
             <p class='user_name'>{{$user->name}}</p>
-            @if($user->tool==0)
-                <p class='tool'>道具:道具が未選択です</p>
-            @else
+            @if($user->tool)
                 <p class='tool'>道具:{{$user->tool->tool_name}}</p>
+            @else
+                <p class='tool'>道具:道具が未選択です</p>
             @endif
             @if($user->introduce==0)
                 <p class='tool'>コメント:コメントがありません</p>
@@ -38,6 +42,6 @@
     </div>
 @endsection
 
-@section('script')
+@section('script2')
     @yield('script')
 @endsection

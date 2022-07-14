@@ -24,6 +24,14 @@ class Post extends Model
         //return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
     
+    public function getInfinity($page)
+    {
+        $limit = 2; // 一度に取得する件数
+        $offset = $page * $limit; // 現在の取得開始位置
+        return $this::with('tool', 'user')->orderBy('posts.created_at', 'desc')->offset($offset)->limit($limit)->get();
+        
+    }
+    
     public function tool()
     {
         return $this->belongsTo('App\Tool');
