@@ -1,4 +1,19 @@
-@extends('users.profile')
+@extends('others.menue')
+
+@section('title2')
+    <title>ユーザー/Jugglink</title>
+@endsection
+
+@section('header2')
+    <h4>ユーザー</h4>
+@endsection
+
+@section('main2')
+    <div>
+        <infinity-component :url="{{ json_encode('/infinity_users/')}}" :id='{{ json_encode($user)}}'></infinity-component>
+    </div>
+@endsection
+{{--@extends('users.profile')
 
 @section('profile_menue')
     @foreach ($user->posts as $post)
@@ -55,13 +70,4 @@
     </div>
     @endforeach
 @endsection
-
-@section('script')
-    {{--<script>
-        function buttonClick(){
-            if(confirm("削除しますか？")){
-                document.getElementById("form").submit();
-            }
-        }
-	</script>--}}
-@endsection
+@endsection--}}

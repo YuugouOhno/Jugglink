@@ -24,14 +24,13 @@ Route::group(['middleware' => ['auth']], function(){
     //ユーザーの検索
     Route::get('/search/index/user/', 'SearchController@search_user')->name('search.user');
     
-    
     //投稿
     Route::post('/posts/create', 'PostController@store')->name('posts.create');
     //投稿内容の作成画面
     Route::get('/posts/create/index', 'PostController@create')->name('posts.create.index');
     //道具ごとの投稿
     Route::get('/tools/{tool}', 'ToolController@index')->name('tools.show');
-    //ホーム画面の無限スクロール
+    //道具ごとの無限スクロール
     Route::get('/infinity_tools/{tool}', 'ToolController@fetch');
     //投稿の削除
     Route::delete('/posts/{post}/delete', 'PostController@delete')->name('posts.delete');
@@ -44,8 +43,10 @@ Route::group(['middleware' => ['auth']], function(){
     //コメントの削除
     Route::delete('/posts/comments/{comment}/delete', 'CommentController@delete')->name('comments.delete');
 
-    //プロフィール（自分の投稿一覧）
+    //プロフィール（ユーザーの投稿一覧）
     Route::get('/users/{user}/profile/posts', 'UserController@index')->name('profile.posts');
+    //ユーザーごとの無限スクロール
+    Route::get('/infinity_users/{user}', 'UserController@fetch');
     //プロフィール（自分のいいね一覧）
     Route::get('/users/{user}/profile/likes', 'LikeController@index')->name('profile.likes');
     //プロフィールの編集画面
