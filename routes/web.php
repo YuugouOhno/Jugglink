@@ -28,9 +28,9 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/posts/create', 'PostController@store')->name('posts.create');
     //投稿内容の作成画面
     Route::get('/posts/create/index', 'PostController@create')->name('posts.create.index');
-    //道具ごとの投稿
+    //道具ごとの投稿一覧
     Route::get('/tools/{tool}', 'ToolController@index')->name('tools.show');
-    //道具ごとの無限スクロール
+    //道具ごとの投稿一覧の無限スクロール
     Route::get('/infinity_tools/{tool}', 'ToolController@fetch');
     //投稿の削除
     Route::delete('/posts/{post}/delete', 'PostController@delete')->name('posts.delete');
@@ -45,10 +45,12 @@ Route::group(['middleware' => ['auth']], function(){
 
     //プロフィール（ユーザーの投稿一覧）
     Route::get('/users/{user}/profile/posts', 'UserController@index')->name('profile.posts');
-    //ユーザーごとの無限スクロール
+    //ユーザーの投稿一覧の無限スクロール
     Route::get('/infinity_users/{user}', 'UserController@fetch');
-    //プロフィール（自分のいいね一覧）
+    //プロフィール（ユーザーのいいね一覧）
     Route::get('/users/{user}/profile/likes', 'LikeController@index')->name('profile.likes');
+    //いいね一覧の無限スクロール
+    Route::get('/infinity_likes/{user}', 'LikeController@fetch');
     //プロフィールの編集画面
     Route::get('/users/{user}/profile/edit', 'UserController@edit')->name('profile.edit');
     //プロフィールの変更
@@ -71,6 +73,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/posts/{post}/hasbookmarks', 'BookmarkController@hasbookmarks');
     //ブックマークの一覧
     Route::get('/bookmarks/{user}/posts', 'BookmarkController@index')->name('bookmarks.show');
+    //いいね一覧の無限スクロール
+    Route::get('/infinity_bookmarks/{user}', 'BookmarkController@fetch');
     
     //ジャグラー分布図
     Route::get('/map', 'PlaceController@index')->name('map');

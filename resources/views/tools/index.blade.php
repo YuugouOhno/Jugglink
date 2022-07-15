@@ -9,7 +9,7 @@
 @endsection
 
 @section('main2')
-    <div>
-        <infinity-component :url="{{ json_encode('/infinity_tools/')}}" :id='{{ json_encode($tool)}}'></infinity-component>
+    <div class='posts_container'>
+        <posts-component :url="{{ json_encode('/infinity_tools/')}}" :id='{{ json_encode($tool_id)}}'></posts-component>
     </div>
 @endsection

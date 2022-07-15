@@ -9,8 +9,8 @@ class ToolController extends Controller
 {
     public function index(Tool $tool, Request $request)
     {
-        $tool = $request['tool.id'];
-        return view('tools.index')->with(['tool' => $tool]);
+        $tool_id = $request['tool.id'];
+        return view('tools.index')->with(['tool_id' => $tool_id]);
     }
     
     public function fetch(Request $request, Tool $tool) { // vueからのリクエスト

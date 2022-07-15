@@ -32,6 +32,11 @@ class Post extends Model
         
     }
     
+    public function getPosts($likepost)
+    {
+        return $this->with('tool', 'user')->get();
+    }
+    
     public function tool()
     {
         return $this->belongsTo('App\Tool');

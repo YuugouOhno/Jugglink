@@ -54,7 +54,6 @@ class PostController extends Controller
     
     public function index()
     {
-        
         return view('posts.test');
     }
     
@@ -90,5 +89,7 @@ class PostController extends Controller
         // return $showablePosts;
         return $posts;
     }
+    
+    
 }
 ?>

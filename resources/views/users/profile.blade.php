@@ -1,12 +1,11 @@
 @extends('others.menue')
 
 @section('title2')
-    <link rel="stylesheet" href="{{secure_asset('css/index.css')}}">
-    <title>profile</title>
+    <title>@yield('title3')プロフィール/Jugglink</title>
 @endsection
 
 @section('header2')
-    <h4>プロフィールdayoyoyoyoyoyo</h4>
+    <h4>@yield('header3')プロフィール</h4>
 @endsection
 
 @section('main2')
@@ -38,10 +37,10 @@
             <a href='{{ route("profile.likes", ["user" => $user->id]) }}' class='favorite'>いいね</a>
             <a href='{{ route("bookmarks.show", ["user" => $user->id]) }}' class='menue_type'>ブックマーク</a>
         </div>
-        @yield('profile_menue')
+        @yield('main3')
     </div>
 @endsection
 
 @section('script2')
-    @yield('script')
+    @yield('script3')
 @endsection

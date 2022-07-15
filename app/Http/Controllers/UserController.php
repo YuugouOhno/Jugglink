@@ -19,7 +19,6 @@ class UserController extends Controller
     // }
     public function index(User $user, Request $request)
     {
-        $user = $request['user.id'];
         return view('users.index')->with(['user' => $user]);
     }
     

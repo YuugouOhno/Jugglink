@@ -13,9 +13,11 @@ class Bookmark extends Model
         'post_id'
     ];
     
-    public function getByBookmarks()
+    public function getInfinityBookmarks($page, $user)
     {
-        return $this->with('post')->where('user_id', Auth::id())->orderBy('updated_at', 'desc')->get();
+        $limit = 2; // 一度に取得する件数
+        $offset = $page * $limit; // 現在の取得開始位置
+        return $this->with('post')->where('user_id', $user)->orderBy('updated_at', 'desc')->offset($offset)->limit($limit)->get();
     }
     
     public function user()

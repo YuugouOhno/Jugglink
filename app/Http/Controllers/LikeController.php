@@ -55,10 +55,41 @@ class likeController extends Controller
         return response()->json($result);
     }
     
-    public function index(Request $request, Like $like, User $user)
+    public function index(User $user)
     {
-        $likes = $like->getByLikes();
+        return view('likes.index')->with(['user' => $user]);
+    }
+    
+    public function fetch(Request $request, Like $like, Post $post, $user) { // vueからのリクエスト
+        $decodedFetchedPostIdList = json_decode($request->fetchedPostIdList, true); // すでに取得した投稿のIDリストを取得
+        if (json_last_error() !== JSON_ERROR_NONE) { // jsonにエラーがあるときにエラーメッセージ
+            return response()->json(['errorMessage' => json_last_error_msg()],500);
+        }
+        $posts = $this->extractShowPosts($decodedFetchedPostIdList, $request->page, $like, $post, $user); // 投稿を取得
+        return response()->json(['posts' => $posts], 200); // 投稿のデータをvueへ
+    }
+    
+    public function extractShowPosts($fetchedPostIdList, $page, Like $like, Post $post, $user) // 投稿を取得
+    {
+        \Log::debug($user);
+        $likes = $like->getInfinityLikes($page, $user); // 一度に取得するいいね,現在の取得開始位置の取得
+        $post_id = [];
+        foreach ($likes as $like) {
+            $post_id[] = $like->post_id; // いいねした投稿のIDを取得
+        }
         
-        return view('likes.index')->with(['user' => $user, 'likes' => $likes]);
+        $posts = Post::with(['user', 'tool'])->find($post_id); // 投稿のIDから投稿を取得
+        
+        if (is_null($fetchedPostIdList)) { // まだ取得した投稿が存在しない場合
+            return $posts; // 全部の投稿の中から取得した分を返す
+        }
+        // $showablePosts = []; // 既に取得した投稿が存在する場合
+        // foreach ($posts as $post) {
+        //     if (!in_array($post->id, $fetchedPostIdList)) { // 新たに取得した投稿が被っていないことを確認して取得
+        //         $showablePosts[] = $post;
+        //     }
+        // }
+        // return $showablePosts;
+        return $posts;
     }
 }
