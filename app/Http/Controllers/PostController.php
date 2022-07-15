@@ -54,7 +54,7 @@ class PostController extends Controller
     
     public function index()
     {
-        return view('posts.test');
+        return view('posts.index');
     }
     
     public function fetchAuth(Request $request) { // 認証データを取得
