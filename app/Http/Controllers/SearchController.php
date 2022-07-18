@@ -11,64 +11,53 @@ class SearchController extends Controller
 {
     public function search_technique(Request $request)
     {
+        $query = Post::with('tool','user')->latest();
+        
         //検索フォームに入力された値を取得
-        $tool_name = $request->input('tool_name');
-        $tool_number = $request->input('tool_number');
         $technique = $request->input('technique');
-        
-        $query = Post::query();
-        
-        //テーブル結合
-        $query->join('users', function ($query) use ($request) {
-            $query->on('posts.user_id', '=', 'users.id');
-        })->join('tools', function ($query) use ($request) {
-            $query->on('posts.tool_id', '=', 'tools.id');
-        });
-        
-        if(!empty($technique)) {
+        $tool_name = $request->input('tool_name');
+        $tool_id = Tool::where('tool_name', $tool_name)->value('id');
+        $tool_number = $request->input('tool_number');
+
+        if($technique) {
             $query->where('technique', 'LIKE', "%{$technique}%");
         }
         
-        if(!empty($tool_name)) {
-            $query->where('tool_name', 'LIKE', $tool_name);
+        if($tool_id) {
+            $query->where('tool_id', $tool_id);
         }
         
-        if(!empty($tool_number)){
-            $query->where('tool_number', 'LIKE', $tool_number);
+        if($tool_number){
+            $query->where('tool_number', $tool_number);
         }
         
-        $items = $query->get();
-
+        $posts = $query->get();
+        \Log::debug($posts);
         $tool = Tool::all();
         
-        return view('searches/technique')->with(['items' => $items, 'tools' => $tool, 'technique' => $technique, 'tool_name' => $tool_name, 'tool_number' => $tool_number]);
+        return view('searches/technique')->with(['posts' => $posts, 'tools' => $tool, 'technique' => $technique, 'tool_name' => $tool_name, 'tool_number' => $tool_number]);
     }
     
     public function search_user(Request $request)
     {
+        $query = User::with('tool')->latest();
          //検索フォームに入力された値を取得
         $tool_name = $request->input('tool_name');
+        $tool_id = Tool::where('tool_name', $tool_name)->value('id');
         $user_name = $request->input('user_name');
         
-        $query = User::query();
-        
-        //テーブル結合
-        $query->join('tools', function ($query) use ($request) {
-            $query->on('users.tool_id', '=', 'tools.id');
-        });
-        
-        if(!empty($user_name)) {
+        if($user_name) {
             $query->where('name', 'LIKE', "%{$user_name}%");
         }
         
-        if(!empty($tool_name)) {
-            $query->where('tool_name', 'LIKE', $tool_name);
+        if($tool_id) {
+            $query->where('tool_id', $tool_id);
         }
         
-        $items = $query->get();
-
+        $users = $query->get();
+        \Log::debug($users);
         $tool = Tool::all();
         
-        return view('searches/user')->with(['items' => $items, 'tools' => $tool, 'user_name' => $user_name, 'tool_name' => $tool_name]);
+        return view('searches/user')->with(['users' => $users, 'tools' => $tool, 'user_name' => $user_name, 'tool_name' => $tool_name]);
     }
 }

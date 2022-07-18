@@ -1,11 +1,14 @@
 @extends('others.menue')
 
-@section('title')
-    <link rel="stylesheet" href="{{secure_asset('css/index.css')}}">
-    <title>Search Technique</title>
+@section('title2')
+    <title>技検索/Jugglink</title>
 @endsection
 
-@section('main')
+@section('header2')
+    <h4>技検索</h4>
+@endsection
+
+@section('main2')
 <div class='posts_container'>
     <div class="search">
         <p>投稿を検索</p>
@@ -47,43 +50,63 @@
             </div>
         </form>
     </div>
-
-    @foreach ($items as $item)
-        <div class='user'>
-            @if($item->icon_path !=0)
-                <img  class='user_icon' src="{{ $item->icon_path }}">
-            @else
-                <i class="fa-solid fa-circle-user" style="font-size:50px;"></i>
-            @endif
-            <a  class='user_name' href='{{ route("profile.posts", ["user" => ($item->user_id)]) }}'>{{ $item->name }}</a>
+    <div>
+        <posts-component :technique="{{ json_encode($technique)}}" :tool_id="{{ json_encode($tool_id)}}" :tool_number="{{ json_encode($tool_number)}}"></posts-component>
+    </div>
+    {{--
+    @foreach ($posts as $post)
+    <div class='post_container'>
+        <div>
+            <a class='color_black' href='{{ route("profile.posts", ["user" => ($post->user->id)]) }}'>
+                <div class="user">
+                    @if($post->user->icon_path !=0)
+                    <img class="user_icon" src="{{ $post->user->icon_path }}">
+                    @else
+                        <i class="fa-solid fa-circle-user user_icon"></i>
+                    @endif
+                    <p class='user_name'>{{ $post->user->name }}</p>
+                </div>
+            </a>
         </div>
-        <div class='post_title'>
-            <p class='tool_number'>{{ $item->tool_number }}</p>
-            <a class='tool_name' href='{{ route("tools.show", ["tool" => ($item->tool_id)]) }}'>{{ $item->tool_name }}</a>
-            <p class='technique_name'>{{ $item->technique }}</p>
-        </div>
-        <div class='post_body'>
+        <div class='video'>
             <video controls loop autoplay muted>
-                <source src="{{ $item->video_path }}" type="video/mp4">
+                <source src="{{ $post->video_path }}" type="video/mp4">
             </video>
-            <p class='post_text'>{{ $item->text }}</p>
+        </div>
+        <div class='post_titles'>
+            <p class='tool_number post_titles color_black'>{{ $post->tool_number }}</p>
+            <a class='tool_name post_titles color_black'  href='{{ route("tools.show", ["tool" => ($post->tool->id)]) }}'>{{ $post->tool->tool_name }}</a>
+            <p class='technique_name post_titles color_black'>{{ $post->technique }}</p>
+        </div>
+        <div class='post_text'>
+            <p class='color_black'>{{ $post->text }}</p>
         </div>
         <div class='post_reaction'>
-            <like-component :post="{{ json_encode($item)}}"></like-component>
-            <button class='btn' onclick="location.href='{{ route("comments.show", ["post" => ($item->id)])}}'">
-                <i class="fa-regular fa-comment" style="color:purple;"></i>
-            </button>
-            <bookmark-component class='bookmark' :post="{{ json_encode($item)}}"></bookmark-component>
-            @if($item->user_id == Auth::user()->id)
-            <form class='delete' id="posts_delete_form" action='{{ route("posts.delete", ["post" => ($item->id)]) }}' method='POST' enctype="multipart/form-data">
-                @csrf
-                @method('DELETE')
-                <button class='btn' onclick="buttonClick()">
-                    <i class="fa-regular fa-trash-can" style="color:glay;"></i>
+            <div class='reaction_icon'>
+                <like-component :post="{{ json_encode($post)}}"></like-component>
+            </div>
+            <div class='reaction_icon'>
+                <button class='btn' onclick="location.href='{{ route("comments.show", ["post" => ($post->id)])}}'">
+                    <i class="fa-regular fa-comment color_black"></i>
                 </button>
-            </form>
-            @endif
+            </div>
+            <div class='reaction_icon'>
+                 <bookmark-component class='bookmark' :post="{{ json_encode($post)}}"></bookmark-component>
+            </div>
+            <div class='reaction_icon'>
+                @if($post->user->id == Auth::user()->id)
+                <form id="posts_delete_form" action='{{ route("posts.delete", ["post" => ($post->id)]) }}' method='POST' enctype="multipart/form-data">
+                    @csrf
+                    @method('DELETE')
+                    <button class='btn' onclick="buttonClick()">
+                        <i class="fa-regular fa-trash-can color_gray"></i>
+                    </button>
+                </form>
+                @endif
+            </div>
         </div>
+    </div>
     @endforeach
+    --}}
 </div>
 @endsection

@@ -12,6 +12,10 @@
 */
 Route::group(['middleware' => ['auth']], function(){
     
+    //無限スクロールはこれ一つにまとめていきたい（後々おいおい）
+    Route::get('/infinity', 'InfinityController@fetch');
+    
+    
     //無限スクロールに認証
     Route::get('/infinityauth', 'PostController@fetchAuth');
     
@@ -21,6 +25,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/infinity_posts/0', 'PostController@fetch');
     //投稿の検索
     Route::get('/search/index/technique/', 'SearchController@search_technique')->name('search.technique');
+    //投稿の検索の無限スクロール
+    Route::get('/infinity_search_technique/{user}', 'LikeController@fetch');
     //ユーザーの検索
     Route::get('/search/index/user/', 'SearchController@search_user')->name('search.user');
     
@@ -37,7 +43,9 @@ Route::group(['middleware' => ['auth']], function(){
     
     
     //コメント一覧＆コメントの作成
-    Route::get('/posts/{post}/comments', 'PostController@comment')->name('comments.show');
+    Route::get('/posts/{post}/comments', 'CommentController@index')->name('comments.show');
+    //コメントにある投稿の無限スクロール
+    
     //コメントの投稿
     Route::post('/posts/{post}/comments/create', 'CommentController@store')->name('comments.create');
     //コメントの削除

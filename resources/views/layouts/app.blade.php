@@ -78,7 +78,8 @@
     <div class='body_container flex' id="app">
         @yield('main1')
     </div>
-    @yield('script1')
+
     <script src="{{ secure_asset('js/app.js') }}" type="module"></script>
+    @yield('script1')
 </body>
 </html>

@@ -14,11 +14,11 @@ class ToolController extends Controller
     }
     
     public function fetch(Request $request, Tool $tool) { // vueからのリクエスト
-        $decodedFetchedPostIdList = json_decode($request->fetchedPostIdList, true); // すでに取得した投稿のIDリストを取得
+        $fetchedPostIdList = json_decode($request->fetchedPostIdList, true); // すでに取得した投稿のIDリストを取得
         if (json_last_error() !== JSON_ERROR_NONE) { // jsonにエラーがあるときにエラーメッセージ
             return response()->json(['errorMessage' => json_last_error_msg()],500);
         }
-        $posts = $this->extractShowPosts($decodedFetchedPostIdList, $request->page, $tool); // 投稿を取得
+        $posts = $this->extractShowPosts($fetchedPostIdList, $request->page, $tool); // 投稿を取得
         return response()->json(['posts' => $posts], 200); // 投稿のデータをvueへ
     }
     

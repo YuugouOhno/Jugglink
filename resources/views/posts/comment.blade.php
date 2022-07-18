@@ -1,30 +1,42 @@
 @extends('others.menue')
 
-@section('title')
-    <link rel="stylesheet" href="{{secure_asset('css/index.css')}}">
-    <title>Comment</title>
+@section('title2')
+    <title>コメント/Jugglink</title>
 @endsection
 
-@section('main')
+@section('header2')
+    <h4>コメント</h4>
+@endsection
+
+@section('main2')
     <div class='post'>
-        <div class='user'>
-            <image class='icon_image' src=''></image>
-            <p class='user_name'>{{ $post->user_id }}</p>
+        <div class='post_container'>
+        <div>
+            <a class='color_black' href='{{ route("profile.posts", ["user" => ($post->user->id)]) }}'>
+                <div class="user">
+                    @if($post->user->icon_path !=0)
+                    <img class="user_icon" src="{{ $post->user->icon_path }}">
+                    @else
+                        <i class="fa-solid fa-circle-user user_icon"></i>
+                    @endif
+                    <p class='user_name'>{{ $post->user->name }}</p>
+                </div>
+            </a>
         </div>
-        <div class='post_title'>
-            <p class='tool_number'>{{ $post->tool_number }}</p>
-            <p class='tool_name'>{{ $post->tool_name }}</p>
-            <p class='technique_name'>{{ $post->technique }}</p>
+        <div class='video'>
+            <video controls loop autoplay muted>
+                <source src="{{ $post->video_path }}" type="video/mp4">
+            </video>
         </div>
-        <div class='post_body'>
-            <video class='post_video' src=''></video>
-            <p class='post_text'>{{ $post->post_text }}</p>
+        <div class='post_titles'>
+            <p class='tool_number post_titles color_black'>{{ $post->tool_number }}</p>
+            <a class='tool_name post_titles color_black'  href='{{ route("tools.show", ["tool" => ($post->tool->id)]) }}'>{{ $post->tool->tool_name }}</a>
+            <p class='technique_name post_titles color_black'>{{ $post->technique }}</p>
         </div>
-        <div class='post_reaction'>
-            <div class='favorite'>いいね</div>
-            <div class="back_index"><a href="/">戻る</a></div>
-            <div class='bookmark'>ブックマーク</div>
+        <div class='post_text'>
+            <p class='color_black'>{{ $post->text }}</p>
         </div>
+    </div>
     </div>
     <div class='create_comment'>
         <form action="/posts/{{$post->id}}/comments/create" method="POST">

@@ -1,12 +1,15 @@
 @extends('others.menue')
 
-@section('title')
+@section('title2')
     <link rel="stylesheet" href="css/map.css">
-    <link rel="stylesheet" href="css/index.css">
-    <title>map</title>
+    <title>ジャグラー分布/Jugglink</title>
 @endsection
 
-@section('main')
+@section('header2')
+    <h4>ジャグラー分布</h4>
+@endsection
+
+@section('main2')
 <div class='map_container'>
     <map-component></map-component>
     <form id="map_delete_form" action='{{ route("map.delete")}}' method='POST'>
@@ -17,7 +20,7 @@
 </div>
 @endsection
 
-@section('script')
+@section('script2')
 <script type="application/javascript">const place = @json($place);</script>
 <script type="application/javascript" src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ config('services.google.maps_key') }}&callback=initMap" async defer>
 </script>
