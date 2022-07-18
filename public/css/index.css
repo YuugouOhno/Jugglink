@@ -1,56 +1,132 @@
+* {
+  box-sizing:border-box;
+}
+
+body{
+    width:100%;
+    height:100%;
+}
+
+/* ヘッダー */
+.navbar{
+    width:100%;
+    height:50px;
+    box-sizing:border-box; /* padding分を含んで幅を100%にするため */
+    position:fixed; /* ウィンドウを基準に画面に固定 */
+    top:0px; /* 上下の固定位置を上から0pxにする */
+    left:0px; /* 左右の固定位置を左から0pxにする */
+    display:flex; /* 中の要素を横並びにする */
+    align-items:center; /* 中の要素を上下中央に並べる */
+    border: 1px solid gray;
+}
+
+.container{
+    width:100%;
+    height:50px;
+    margin:0;
+}
+/*ヘッダーの下側*/
 .body_container{
     display:flex;
     width:100%;
+    height:100%;
+    justify-content:left;
 }
-
+/* 大枠3つ*/
 .menues_container{
-    background-color:#eaa47e;
-    width:40%;
+    height:100%;
+    box-sizing:border-box; /* padding分を含んで幅を100%にするため */
+    position:fixed; /* ウィンドウを基準に画面に固定 */
+    top:50px; /* 上下の固定位置を上から0pxにする */
+    left:0px; /* 左右の固定位置を左から0pxにする */
+    border: 1px solid gray;
 }
 
-.posts_container{
-    background-color:#ede98e;
-    width:60%;
+.main_container{
+    height:100%;
+    margin-top:27px;/* headerに被らないようにする */
 }
 
+.right_container{
+    height:100%;
+    box-sizing:border-box; /* padding分を含んで幅を100%にするため */
+    position:fixed; /* ウィンドウを基準に画面に固定 */
+    top:50px; /* 上下の固定位置を上から0pxにする */
+    right:0px; /* 左右の固定位置を左から0pxにする */
+    border: 1px solid gray;
+}
+
+/* 共通ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+.color_black{
+    color:black;
+}
+
+.color_gray{
+    color:gray;
+}
+
+.BG_color_white{
+    background-color:white;
+}
+
+/* メニューーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+.menue{
+    margin:20px 0px;
+    text-align:center;
+    font-size:25px;
+}
+/* スマホ用 */
+.display_menue{
+        display:none;
+}
+
+/* メインーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
 .post_container{
-    padding:0 16px;
+    padding:10px;
+    border: 1px solid gray;
 }
 
 .user{
+    margin:auto 0px;
     display:flex;
 }
 
 .user_icon{
-    width:50px;
-    height:50px;
-    display: inline-block;
+    width:48px;
+    height:48px;
+    font-size:48px;
+    padding:2px;
+    display:inline-block;
 }
 
 .user_name{
     font-size:20px;
-    margin:auto 0;
-    display: inline-block;
+    margin:auto 0px;
+    height:20px;
+    padding:auto 0px;
+    display:inline-block;
 }
 
 video{
     width:100%;
-    height: auto;
+    height:auto;
 }
 
 .post_title{
     display:flex;
-    padding:auto;
+    margin:0 auto;
+}
+.post_titles{
+    margin:0 auto;
+    display:inline-block;
 }
 
-.tool_number{
-    margin:auto 0;
+.post_reaction{
+    display:flex;
+    text-align:center;
 }
 
-.tool_name{
-    margin:auto 0;
-}
-
-.technique_name{
-    margin:auto 0;
+.reaction_icon{
+    margin:auto;
+    display:inline-block;
 }

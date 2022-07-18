@@ -16,6 +16,7 @@ class CommentController extends Controller
         $input_comment += ['user_id' => $request->user()->id];
         $input_comment += ['post_id' => $post->id];
         $comment->fill($input_comment)->save();
+        
         return redirect()->route('comments.show', ['post' => ($post->id)]);
     }
     

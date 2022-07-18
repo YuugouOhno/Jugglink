@@ -11,21 +11,30 @@
 |
 */
 Route::group(['middleware' => ['auth']], function(){
+    
+    //無限スクロールに認証
+    Route::get('/infinityauth', 'PostController@fetchAuth');
+    
     //ホーム画面
     Route::get('/', 'PostController@index')->name('home');
-    //投稿の検索画面
-    Route::get('/search/index/technique/', 'SearchController@index_technique')->name('search.index.technique');
+    //ホーム画面の無限スクロール
+    Route::get('/infinity_posts/0', 'PostController@fetch');
     //投稿の検索
-    Route::get('/search/technique', 'SearchController@serch_technique')->name('search.technique');
+    Route::get('/search/index/technique/', 'SearchController@search_technique')->name('search.technique');
+    //ユーザーの検索
+    Route::get('/search/index/user/', 'SearchController@search_user')->name('search.user');
     
     //投稿
     Route::post('/posts/create', 'PostController@store')->name('posts.create');
     //投稿内容の作成画面
     Route::get('/posts/create/index', 'PostController@create')->name('posts.create.index');
+    //道具ごとの投稿一覧
+    Route::get('/tools/{tool}', 'ToolController@index')->name('tools.show');
+    //道具ごとの投稿一覧の無限スクロール
+    Route::get('/infinity_tools/{tool}', 'ToolController@fetch');
     //投稿の削除
     Route::delete('/posts/{post}/delete', 'PostController@delete')->name('posts.delete');
-    //道具ごとの投稿
-    Route::get('/tools/{tool}', 'ToolController@index')->name('tools.show');
+    
     
     //コメント一覧＆コメントの作成
     Route::get('/posts/{post}/comments', 'PostController@comment')->name('comments.show');
@@ -34,10 +43,14 @@ Route::group(['middleware' => ['auth']], function(){
     //コメントの削除
     Route::delete('/posts/comments/{comment}/delete', 'CommentController@delete')->name('comments.delete');
 
-    //プロフィール（自分の投稿一覧）
+    //プロフィール（ユーザーの投稿一覧）
     Route::get('/users/{user}/profile/posts', 'UserController@index')->name('profile.posts');
-    //プロフィール（自分のいいね一覧）
+    //ユーザーの投稿一覧の無限スクロール
+    Route::get('/infinity_users/{user}', 'UserController@fetch');
+    //プロフィール（ユーザーのいいね一覧）
     Route::get('/users/{user}/profile/likes', 'LikeController@index')->name('profile.likes');
+    //いいね一覧の無限スクロール
+    Route::get('/infinity_likes/{user}', 'LikeController@fetch');
     //プロフィールの編集画面
     Route::get('/users/{user}/profile/edit', 'UserController@edit')->name('profile.edit');
     //プロフィールの変更
@@ -50,22 +63,28 @@ Route::group(['middleware' => ['auth']], function(){
     //いいね数のカウント
     Route::get('/posts/{post}/countlikes', 'LikeController@countlikes')->name('likes.count');
     //いいねの有無
-    Route::get('posts/{post}/haslikes', 'LikeController@haslikes');
+    Route::get('/posts/{post}/haslikes', 'LikeController@haslikes');
     
     //ブックマーク
     Route::get('/posts/{post}/bookmarks', 'BookmarkController@store')->name('bookmarks');
     //ブックマーク解除
     Route::delete('/posts/{post}/unbookmarks', 'BookmarkController@delete')->name('unbookmarks');
     //ブックマークの有無
-    Route::get('posts/{post}/hasbookmarks', 'BookmarkController@hasbookmarks');
+    Route::get('/posts/{post}/hasbookmarks', 'BookmarkController@hasbookmarks');
+    //ブックマークの一覧
+    Route::get('/bookmarks/{user}/posts', 'BookmarkController@index')->name('bookmarks.show');
+    //いいね一覧の無限スクロール
+    Route::get('/infinity_bookmarks/{user}', 'BookmarkController@fetch');
     
     //ジャグラー分布図
-    Route::get('/map', 'MapController@index')->name('');
+    Route::get('/map', 'PlaceController@index')->name('map');
+    Route::post('/map/addPin', 'PlaceController@store')->name('map.addPin');
+    Route::delete('/map/delete', 'PlaceController@delete')->name('map.delete');
+    
+    
 
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-
-

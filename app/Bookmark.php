@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Post;
+use Auth;
 
 class Bookmark extends Model
 {
@@ -11,10 +13,11 @@ class Bookmark extends Model
         'post_id'
     ];
     
-    public function getBookmarkPaginateByLimit(int $limit_count = 1)
+    public function getInfinityBookmarks($page, $user)
     {
-        $auths = Auth::id();
-        return $this->$bookmark->where('user_id', $auths)->posts()->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        $limit = 2; // 一度に取得する件数
+        $offset = $page * $limit; // 現在の取得開始位置
+        return $this->with('post')->where('user_id', $user)->orderBy('updated_at', 'desc')->offset($offset)->limit($limit)->get();
     }
     
     public function user()

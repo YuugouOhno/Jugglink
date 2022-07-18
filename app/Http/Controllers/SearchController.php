@@ -3,50 +3,72 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\Post;
+use App\Tool;
 
 class SearchController extends Controller
 {
-    public function index_technique()
+    public function search_technique(Request $request)
     {
-        return view('searchs/technique');
+        //検索フォームに入力された値を取得
+        $tool_name = $request->input('tool_name');
+        $tool_number = $request->input('tool_number');
+        $technique = $request->input('technique');
+        
+        $query = Post::query();
+        
+        //テーブル結合
+        $query->join('users', function ($query) use ($request) {
+            $query->on('posts.user_id', '=', 'users.id');
+        })->join('tools', function ($query) use ($request) {
+            $query->on('posts.tool_id', '=', 'tools.id');
+        });
+        
+        if(!empty($technique)) {
+            $query->where('technique', 'LIKE', "%{$technique}%");
+        }
+        
+        if(!empty($tool_name)) {
+            $query->where('tool_name', 'LIKE', $tool_name);
+        }
+        
+        if(!empty($tool_number)){
+            $query->where('tool_number', 'LIKE', $tool_number);
+        }
+        
+        $items = $query->get();
+
+        $tool = Tool::all();
+        
+        return view('searches/technique')->with(['items' => $items, 'tools' => $tool, 'technique' => $technique, 'tool_name' => $tool_name, 'tool_number' => $tool_number]);
     }
     
-    public function serch_technique()
+    public function search_user(Request $request)
     {
-        $search = Post::query();
-        if(isset($request->tool_id)){
-            $search->where('tool_id', '=',$request->tool_id);
+         //検索フォームに入力された値を取得
+        $tool_name = $request->input('tool_name');
+        $user_name = $request->input('user_name');
+        
+        $query = User::query();
+        
+        //テーブル結合
+        $query->join('tools', function ($query) use ($request) {
+            $query->on('users.tool_id', '=', 'tools.id');
+        });
+        
+        if(!empty($user_name)) {
+            $query->where('name', 'LIKE', "%{$user_name}%");
         }
-        if(isset($request->tool_nmber)){
-            $search->where('tool_nmber', '=',$request->tool_nmber);
+        
+        if(!empty($tool_name)) {
+            $query->where('tool_name', 'LIKE', $tool_name);
         }
-        if(isset($request->start_date)){
-            $search->where('start_date', '>=',$request->start_date);
-        }
-        if(isset($request->end_date)){
-            $search->where('start_date', '=<',$request->start_date);
-        }
-        if(isset($request->keyword) && $request->keyword_type === "or"){
-            $keywords = explode(",", $request->keyword);
-            $search->where(function ($query) use($keywords) {
-                foreach($keywords as $keyword){
-                    $query->orWhere('technique_name', 'LIKE',"%$keyword%");
-                }
-            });
-        } elseif(isset($request->keyword)) {
-            $keywords = explode(",", $request->keyword);
-            foreach($keywords as $keyword){
-                $search->where('review', 'LIKE',"%$keyword%");
-            }
-        }
-        // \DB::enableQueryLog();
-        $results = $search->get();
-        // dd(\DB::getQueryLog());
+        
+        $items = $query->get();
 
-        $results->count=count($results);
-        // クライアントユーザー（is_admin=0）のみを抽出する
-        $users=DB::table('users')->where('is_admin', 0)->get();
-        return view('kuchikomis/searchResults',['results' => $results,'users'=>$users]);
+        $tool = Tool::all();
+        
+        return view('searches/user')->with(['items' => $items, 'tools' => $tool, 'user_name' => $user_name, 'tool_name' => $tool_name]);
     }
 }

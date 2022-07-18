@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Post;
+use Auth;
 
 class Like extends Model
 {
@@ -12,9 +13,11 @@ class Like extends Model
         'post_id'
     ];
     
-    public function getByLike(int $limit_count = 3)
+    public function getInfinityLikes($page, $user)
     {
-        return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        $limit = 2; // 一度に取得する件数
+        $offset = $page * $limit; // 現在の取得開始位置
+        return $this->with('post')->where('user_id', $user)->orderBy('updated_at', 'desc')->offset($offset)->limit($limit)->get();
     }
     
     public function user()

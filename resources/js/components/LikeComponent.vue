@@ -1,23 +1,18 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center mt-1">
-            <div class="col-md-12">
-                <div>
-                    <button @click="unlike()" class='btn btn-danger' v-if="result">
-                        <i class="fa-solid fa-heart"></i>
-                    </button>
-                    <button @click="like()" class='btn btn-success' v-else>
-                        <i class="fa-regular fa-heart"></i>
-                    </button>
-                    <p>いいね数：{{count}}</p>
-                </div>
-            </div>
-        </div>
+    <div>
+        <button @click="unlike()" class='btn like_btn' v-if="result">
+            <i class="fa-solid fa-heart" style="color:red;"></i>{{count}}
+        </button>
+        <button @click="like()" class='btn like_btn' v-else>
+            <i class="fa-regular fa-heart color_black"></i>{{count}}
+        </button>
     </div>
 </template>
 <script>
     export default {
-        props: ['post'],
+        props: {
+            post_id: Number
+        },
         data() {
             return {
                 count: "",
@@ -30,7 +25,7 @@
         },
         methods: {
             like() {
-                axios.get('/posts/' + this.post.id +'/likes')
+                axios.get('/posts/' + this.post_id +'/likes')
                 .then(res => {
                     this.result = res.data.result;
                     this.count = res.data.count;
@@ -39,7 +34,7 @@
                 });
             },
             unlike() {
-                axios.delete('/posts/' + this.post.id +'/unlikes')
+                axios.delete('/posts/' + this.post_id +'/unlikes')
                 .then(res => {
                     this.result = res.data.result;
                     this.count = res.data.count;
@@ -48,7 +43,7 @@
                 });
             },
             countlikes() {
-                axios.get('/posts/' + this.post.id +'/countlikes')
+                axios.get('/posts/' + this.post_id +'/countlikes')
                 .then(res => {
                     this.count = res.data;
                 }).catch(function(error){
@@ -56,7 +51,7 @@
                 });
             },
             haslikes() {
-                axios.get('/posts/' + this.post.id +'/haslikes')
+                axios.get('/posts/' + this.post_id +'/haslikes')
                 .then(res => {
                     this.result = res.data;
                 }).catch(function(error){

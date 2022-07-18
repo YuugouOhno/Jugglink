@@ -3,14 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    @yield('title')
-
-    <!-- Scripts -->
-    
+    @yield('title1')
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,18 +15,19 @@
 
     <!-- Styles -->
     <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{secure_asset('css/index.css')}}" rel="stylesheet" >
+    <link href="{{secure_asset('css/responsive.css')}}" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div>
-            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <header >
+        <div class="head_container">
+            <nav class="navbar navbar-expand-md navbar-light shadow-sm BG_color_white">
                 <div class="container">
-                    <a class="navbar-brand" href="{{ route("home") }}">
+                    <!--<a class="navbar-brand" href="{{ route("home") }}">
+                        <img  class='user_icon' src="https://jugglinkbucket.s3.amazonaws.com/jugglink_icon/icondayo.jpg">
                         Jugglink
-                    </a>
-                    <a class="serch" href="{{ route("search.index.technique") }}">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </a>
+                    </a> -->
+                    @yield('header1')
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -77,10 +75,10 @@
             </nav>
         </div>
     </header>
-    <div class='body_container' id="app">
-        @yield('content')
+    <div class='body_container flex' id="app">
+        @yield('main1')
     </div>
-    @yield('script')
+    @yield('script1')
     <script src="{{ secure_asset('js/app.js') }}" type="module"></script>
 </body>
 </html>

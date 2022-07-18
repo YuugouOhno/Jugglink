@@ -1,0 +1,64 @@
+/*1170px以上(パソコン用)*/
+@media(min-width:1170px){
+    .menues_container {
+        width:25%;
+    }
+    
+    .main_container{
+        width:50%;
+        margin-left:25%;
+    }
+    
+    .right_container{
+        width:25%;
+    }
+    
+    .menue_text{
+        display:inline;
+    }
+}
+/*1170px以下(パソコン用)*/
+@media(max-width:1170px){
+    .menues_container {
+        width:30%;
+    }
+    
+    .main_container{
+        width:70%;
+        margin-left:30%;
+    }
+    
+    .menue_text{
+        display:inline;
+    }
+}
+/*960px以下(タブレット用)*/
+@media(max-width:960px){
+    .menues_container {
+        width:15%;
+    }
+    
+    .main_container{
+        width:85%;
+        margin-left:15%;
+    }
+    
+    .menue_text{
+        display:none;
+    }
+}
+/*520px以下(スマホ用)*/
+@media(max-width:520px){
+    .menues_container {
+        display:none;
+    }
+    
+    .main_container{
+        width:100%;
+        margin-left:0%;
+    }
+    
+    .display_menue{
+        display:inline;
+    }
+}
