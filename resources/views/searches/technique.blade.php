@@ -29,7 +29,7 @@
                     <select name="tool_name" data-toggle="select">
                         <option value="">全て</option>
                         @foreach ($tools as $tool)
-                            <option value="{{ $tool->tool_name }}" {{$tool_name==$tool->tool_name ? "selected" : ""}} >{{ $tool->tool_name }}</option>
+                            <option value="{{ $tool->tool_name }}" {{$tool_id==$tool->id ? "selected" : ""}} >{{ $tool->tool_name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -51,7 +51,12 @@
         </form>
     </div>
     <div>
-        <posts-component :technique="{{ json_encode($technique)}}" :tool_id="{{ json_encode($tool_id)}}" :tool_number="{{ json_encode($tool_number)}}"></posts-component>
+        <p>{{ $technique }}</p>
+        <p>{{ $tool_id }}</p>
+        <p>{{ $tool_number }}</p>
+    </div>
+    <div>
+        <infinityposts-component :technique="{{ json_encode($technique)}}" :tool_id="{{ json_encode($tool_id)}}" :tool_number="{{ json_encode($tool_number)}}"></infinityposts-component>
     </div>
     {{--
     @foreach ($posts as $post)

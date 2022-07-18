@@ -9,7 +9,7 @@ use App\Tool;
 
 class SearchController extends Controller
 {
-    public function search_technique(Request $request)
+    public function search_technique(Request $request, Tool $tool)
     {
         $query = Post::with('tool','user')->latest();
         
@@ -18,24 +18,23 @@ class SearchController extends Controller
         $tool_name = $request->input('tool_name');
         $tool_id = Tool::where('tool_name', $tool_name)->value('id');
         $tool_number = $request->input('tool_number');
-
-        if($technique) {
-            $query->where('technique', 'LIKE', "%{$technique}%");
-        }
+        // if($technique) {
+        //     $query->where('technique', 'LIKE', "%{$technique}%");
+        // }
         
-        if($tool_id) {
-            $query->where('tool_id', $tool_id);
-        }
+        // if($tool_id) {
+        //     $query->where('tool_id', $tool_id);
+        // }
         
-        if($tool_number){
-            $query->where('tool_number', $tool_number);
-        }
+        // if($tool_number){
+        //     $query->where('tool_number', $tool_number);
+        // }
         
-        $posts = $query->get();
-        \Log::debug($posts);
-        $tool = Tool::all();
-        
-        return view('searches/technique')->with(['posts' => $posts, 'tools' => $tool, 'technique' => $technique, 'tool_name' => $tool_name, 'tool_number' => $tool_number]);
+        // $posts = $query->get();
+        // \Log::debug($posts);
+        // $tool = Tool::all();
+        $tool = $tool->get();
+        return view('searches/technique')->with(['tools' => $tool, 'technique' => $technique, 'tool_id' => $tool_id, 'tool_number' => $tool_number]);
     }
     
     public function search_user(Request $request)
@@ -55,7 +54,7 @@ class SearchController extends Controller
         }
         
         $users = $query->get();
-        \Log::debug($users);
+        
         $tool = Tool::all();
         
         return view('searches/user')->with(['users' => $users, 'tools' => $tool, 'user_name' => $user_name, 'tool_name' => $tool_name]);
