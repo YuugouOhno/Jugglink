@@ -8,14 +8,11 @@
         <!--<button @click="addpin()">現在地を追加</button>-->
         <!--</form>-->
         <div>
-            <button @click="addPin()">現在地を追加</button>
-            <p></p>
-            <label>緯度
-            <input type="text" v-model="latitude">
-            </label>
-            <label>経度
-            <input type="text" v-model="longitude">
-            </label>
+            <div v-if="latitude !== 0">
+                <button @click="addPin()">現在地を追加</button>
+                <input type="hidden" v-model="latitude" >
+                <input type="hidden" v-model="longitude">
+            </div>
         </div>
     </div>
 </template>
@@ -69,6 +66,7 @@
                       // 緯度経度だけ取得
                       this.latitude = coords.latitude;
                       this.longitude = coords.longitude;
+                      console.log(this.latitude, this.longitude)
                     }.bind(this),
                     function(error) {
                         switch (err.code) {

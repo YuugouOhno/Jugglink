@@ -14,16 +14,6 @@ use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
-    // public function index(Post $post, Comment $comment)
-    // {
-    //     return view('posts/index')->with(['posts' => $post->getPaginateByLimit()]);
-    // }
-    
-    public function comment(Post $post, Comment $comment)
-    {
-        return view('posts/comment')->with(['post' => $post, 'comments' => $comment->getCommentPaginateByLimit()]);
-    }
-    
     public function create(Tool $tool)
     {
         return view('posts/create')->with(['tools' => $tool->get()]);

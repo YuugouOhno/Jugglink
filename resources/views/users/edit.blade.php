@@ -1,12 +1,11 @@
 @extends('others.menue')
 
 @section('title2')
-    <link rel="stylesheet" href="{{secure_asset('css/index.css')}}">
-    <title>Jugglink</title>
+    <title>プロフィールの編集/Jugglink</title>
 @endsection
 
 @section('header2')
-    <h4>プロフィールの編集dayoyoyoyoyoyo</h4>
+    <h4>プロフィールの編集</h4>
 @endsection
 
 @section('main2')

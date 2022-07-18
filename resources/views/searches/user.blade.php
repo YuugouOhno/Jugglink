@@ -1,11 +1,14 @@
 @extends('others.menue')
 
-@section('title')
-    <link rel="stylesheet" href="{{secure_asset('css/index.css')}}">
-    <title>Search Account</title>
+@section('title2')
+    <title>ユーザー検索/Jugglink</title>
 @endsection
 
-@section('main')
+@section('header2')
+    <h4>ユーザー検索</h4>
+@endsection
+
+@section('main2')
 <div class='posts_container'>
     <div class="search">
         <a href="{{ route('search.technique') }}">投稿を検索</a>
@@ -38,15 +41,19 @@
         </form>
     </div>
     
-    @foreach ($items as $item)
-    <div class='user'>
-            @if($item->icon_path !=0)
-                <img  class='user_icon' src="{{ $item->icon_path }}">
-            @else
-                <i class="fa-solid fa-circle-user" style="font-size:50px;"></i>
-            @endif
-            <a  class='user_name' href='{{ route("profile.posts", ["user" => ($item->id)]) }}'>{{ $item->name }}</a>
-        </div>
+    @foreach ($users as $user)
+    <div>
+        <a class='color_black' href='{{ route("profile.posts", ["user" => ($user->id)]) }}'>
+            <div class="user">
+                @if($user->icon_path !=0)
+                <img class="user_icon" src="{{ $user->icon_path }}">
+                @else
+                    <i class="fa-solid fa-circle-user user_icon"></i>
+                @endif
+                <p class='user_name'>{{ $user->name }}</p>
+            </div>
+        </a>
+    </div>
     @endforeach
 </div>
 @endsection

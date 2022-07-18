@@ -10,6 +10,11 @@ use App\Http\Requests\CommentRequest;
 
 class CommentController extends Controller
 {
+    public function index(Post $post, Comment $comment)
+    {
+        return view('posts/comment')->with(['post' => $post, 'comments' => $comment->getCommentPaginateByLimit()]);
+    }
+    
     public function store(Comment $comment, Post $post, CommentRequest $request)
     {
         $input_comment = $request['comment'];

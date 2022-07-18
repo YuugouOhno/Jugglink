@@ -88,13 +88,13 @@ body{
 
 .user{
     margin:auto 0px;
+    height:50px;
+    text-align:center;
     display:flex;
 }
 
 .user_icon{
-    width:48px;
-    height:48px;
-    font-size:48px;
+    font-size:46px;
     padding:2px;
     display:inline-block;
 }
@@ -102,7 +102,6 @@ body{
 .user_name{
     font-size:20px;
     margin:auto 0px;
-    height:20px;
     padding:auto 0px;
     display:inline-block;
 }
