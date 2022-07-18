@@ -111,7 +111,8 @@
             },
             fetchPosts($state) {
                 let fetchedPostIdList = this.fetchedPostIdList(); // すでに取得した投稿のIDリストを取得
-                axios.get(this.url + this.id, { // コントローラーへ
+                console.log(this.technique, this.tool_id, this.tool_number, "パラメータ")
+                axios.get('/infinity', { // コントローラーへ
                     params: {
                         fetchedPostIdList: JSON.stringify(fetchedPostIdList), // すでに取得した投稿のIDリスト
                         page: this.page, // 現在のページ(読み込んだ回数)
