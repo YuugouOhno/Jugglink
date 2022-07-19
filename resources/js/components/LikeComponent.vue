@@ -1,10 +1,10 @@
 <template>
     <div>
-        <button @click="unlike()" class='btn like_btn' v-if="result">
+        <button @click="unlike()" class='btn' v-if="result">
             <i class="fa-solid fa-heart" style="color:red;"></i>{{count}}
         </button>
-        <button @click="like()" class='btn like_btn' v-else>
-            <i class="fa-regular fa-heart color_black"></i>{{count}}
+        <button @click="like()" class='btn' v-else>
+            <span><i class="fa-regular fa-heart color_black"></i>{{count}}</span>
         </button>
     </div>
 </template>

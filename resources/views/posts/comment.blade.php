@@ -64,7 +64,7 @@
     </div>
 @endsection
 
-@section('script')
+@section('script2')
     <script>
         function buttonClick(){
             if(confirm("削除しますか？")){

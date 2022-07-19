@@ -2,6 +2,7 @@
 
 @section('title2')
     <title>技検索/Jugglink</title>
+    <link href="{{secure_asset('css/search.css')}}" rel="stylesheet" >
 @endsection
 
 @section('header2')
@@ -13,47 +14,33 @@
     <div class="search">
         <p>投稿を検索</p>
         <a href="{{ route('search.user') }}">ユーザーを検索</a>
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <form action="{{ route('search.technique') }}" method="GET">
             @csrf
-
-            <div class="form-group">
-                <div>
-                    <label for="">技名</label>
-                    <div>
-                        <input type='text' name='technique' value="{{ old('technique', $technique) }}">
-                    </div>
-                </div>
-
-                <div>
-                    <label for="">道具の種類</label>
-                    <select name="tool_name" data-toggle="select">
-                        <option value="">全て</option>
-                        @foreach ($tools as $tool)
-                            <option value="{{ $tool->tool_name }}" {{$tool_id==$tool->id ? "selected" : ""}} >{{ $tool->tool_name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div>
-                    <label for="">道具の数</label>
+            <div class="search_container">
+                <div class="search_tool_number">
                     <select name="tool_number" data-toggle="select">
-                        <option value="">全て</option>
+                        <option value="">道具数</option>
                         @foreach (config('const.tool_number') as $toolNumber)
                             <option value="{{ $toolNumber }}" {{$tool_number==$toolNumber ? "selected" : ""}}>{{ $toolNumber }}</option>
                         @endforeach
                     </select>
                 </div>
-
-                <div>
-                    <input type="submit" class="btn" value="検索">
+                <div class="search_tool_name">
+                    <select name="tool_name" data-toggle="select">
+                        <option value="">道具</option>
+                        @foreach ($tools as $tool)
+                            <option value="{{ $tool->tool_name }}" {{$tool_id==$tool->id ? "selected" : ""}} >{{ $tool->tool_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="search_technique">
+                    <input type='text' name='technique' value="{{ old('technique', $technique) }}" placeholder="技名を入力">
+                    <input type="submit" value="&#xf002">
                 </div>
             </div>
+            
         </form>
-    </div>
-    <div>
-        <p>{{ $technique }}</p>
-        <p>{{ $tool_id }}</p>
-        <p>{{ $tool_number }}</p>
     </div>
     <div>
         <infinityposts-component :technique="{{ json_encode($technique)}}" :tool_id="{{ json_encode($tool_id)}}" :tool_number="{{ json_encode($tool_number)}}"></infinityposts-component>
