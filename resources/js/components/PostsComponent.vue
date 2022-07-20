@@ -21,26 +21,26 @@
                     </video>
                 </div>
                 <div class='post_titles'>
-                    <p class='tool_number post_titles color_black'>{{ post.tool_number }}</p>
-                    <a class='tool_name post_titles color_black'  v-bind:href="'/tools/' + post.tool_id">{{ post.tool.tool_name }}</a>
-                    <p class='technique_name post_titles color_black'>{{ post.technique }}</p>
+                    <p class='tool_number post_title color_black'>{{ post.tool_number }}</p>
+                    <a class='tool_name post_title color_purple'  v-bind:href="'/tools/' + post.tool_id">{{ post.tool.tool_name }}</a>
+                    <p class='technique_name post_title color_black'>{{ post.technique }}</p>
                 </div>
                 <div class='post_text'>
                     <p class='color_black'>{{ post.text }}</p>
                 </div>
                 <div class='post_reaction'>
-                    <div class='reaction_icon'>
+                    <div class='reaction_icon like_btn'>
                         <Like :post_id='post.id'></Like>
                     </div>
-                    <div class='reaction_icon'>
-                        <a v-bind:href="'/posts/' + post.id + '/comments'">
+                    <div class='reaction_icon comment_btn'>
+                        <button v-on:click="post_comment(post.id)" class='btn'>
                             <i class="fa-regular fa-comment color_black"></i>
-                        </a>
+                        </button>
                     </div>
-                    <div class='reaction_icon'>
+                    <div class='reaction_icon bookmark_btn'>
                         <Bookmark :post_id='post.id'></Bookmark>
                     </div>
-                    <div class='reaction_icon' v-if="post.user.id === auth_user">
+                    <div class='reaction_icon delete_btn' v-if="post.user.id === auth_user.id">
                         <button v-on:click="post_delete(post.id)" class='btn'>
                             <i class="fa-regular fa-trash-can color_gray"></i>
                         </button>
@@ -81,10 +81,18 @@
                 axios.get('/infinityauth')
                 .then(res => {
                     this.auth_user = res.data.auth_user; // resのdataのauth_user
-                    console.log(res.data,"Authの中身")
+                    console.log(res.data.auth_user.id,"Authの中身")
                     console.log(this.url,"URLの中身")
                 }).catch(function(error) {
                     console.log(this.auth_user,"Authの取得失敗")
+                });
+            },
+            post_comment(comment_post_id) {
+                axios.get('/posts/' + comment_post_id + '/comments')
+                .then(res => {
+                    console.log("成功")
+                }).catch(function(error) {
+                    console.log("失敗")
                 });
             },
             post_delete(post_id) { // 投稿の削除

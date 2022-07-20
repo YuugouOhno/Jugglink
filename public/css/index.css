@@ -65,8 +65,25 @@ body{
     color:gray;
 }
 
+.color_purple{
+    color:#65318e;
+}
+
+.color_white{
+    color:white;
+}
+
 .BG_color_white{
     background-color:white;
+}
+
+a {
+  color: #65318e;
+}
+
+a:hover {
+  color: #65318e;
+  text-decoration: underline;
 }
 
 /* メニューーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
@@ -80,7 +97,7 @@ body{
         display:none;
 }
 
-/* メインーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+/* 投稿ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
 .post_container{
     padding:10px;
     border: 1px solid gray;
@@ -102,7 +119,6 @@ body{
 .user_name{
     font-size:20px;
     margin:auto 0px;
-    padding:auto 0px;
     display:inline-block;
 }
 
@@ -111,21 +127,72 @@ video{
     height:auto;
 }
 
-.post_title{
-    display:flex;
-    margin:0 auto;
-}
 .post_titles{
+    font-weight:bold;
+    font-size:15px;
     margin:0 auto;
     display:inline-block;
 }
 
+.post_title{
+    float:left;
+    margin:0 auto;
+}
+
+.tool_name:hover{
+    text-decoration: underline;
+}
+
+.post_text p{
+    font-size:15px;
+    margin:0;
+}
+
 .post_reaction{
+    height:30px;
+    margin:auto;
     display:flex;
     text-align:center;
 }
 
 .reaction_icon{
+    border-radius:50%;
     margin:auto;
     display:inline-block;
+}
+
+.like_btn:hover{  /*いいねをホバーしたときに変色*/
+    background-color:pink;
+}
+
+.like_btn:hover i{
+    color:red;
+}
+
+.like_btn:hover span{
+    color:red;
+}
+
+.comment_btn:hover{ /*コメントをホバーしたときに変色*/
+    background-color:lavender;
+}
+
+.comment_btn:hover i{
+    color:purple;
+}
+
+.bookmark_btn:hover{ /*ブックマークをホバーしたときに変色*/
+    background-color:lightblue;
+}
+
+.bookmark_btn:hover i{
+    color:blue;
+}
+
+.delete_btn:hover{ /*削除をホバーしたときに変色*/
+    background-color:gray;
+}
+
+.delete_btn:hover i{
+    color:black;
 }
