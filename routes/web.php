@@ -14,10 +14,8 @@ Route::group(['middleware' => ['auth']], function(){
     
     //無限スクロールはこれ一つにまとめていきたい（後々おいおい）
     Route::get('/infinity', 'InfinityController@fetch');
-    
-    
     //無限スクロールに認証
-    Route::get('/infinityauth', 'PostController@fetchAuth');
+    Route::get('/infinityauth', 'InfinityController@fetchAuth');
     
     //ホーム画面
     Route::get('/', 'PostController@index')->name('home');

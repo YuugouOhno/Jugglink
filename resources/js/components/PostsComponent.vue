@@ -40,7 +40,7 @@
                     <div class='reaction_icon bookmark_btn'>
                         <Bookmark :post_id='post.id'></Bookmark>
                     </div>
-                    <div class='reaction_icon delete_btn' v-if="post.user.id === auth_user">
+                    <div class='reaction_icon delete_btn' v-if="post.user.id === auth_user.id">
                         <button v-on:click="post_delete(post.id)" class='btn'>
                             <i class="fa-regular fa-trash-can color_gray"></i>
                         </button>
@@ -81,7 +81,7 @@
                 axios.get('/infinityauth')
                 .then(res => {
                     this.auth_user = res.data.auth_user; // resのdataのauth_user
-                    console.log(res.data,"Authの中身")
+                    console.log(res.data.auth_user.id,"Authの中身")
                     console.log(this.url,"URLの中身")
                 }).catch(function(error) {
                     console.log(this.auth_user,"Authの取得失敗")

@@ -47,10 +47,10 @@ class PostController extends Controller
         return view('posts.index');
     }
     
-    public function fetchAuth(Request $request) { // 認証データを取得
-        $auth_user = Auth::id();
-        return response()->json(['auth_user' => $auth_user], 200);
-    }
+    // public function fetchAuth(Request $request) { // 認証データを取得
+    //     $auth_user = Auth::id();
+    //     return response()->json(['auth_user' => $auth_user], 200);
+    // }
     
     public function fetch(Request $request, Post $post) { // vueからのリクエスト
         $decodedFetchedPostIdList = json_decode($request->fetchedPostIdList, true); // すでに取得した投稿のIDリストを取得

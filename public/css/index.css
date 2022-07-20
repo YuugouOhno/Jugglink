@@ -69,8 +69,21 @@ body{
     color:#65318e;
 }
 
+.color_white{
+    color:white;
+}
+
 .BG_color_white{
     background-color:white;
+}
+
+a {
+  color: #65318e;
+}
+
+a:hover {
+  color: #65318e;
+  text-decoration: underline;
 }
 
 /* メニューーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
@@ -131,6 +144,7 @@ video{
 }
 
 .post_text p{
+    font-size:15px;
     margin:0;
 }
 
@@ -181,9 +195,4 @@ video{
 
 .delete_btn:hover i{
     color:black;
-}
-
-/* 検索ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
-.search{
-    border: 1px solid gray;
 }

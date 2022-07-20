@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Tool;
 use App\User;
+use Auth;
 use Illuminate\Support\Facades\DB;
 
 class InfinityController extends Controller
 {
     public function fetchAuth(Request $request) { // 認証データを取得
-        $auth_user = Auth::id();
+        $auth_user = Auth::user();
         return response()->json(['auth_user' => $auth_user], 200);
     }
     

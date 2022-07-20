@@ -1,76 +1,119 @@
+/* 検索ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+.search{
+    border: 1px solid gray;
+}
+
+.search_tab_container{
+    width:70%;
+    margin:0 auto;
+}
+
+.search_tab1, .search_tab2, .search_tab3{
+    float:left;
+    border: 1px;
+    padding-right:4px;
+}
+
+.search_tab1 p, .search_tab2 p{
+    margin:0;
+    text-align:center;
+    border: 2px solid #65318e;
+    border-bottom-width:0px;
+    border-radius: 10px 10px 0 0;
+}
+
+.search_tab1{
+    width:7em;
+}
+
+.search_tab2{
+    width:9em;
+}
+
+.search_tab3{
+    width:100%;
+    height:0px;
+}
+
 .search_container{
-    height:3.5em;
+    height:70%;
     width:70%;
     margin:0 auto;
 }
 
 @media(min-width:800px){
-    .search_tool_number{
+    .search{
+        padding-top:20px;
+        height:80px;
+    }
+    .search_tool_number, .search_user_experience{
         width:20%;
         border: 2px solid #65318e;
         border-right-width:0px;
     }
-    .search_tool_name{
+    .search_tool_name, .search_user_tool{
         width:25%;
-         border: 2px solid #65318e;
-         border-right-width:0px;
+        border: 2px solid #65318e;
+        border-right-width:0px;
     }
-    .search_technique{
+    .search_technique, .search_user{
         width:55%;
-         border: 2px solid #65318e;
+        border: 2px solid #65318e;
     }
 }
 
 @media(max-width:800px){
-    .search_tool_number{
+    .search{
+        padding-top:20px;
+        height:114px;
+    }
+    .search_tool_number, .search_user_experience{
         width:40%;
-         border: 2px solid #65318e;
-         border-right-width:0px;
+        border: 2px solid #65318e;
+        border-right-width:0px;
     }
-    .search_tool_name{
+    .search_tool_name, .search_user_tool{
         width:60%;
-         border: 2px solid #65318e;
+        border: 2px solid #65318e;
     }
-    .search_technique{
+    .search_technique, .search_user{
         width:100%;
-         border: 2px solid #65318e;
-         border-top-width:0px;
+        border: 2px solid #65318e;
+        border-top-width:0px;
     }
 }
 
-.search_tool_number, .search_tool_name, .search_technique{
-    height: 33px;
+.search_tool_number, .search_tool_name, .search_technique, .search_user_experience, .search_user_tool, .search_user{
+    height: 34px;
     box-sizing: border-box;
     float:left;
-    display:inline-block;
 }
 
-.search_tool_number select, .search_tool_name select, .search_technique input[type="text"]{
+.search_tool_number select, .search_tool_name select, .search_technique input[type="text"], .search_user_experience select, .search_user_tool select, .search_user input[type="text"]{
     border: none;
     height:100%;
     width:100%;
 }
 
-.search_technique{
+.search_technique, .search_user{
     position: relative;
-    padding: 3px 10px;
     overflow: hidden;
 }
 
-.search_technique input[type="text"]:focus {
-    outline: 0;
-}
-
-.search_technique input[type="submit"]{
+.search_technique input[type="submit"], .search_user input[type="submit"]{
     cursor: pointer;
     font-family: FontAwesome;
     border: none;
     background: #65318e;
     color: #fff;
     position: absolute;
-    width: 3.0em;
-    height: 3.0em;
+    width:34px;
+    height:36px;
     right:0px;
-    top: -5px;
+    top: -3px;
     outline : none;
+}
+
+.users {
+    border: 1px solid gray;
 }
