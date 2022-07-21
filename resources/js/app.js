@@ -25,6 +25,8 @@ Vue.component('bookmark-component', require('./components/BookmarkComponent.vue'
 Vue.component('map-component', require('./components/MapComponent.vue').default);
 Vue.component('posts-component', require('./components/PostsComponent.vue').default);
 Vue.component('infinityposts-component', require('./components/InfinitypostsComponent.vue').default);
+Vue.component('postmodal-component', require('./components/PostmodalComponent.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
