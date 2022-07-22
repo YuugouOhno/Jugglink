@@ -1,7 +1,36 @@
 /* 検索ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
 .search{
+    padding:0 auto;
+    position:fixed; /* ウィンドウを基準に画面に固定 */
+    top:50px; /* 上下の固定位置を上から0pxにする */
     border: 1px solid gray;
 }
+
+/*1170px以上(パソコン用)*/
+@media(min-width:1170px){
+    .search{
+        width:50%;
+    }
+}
+/*1170px以下(パソコン用)*/
+@media(max-width:1170px){
+    .search{
+        width:70%;
+    }
+}
+
+@media(max-width:960px){
+    .search{
+        width:85%;
+    }
+}
+
+@media(max-width:520px){
+    .search{
+        width:100%;
+    }
+}
+
 
 .search_tab_container{
     width:70%;
@@ -46,6 +75,9 @@
         padding-top:20px;
         height:80px;
     }
+    .searched{
+        margin-top:100px;
+    }
     .search_tool_number, .search_user_experience{
         width:20%;
         border: 2px solid #65318e;
@@ -66,6 +98,9 @@
     .search{
         padding-top:20px;
         height:114px;
+    }
+    .searched{
+        margin-top:134px;
     }
     .search_tool_number, .search_user_experience{
         width:40%;
@@ -115,5 +150,13 @@
 }
 
 .users {
-    border: 1px solid gray;
+    padding-top: 7px;
+}
+
+.user{
+    border-bottom: 1px solid gray;
+}
+
+.user:hover{
+    border: 1px solid #65318e;
 }

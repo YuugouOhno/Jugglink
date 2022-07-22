@@ -16,12 +16,12 @@
         </div>
         <div class='post_content'>
             <form action='{{ route("posts.create") }}' method="POST"  enctype="multipart/form-data">
-                
+                @csrf
                 <div class="video">
-                    <h2>動画</h2>
+                    <p>動画</p>
                     <input type='file' name="video">
                 </div>
-                @csrf
+                <p class="video__error" style="color:red">{{ $errors->first('post.video') }}</p>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="maker" value="technique" onclick="formSwitch()" checked>
                     <label class="form-check-label"> 技</label>
@@ -30,42 +30,40 @@
                     <input class="form-check-input" type="radio" name="maker" value="sequence" onclick="formSwitch()">
                     <label class="form-check-label"> シークエンス</label>
                 </div>
-            
-                <div class="tool_name">
-                    <h2>道具</h2>
-                    <select name="post[tool_id]">
-                        @foreach($tools as $tool)
+                <div class="post_titles">
+                    <div class="tool_name post_title">
+                        <select name="post[tool_id]">
+                            <option value="">道具を選択してください</option>
+                            @foreach($tools as $tool)
                             <option value="{{ $tool->id }}">{{ $tool->tool_name }}</option>
-                        @endforeach
-                    </select>
-                    <p class="tool_name__error" style="color:red">{{ $errors->first('post.tool_name') }}</p>
+                            @endforeach
+                        </select>
+                        <p class="tool_id__error" style="color:red">{{ $errors->first('post.tool_id') }}</p>
+                    </div>
+                    <div class='tool_number post_title'>
+                        <select name="post[tool_number]">
+                            <option value="">道具の数を選択してください</option>
+                            @foreach (config('const.tool_number') as $toolNumber)
+                            <option value="{{ $toolNumber }}">{{ $toolNumber }}</option>
+                            @endforeach
+                        </select>
+                        <p class="tool_number__error" style="color:red">{{ $errors->first('post.tool_number') }}</p>
+                    </div>
+                    
+                    <div class="technique post_title">
+                        <h2 id='not_sequence'></h2>
+                        <input id="technique" type="text" name="post[technique]" placeholder="技名"/>
+                        <p class="technique__error" style="color:red">{{ $errors->first('post.technique') }}</p>
+                    </div>
+                    
+                    <div class="sequence post_title">
+                        <p id='not_technique'>シークエンス</p>
+                        <input id="sequence" type="text" name="post[technique]" value="シークエンス"/>
+                    </div>
                 </div>
-                <div class='tool_number'>
-                    <select name="post[tool_number]">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                    </select>
-                    <p class="tool_number__error" style="color:red">{{ $errors->first('post.tool_number') }}</p>
-                </div>
-                <div class="technique">
-                    <h2 id='not_sequence'>技名</h2>
-                    <input id="technique" type="text" name="post[technique]" placeholder="技名"/>
-                    <p class="technique__error" style="color:red">{{ $errors->first('post.technique') }}</p>
-                </div>
-                <div class="sequence">
-                    <h2 id='not_technique'>シークエンス</h2>
-                    <input id="sequence" type="text" name="post[technique]" value="シークエンス"/>
-                </div>
+                
                 <div class="text">
-                    <h2>コメント</h2>
+                    <p>コメント</p>
                     <textarea name="post[text]" placeholder="この技のコツは..."></textarea>
                     <p class="text__error" style="color:red">{{ $errors->first('post.text') }}</p>
                 </div>

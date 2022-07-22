@@ -48,7 +48,7 @@
         </form>
     </div>
 </div>
-<div>
+<div class="searched">
     <infinityposts-component :technique="{{ json_encode($technique)}}" :tool_id="{{ json_encode($tool_id)}}" :tool_number="{{ json_encode($tool_number)}}"></infinityposts-component>
 </div>
     {{--

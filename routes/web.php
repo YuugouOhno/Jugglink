@@ -32,6 +32,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/posts/create', 'PostController@store')->name('posts.create');
     //投稿内容の作成画面
     Route::get('/posts/create/index', 'PostController@create')->name('posts.create.index');
+    // 投稿モーダルにtoolwを取得
+    Route::get('/gettool', 'PostController@getTools');
     //道具ごとの投稿一覧
     Route::get('/tools/{tool}', 'ToolController@index')->name('tools.show');
     //道具ごとの投稿一覧の無限スクロール
@@ -86,9 +88,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/map', 'PlaceController@index')->name('map');
     Route::post('/map/addPin', 'PlaceController@store')->name('map.addPin');
     Route::delete('/map/delete', 'PlaceController@delete')->name('map.delete');
-    
-    
-
 });
 
 Auth::routes();

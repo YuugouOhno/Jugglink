@@ -48,9 +48,9 @@
             </form>
         </div>
     </div>
-    <div class="users">
+    <div class="users searched">
         @foreach ($users as $user)
-        <div class="user">
+        <div>
             <a class='color_black' href='{{ route("profile.posts", ["user" => ($user->id)]) }}'>
                 <div class="user">
                     @if($user->icon_path !=0)

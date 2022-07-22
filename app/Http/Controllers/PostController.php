@@ -14,6 +14,11 @@ use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
+    public function getTools(Tool $tool)
+    {
+        return response()->json(['tools' => $tool->get()], 200); 
+    }
+    
     public function create(Tool $tool)
     {
         return view('posts/create')->with(['tools' => $tool->get()]);
@@ -21,7 +26,14 @@ class PostController extends Controller
         
     public function store(Post $post, PostRequest $request)
     {
+        // $fileData = $request->fileData;
+        // $technique = $request->technique;
+        // $tool_id = $request->tool_id;
+        // $text = $request->text;
+        // $tool_number = $request->tool_number;
+        // \Log::debug($fileData);
         $image = $request->file('video');
+        
         // バケットの`example`フォルダへアップロードする
         $path = Storage::disk('s3')->putFile('video', $image, 'public');
         // アップロードした画像のフルパスを取得
@@ -31,6 +43,22 @@ class PostController extends Controller
         $input = $request['post'];
         $input += ['user_id' => $request->user()->id];
         // $input += ['video_path' => Storage::disk('s3')->url($path)];
+        
+        // $tool_id = $request->tool_id;
+        // $tool_number = $request->tool_number;
+        // $technique = $request->technique;
+        // $text = $request->text;
+        // $input = [];
+        
+        // $input += ['user_id' => $request->user()->id];
+        // $input += ['tool_id' => $tool_id];
+        // $input += ['tool_number' => $tool_number];
+        // $input += ['technique' => $technique];
+        // $input += ['text' => $text];
+
+        $post->fill($input)->save();
+return redirect()->route('home');
+        
         $post->fill($input)->save();
         return redirect()->route('home');
     }
