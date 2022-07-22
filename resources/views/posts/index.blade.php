@@ -10,10 +10,13 @@
 @endsection
 
 @section('main2')
-    <div class='modaldada'>
-        <postmodal-component></postmodal-component>
-    </div>
     <div class='posts_container'>
         <posts-component :url="{{ json_encode('/infinity_posts/')}}" :id="{{ json_encode(0)}}"></posts-component>
     </div>
+@endsection
+
+@section('script2')
+<script>
+    
+</script>
 @endsection

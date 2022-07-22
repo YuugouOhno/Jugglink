@@ -5,14 +5,14 @@
 @endsection
 
 @section('header1')
-    <div>
-        <a class="display_menue color_black">メニュー</a>
-    </div>
+    {{--<div>
+        <a class="display_menue color_white">メニュー</a>
+    </div>--}}
     @yield('header2')
 @endsection
 
 @section('main1')
-    <div class='menues_container BG_color_white'>
+    <div id="menues_container" class='menues_container BG_color_white'>
         <div class='menues'>
             <div class='menue btnBox'>
                 <a class='color_black' href="{{ route("home") }}">
@@ -47,12 +47,15 @@
             </div>
         </div>
         <div class='menue create_post btnBox'>
+            {{--<div class='modaldada'>
+                <postmodal-component></postmodal-component>
+            </div>--}}
             <a class='color_black' href='{{ route("posts.create.index")}}'>
                 投稿する
             </a>
         </div>
     </div>
-    <div class='main_container BG_color_white'>
+    <div id="main_container" class='main_container BG_color_white'>
     @yield('main2')
     </div>
     <div class='right_container BG_color_white'></div>

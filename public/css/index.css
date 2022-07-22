@@ -1,10 +1,12 @@
 * {
   box-sizing:border-box;
+  color:#302833; /*黒*/
 }
 
 body{
     width:100%;
     height:100%;
+    background-color:#e7e7eb; /*白*/
 }
 
 /* ヘッダー */
@@ -15,35 +17,42 @@ body{
     position:fixed; /* ウィンドウを基準に画面に固定 */
     top:0px; /* 上下の固定位置を上から0pxにする */
     left:0px; /* 左右の固定位置を左から0pxにする */
-    display:flex; /* 中の要素を横並びにする */
+    display:box; /* 中の要素を横並びにする */
     align-items:center; /* 中の要素を上下中央に並べる */
     border: 1px solid gray;
+    z-index: 5;
+}
+
+.dropdown-menu-right{
+     z-index: 10;
 }
 
 .container{
     width:100%;
-    height:50px;
+    height:100%;
     margin:0;
 }
+
+#navbarDropdown{
+    color:#e7e7eb; /*白*/
+}
+
 /*ヘッダーの下側*/
 .body_container{
-    display:flex;
-    width:100%;
-    height:100%;
-    justify-content:left;
+    
 }
+
 /* 大枠3つ*/
 .menues_container{
     height:100%;
     box-sizing:border-box; /* padding分を含んで幅を100%にするため */
+    border: 1px solid gray;
     position:fixed; /* ウィンドウを基準に画面に固定 */
     top:50px; /* 上下の固定位置を上から0pxにする */
-    left:0px; /* 左右の固定位置を左から0pxにする */
-    border: 1px solid gray;
+    left:0px;
 }
 
 .main_container{
-    height:100%;
     margin-top:27px;/* headerに被らないようにする */
 }
 
@@ -54,11 +63,12 @@ body{
     top:50px; /* 上下の固定位置を上から0pxにする */
     right:0px; /* 左右の固定位置を左から0pxにする */
     border: 1px solid gray;
+    z-index: 1;
 }
 
 /* 共通ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
 .color_black{
-    color:black;
+    color:#302833; /*黒*/
 }
 
 .color_gray{
@@ -66,15 +76,19 @@ body{
 }
 
 .color_purple{
-    color:#65318e;
+    color:#65318e; /*紫*/
 }
 
 .color_white{
-    color:white;
+    color:#e7e7eb; /*白*/
 }
 
 .BG_color_white{
-    background-color:white;
+    background-color:#e7e7eb; /*白*/
+}
+
+.BG_color_purple{
+    background-color:#65318e; /*紫*/
 }
 
 a {
@@ -83,7 +97,13 @@ a {
 
 a:hover {
   color: #65318e;
-  text-decoration: underline;
+  text-decoration: none;
+}
+
+h4{
+    color:#e7e7eb; /*白*/
+    background-color:#65318e; /*紫*/
+    margin:0;
 }
 
 /* メニューーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
@@ -163,6 +183,7 @@ video{
 
 .like_btn:hover{  /*いいねをホバーしたときに変色*/
     background-color:pink;
+    z-index: 5;
 }
 
 .like_btn:hover i{
@@ -175,6 +196,7 @@ video{
 
 .comment_btn:hover{ /*コメントをホバーしたときに変色*/
     background-color:lavender;
+    z-index: 5;
 }
 
 .comment_btn:hover i{
@@ -183,6 +205,7 @@ video{
 
 .bookmark_btn:hover{ /*ブックマークをホバーしたときに変色*/
     background-color:lightblue;
+    z-index: 5;
 }
 
 .bookmark_btn:hover i{
@@ -190,9 +213,54 @@ video{
 }
 
 .delete_btn:hover{ /*削除をホバーしたときに変色*/
-    background-color:gray;
+    color:black;
 }
 
 .delete_btn:hover i{
     color:black;
+}
+
+/* ログインーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+.form-control:focus {
+    background-color: #dbd0e6;
+    border-color:#dbd0e6;
+}
+
+.custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
+  border-color: #dbd0e6;
+}
+
+.custom-select:focus {
+  border-color: #dbd0e6;
+}
+
+.custom-file-input:focus ~ .custom-file-label {
+  border-color: #dbd0e6;
+}
+
+.btn-link:hover{
+    color:#65318e; /*紫*/
+}
+
+.btn-primary{
+    border-color: #dbd0e6;
+}
+
+.btn-primary:hover{
+    background-color: #dbd0e6;
+    border-color: #65318e;
+}
+
+
+.header_title{
+    position:absolute;
+    top:15px;
+    left:10px;
+}
+/* 投稿作成画面ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+.form-check{
+    display:inline-block;
+}
+.post_titles{
+    float:left;
 }

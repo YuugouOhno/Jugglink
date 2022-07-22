@@ -16,40 +16,32 @@
     @yield('title1')
 </head>
 <body>
-    <header >
-        <div class="head_container">
-            <nav class="navbar navbar-expand-md navbar-light shadow-sm BG_color_white">
-                <div class="container">
-                    <!--<a class="navbar-brand" href="{{ route("home") }}">
-                        <img  class='user_icon' src="https://jugglinkbucket.s3.amazonaws.com/jugglink_icon/icondayo.jpg">
-                        Jugglink
-                    </a> -->
-                    @yield('header1')
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-    
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav mr-auto">
-    
-                        </ul>
-    
-                        <!-- Right Side Of Navbar -->
+    <div id="app">
+        <header class="BG_color_purple">
+            <div class="head_container">
+                <nav class="navbar navbar-expand-md navbar-light shadow-sm BG_color_purple">
+                    <div class="container BG_color_purple">
+                        <div class="header_title">
+                            @yield('header1')
+                        </div>
+                        
+                        {{--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                            <span class='color_white'>ssss</span></span>
+                        </button>--}}
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
                             @guest
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}"><span class="color_white">{{ __('ログイン') }}</span></a>
                                 </li>
                                 @if (Route::has('register'))
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                        <a class="nav-link" href="{{ route('register') }}"><span class="color_white">{{ __('新規登録') }}</span></a>
                                     </li>
                                 @endif
                             @else
                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle BG_color_purple" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->name }} <span class="caret"></span>
                                     </a>
     
@@ -57,7 +49,7 @@
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
+                                            {{ __('ログアウト') }}
                                         </a>
     
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -67,15 +59,20 @@
                                 </li>
                             @endguest
                         </ul>
+                        {{--<div class="collapse navbar-collapse BG_color_purple" id="navbarSupportedContent">
+                            <!-- Left Side Of Navbar -->
+                            <ul class="navbar-nav mr-auto">
+                            </ul>
+                            <!-- Right Side Of Navbar -->
+                        </div>--}}
                     </div>
-                </div>
-            </nav>
+                </nav>
+            </div>
+        </header>
+        <div class='body_container' id="body_container">
+            @yield('main1')
         </div>
-    </header>
-    <div class='body_container flex' id="app">
-        @yield('main1')
     </div>
-
     <script src="{{ secure_asset('js/app.js') }}" type="module"></script>
     @yield('script1')
 </body>

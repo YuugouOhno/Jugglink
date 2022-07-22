@@ -33,7 +33,7 @@
                         <Like :post_id='post.id'></Like>
                     </div>
                     <div class='reaction_icon comment_btn'>
-                        <button v-on:click="post_comment(post.id)" class='btn'>
+                        <button v-bind:action="'/posts/' + post.id + '/comments'" class='btn'>
                             <i class="fa-regular fa-comment color_black"></i>
                         </button>
                     </div>
