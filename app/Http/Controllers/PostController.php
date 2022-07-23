@@ -24,42 +24,34 @@ class PostController extends Controller
         return view('posts/create')->with(['tools' => $tool->get()]);
     }
         
-    public function store(Post $post, PostRequest $request)
+    public function store(Post $post, Request $request)
     {
-        // $fileData = $request->fileData;
-        // $technique = $request->technique;
-        // $tool_id = $request->tool_id;
-        // $text = $request->text;
-        // $tool_number = $request->tool_number;
-        // \Log::debug($fileData);
-        $image = $request->file('video');
+        //\Log::debug(print_r($request, true));
+        \Log::debug($request);
+        
+        $video = $request->file("file");
+        \Log::debug($video);
+        $technique = $request["technique"];
+        $tool_id = $request["tool_id"];
+        $text = $request["text"];
+        $tool_number = $request["tool_number"];
         
         // バケットの`example`フォルダへアップロードする
-        $path = Storage::disk('s3')->putFile('video', $image, 'public');
+        $path = Storage::disk('s3')->putFile('video', $video, 'public');
         // アップロードした画像のフルパスを取得
         $post->video_path = Storage::disk('s3')->url($path);
         // 発明！！
         $post->video_delete = $path;
-        $input = $request['post'];
+        
+        $input = [];
         $input += ['user_id' => $request->user()->id];
-        // $input += ['video_path' => Storage::disk('s3')->url($path)];
-        
-        // $tool_id = $request->tool_id;
-        // $tool_number = $request->tool_number;
-        // $technique = $request->technique;
-        // $text = $request->text;
-        // $input = [];
-        
-        // $input += ['user_id' => $request->user()->id];
-        // $input += ['tool_id' => $tool_id];
-        // $input += ['tool_number' => $tool_number];
-        // $input += ['technique' => $technique];
-        // $input += ['text' => $text];
+        $input += ['tool_id' => $tool_id];
+        $input += ['tool_number' => $tool_number];
+        $input += ['technique' => $technique];
+        $input += ['text' => $text];
 
         $post->fill($input)->save();
-return redirect()->route('home');
         
-        $post->fill($input)->save();
         return redirect()->route('home');
     }
     

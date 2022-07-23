@@ -47,9 +47,9 @@
             </div>
         </div>
         <div class='menue create_post btnBox'>
-            {{--<div class='modaldada'>
+            <div class='modaldada'>
                 <postmodal-component></postmodal-component>
-            </div>--}}
+            </div>
             <a class='color_black' href='{{ route("posts.create.index")}}'>
                 投稿する
             </a>

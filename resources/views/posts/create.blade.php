@@ -9,6 +9,7 @@
 @endsection
 
 @section('main2')
+    
     <div class='main_container'>
         <div class='post_header'>
             <h1>新規投稿を作成</h1>
@@ -19,7 +20,7 @@
                 @csrf
                 <div class="video">
                     <p>動画</p>
-                    <input type='file' name="video">
+                    <input type='file' name="fileData">
                 </div>
                 <p class="video__error" style="color:red">{{ $errors->first('post.video') }}</p>
                 <div class="form-check">
@@ -41,7 +42,7 @@
                         <p class="tool_id__error" style="color:red">{{ $errors->first('post.tool_id') }}</p>
                     </div>
                     <div class='tool_number post_title'>
-                        <select name="post[tool_number]">
+                        <select name="tool_number">
                             <option value="">道具の数を選択してください</option>
                             @foreach (config('const.tool_number') as $toolNumber)
                             <option value="{{ $toolNumber }}">{{ $toolNumber }}</option>

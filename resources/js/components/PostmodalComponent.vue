@@ -1,14 +1,14 @@
 <template>
     <div>
         <a v-on:click="openModal"　class='color_black'>
-            投稿する
+            投稿のモーダル
         </a>
         <div id="overlay" v-show="showContent" v-on:click="closeModal">
             <div id="content" v-on:click="stopEvent">
                     <h1>新規投稿を作成</h1>
                     <div class="video">
                         <h2>動画</h2>
-                        <input type='file' accept="video/mp4,video/x-m4v" @change="handleFile">
+                        <input type='file' @change="handleFile" name="file">
                     </div>
                     <p>{{fileData.name}}</p>
                     <input type="radio" v-model="radioValue" value="technique"> 技
@@ -96,22 +96,48 @@
           		// this.fileData = JSON.stringify(this.fileData.name);
                 console.log(this.fileData,"Videoの中身")
           	},
-          	post($state) {
-                axios.post('/posts/create', { // コントローラーへ
-                    params: {
-                        fileData: JSON.stringify(this.fileData), // 動画
-                        tool_id: this.selectTool,
-                        tool_number: this.selectNumber,
-                        technique: this.technique,
-                        text: this.text,
+          	post() {
+          	    //formDataをnewする
+                let formData = new FormData();
+                //appendでデータを追加(第一引数は任意のキー)
+                //他に送信したいデータがある場合にはその分appendする
+                
+                formData.append('file', this.fileData);
+                formData.append('tool_id', this.selectTool);
+                formData.append('tool_number', this.selectNumber);
+                formData.append('technique', this.technique);
+                formData.append('text', this.text);
+                console.log(this.fileData)
+          	    // ヘッダー定義
+                const config = {
+                    headers: {
+                        'content-type': 'multipart/form-data'
                     }
-                })
+                };
+          	    
+                axios.post('/posts/create', formData, config)
                 .then(response => {
                     console.log("成功");
                 })
                 .catch(error => {
                     console.log(error);
                 })
+                
+                // axios.post('/posts/create', { // コントローラーへ
+                //     params: {
+                //         // fileData: this.fileData, // 動画
+                //         tool_id: this.selectTool,
+                //         tool_number: this.selectNumber,
+                //         technique: this.technique,
+                //         text: this.text,
+                //     }
+                // })
+                // .then(response => {
+                //     console.log("成功");
+                // })
+                // .catch(error => {
+                //     console.log(error);
+                // })
             }
         }
     }

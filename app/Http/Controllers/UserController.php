@@ -55,7 +55,7 @@ class UserController extends Controller
         return view('users/edit')->with(['user'=>$user, 'tools'=>$tool->get()]);   
     }
     
-    public function update(UserRequest $request, User $user)
+    public function update(Request $request, User $user)
     {
         // 解禁！！！
         if($user->icon_delete != 0)
@@ -68,9 +68,9 @@ class UserController extends Controller
         
         $user_id= $user->id;
         
-        if(!empty($request->input('icon'))){
-            // // バケットの`example`フォルダへアップロードする
-            $path = Storage::disk('s3')->putFile('icon/'.$user_id, $image, 'public');
+        if($image){
+            // // バケットの`icon`フォルダへアップロードする
+            $path = Storage::disk('s3')->putFile('icon', $image, 'public');
              // // アップロードした画像のフルパスを取得
             $user->icon_path = Storage::disk('s3')->url($path);
             $user->icon_delete = $path;
