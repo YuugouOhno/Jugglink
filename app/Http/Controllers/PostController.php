@@ -30,7 +30,6 @@ class PostController extends Controller
         \Log::debug($request);
         
         $video = $request->file("file");
-        \Log::debug($video);
         $technique = $request["technique"];
         $tool_id = $request["tool_id"];
         $text = $request["text"];
@@ -51,8 +50,6 @@ class PostController extends Controller
         $input += ['text' => $text];
 
         $post->fill($input)->save();
-        
-        return redirect()->route('home');
     }
     
     public function delete(Post $post, Request $request)

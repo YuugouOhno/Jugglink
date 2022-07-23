@@ -63,7 +63,7 @@ body{
     top:50px; /* 上下の固定位置を上から0pxにする */
     right:0px; /* 左右の固定位置を左から0pxにする */
     border: 1px solid gray;
-    z-index: 1;
+    
 }
 
 /* 共通ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
@@ -132,8 +132,10 @@ h4{
 
 .user_icon{
     font-size:46px;
-    padding:2px;
     display:inline-block;
+    width:46px;
+    height:46px;
+    border-radius:50%;
 }
 
 .user_name{

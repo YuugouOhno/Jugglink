@@ -6,23 +6,18 @@
         <div id="overlay" v-show="showContent" v-on:click="closeModal">
             <div id="content" v-on:click="stopEvent">
                     <h1>新規投稿を作成</h1>
-                    <div class="video">
+                    <div class="post_video">
                         <h2>動画</h2>
                         <input type='file' @change="handleFile" name="file">
                     </div>
-                    <p>{{fileData.name}}</p>
                     <input type="radio" v-model="radioValue" value="technique"> 技
                 	<input type="radio" v-model="radioValue" value="sequence"> シークエンス
-                	<p>{{ radioValue }}</p>
-                	
                 	<select v-model="selectTool">
                 	    <option disabled value="">道具を選択</option>
                 		<option v-for="tool in tools" :key="tool.id" :value="tool.id">
                             {{ tool.tool_name }}
                         </option>
                 	</select>
-                	<p>{{selectTool}}</p>
-                	
                 	<select v-model="selectNumber">
                 	    <option disabled value="">道具数を選択</option>
                 		<option value="1">1</option>
@@ -36,19 +31,14 @@
                         <option value="9">9</option>
                         <option value="10">10</option>
                 	</select>
-                	<p>{{selectNumber}}</p>
-                	
                     <div class="technique">
                         <h2 id='not_sequence'>技名</h2>
                         <input type="text" v-model="technique" placeholder="技名"/>
                     </div>
-                    <p>{{technique}}</p>
-                    
                     <div class="text">
                         <h2>コメント</h2>
                         <textarea v-model="text" placeholder="この技のコツは..."></textarea>
                     </div>
-                    <p>{{text}}</p>
                     <button v-on:click="post()">投稿する</button>
                 <button v-on:click="closeModal">close</button>
             </div>
@@ -118,6 +108,7 @@
                 axios.post('/posts/create', formData, config)
                 .then(response => {
                     console.log("成功");
+                    window.location.href = '/'; // 削除後にリダイレクト 
                 })
                 .catch(error => {
                     console.log(error);

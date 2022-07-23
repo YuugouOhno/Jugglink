@@ -9,16 +9,17 @@
                                 <i class="fa-solid fa-circle-user user_icon"></i>
                             </div>
                             <div v-else>
-                                <img class="user_icon" :src=post.icon_path>
+                                <img class="user_icon" :src=post.user.icon_path>
                             </div>
                             <p class='user_name'>{{ post.user.name }}</p>
                         </div>
                     </a>
                 </div>
                 <div class='video'>
-                    <video controls loop autoplay muted>
-                        <source :src=post.video_path type="video/mp4">
-                    </video>
+                    <!--<video controls loop autoplay muted>-->
+                    <!--    <source :src=post.video_path type="video/mp4">-->
+                    <!--</video>-->
+                    <iframe :src=post.video_path border=0></iframe>
                 </div>
                 <div class='post_titles'>
                     <p class='tool_number post_title color_black'>{{ post.tool_number }}</p>

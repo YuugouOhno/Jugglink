@@ -9,7 +9,7 @@
                                 <i class="fa-solid fa-circle-user user_icon"></i>
                             </div>
                             <div v-else>
-                                <img class="user_icon" :src=post.icon_path>
+                                <img class="user_icon" :src=post.user.icon_path>
                             </div>
                             <p class='user_name'>{{ post.user.name }}</p>
                         </div>
@@ -82,8 +82,7 @@
                 axios.get('/infinityauth')
                 .then(res => {
                     this.auth_user = res.data.auth_user; // resのdataのauth_user
-                    console.log(res.data.auth_user.id,"Authの中身")
-                    console.log(this.url,"URLの中身")
+                    console.log(res.data.auth_user,"Authの中身")
                 }).catch(function(error) {
                     console.log(this.auth_user,"Authの取得失敗")
                 });
