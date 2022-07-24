@@ -91,6 +91,18 @@ body{
     background-color:#65318e; /*紫*/
 }
 
+.BG_color_lavender{
+    background-color:#dbd0e6; /*薄紫*/
+}
+
+.border_color_purple{
+    border: 1px solid #65318e; /*紫*/
+}
+
+.border_color_red{
+    border: 1px solid red; /*赤*/
+}
+
 a {
   color: #65318e;
 }
@@ -114,7 +126,7 @@ h4{
 }
 /* スマホ用 */
 .display_menue{
-        display:none;
+    display:none;
 }
 
 /* 投稿ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */

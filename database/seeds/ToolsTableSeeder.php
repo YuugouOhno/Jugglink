@@ -84,6 +84,10 @@ class ToolsTableSeeder extends Seeder
     		[
     		'id'=>18,
     		'tool_name'=> 'ダポクト',
+    		],
+    		[
+    		'id'=>19,
+    		'tool_name'=> 'その他',
     		]
     		
 		]);

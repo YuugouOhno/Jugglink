@@ -4,35 +4,73 @@
             プロフィール編集のモーダル
         </a>
         <div id="overlay2" v-show="showContent" v-on:click="closeModal">
-            <div id="content2" v-on:click="stopEvent">
-                    <p>プロフィールを編集</p>
-                    <div>
-                        <div v-if="user.icon_path === null">
-                            <i class="fa-solid fa-circle-user user_icon"></i>
+            <div id="content2" class="modal_content BG_color_white" v-on:click="stopEvent">
+                <div class="edit_button">
+                    <button class="btn" v-on:click="closeModal">
+                        <i class="fa-solid fa-xmark close_btn color_black"></i>
+                    </button>
+                    <button class="edit_btn BG_color_purple color_white" v-on:click="update()">保存</button>
+                </div>
+                <div class="edit_header">
+                    <h5>プロフィールの編集</h5>
+                </div>
+                <div v-if="fileData">
+                    <div v-if="url">
+                        <img class="edit_user_icon border_color_purple" :src="url">
+                    </div>
+                </div>
+                <div v-else>
+                    <div v-if="user.icon_path === null">
+                        <i class="fa-solid fa-circle-user edit_user_icon border_color_purple"></i>
+                    </div>
+                    <div v-else>
+                        <img class="edit_user_icon border_color_purple" :src=user.icon_path>
+                    </div>
+                </div>
+                <div class="edit_boxes">
+                    <div class="edit_icon edit_box">
+                        <p>プレビュー</p>
+                        <label class="color_black BG_color_lavender border_color_purple" v-if="fileData">
+                            <input type='file' ref="preview" @change="handleFile" name="file">アイコンを選択
+                        </label>
+                        <label class="color_black border_color_purple" v-else>
+                            <input type='file' ref="preview" @change="handleFile" name="file">アイコンを選択
+                        </label>
+                    </div>
+                    <div class="edit_tool edit_box">
+                        <p>メイン道具</p>
+                        <select class="border_color_purple BG_color_lavender" v-model="selectTool">
+                    	    <option disabled value="">道具を選択</option>
+                    		<option v-for="tool in tools" :key="tool.id" :value="tool.id">
+                                {{ tool.tool_name }}
+                            </option>
+                    	</select>
+                    </div>
+                    <div class="edit_name edit_box">
+                        <p>アカウント名</p>
+                        <div v-if="name">
+                            <input type='text' class="border_color_purple BG_color_lavender" v-model="name" placeholder="アカウント名">
                         </div>
                         <div v-else>
-                            <img class="user_icon" :src=user.icon_path>
+                            <input type='text' class="border_color_red" v-model="name" placeholder="アカウント名">
+                            <p style="color:red">アカウント名は必須項目です。</p>
                         </div>
                     </div>
-                    <div class="profile_icon">
-                        <p>アイコン</p>
-                        <input type='file' @change="handleFile" name="file">
+            	</div>
+            	<div>
+                    <div class="introduce edit_box" v-if="introduce">
+                        <p>コメント</p>
+                        <textarea class="BG_color_lavender" v-model="introduce" placeholder="コメント（サブ道具などあれば）"></textarea>
                     </div>
-                    
-                    <input type='text' v-model="name" placeholder="アカウント名">
-                	
-                	<select v-model="selectTool">
-                	    <option disabled value="">道具を選択</option>
-                		<option v-for="tool in tools" :key="tool.id" :value="tool.id">
-                            {{ tool.tool_name }}
-                        </option>
-                	</select>
-                	<p>コメント</p>
-                    <div class="introduce">
+                    <div class="introduce edit_box" v-else>
+                        <p>コメント</p>
                         <textarea v-model="introduce" placeholder="コメント（サブ道具などあれば）"></textarea>
                     </div>
-                    <button v-on:click="update()">編集する</button>
-                <button v-on:click="closeModal">close</button>
+                </div>
+                <div class="edit_button_phone">
+                    <button  v-on:click="closeModal">キャンセル</button>
+                    <button class="BG_color_purple color_white" v-on:click="update()">保存</button>
+                </div>
             </div>
         </div>
     </div>
@@ -46,6 +84,7 @@
             return {
                 showContent: false,
                 fileData: '',
+                url: '',
                 tools: [],
                 selectTool: '',
                 introduce: '',
@@ -93,6 +132,9 @@
           		this.fileData = event.target.files[0]
           		// this.fileData = JSON.stringify(this.fileData.name);
                 console.log(this.fileData,"iconの中身")
+                const getPreview = this.$refs.preview.files[0];
+                this.url = URL.createObjectURL(getPreview)
+                console.log(this.url,"iconのプレビューURL")
           	},
           	update() {
           	    //formDataをnewする
@@ -114,7 +156,7 @@
                 axios.post('/users/profile/update', formData, config)
                 .then(response => {
                     console.log("成功");
-                    // window.location.href = '/users/' + this.auth_user.id + '/profile/posts'; // 削除後にリダイレクト 
+                    window.location.href = '/users/' + this.auth_user.id + '/profile/posts'; // 保存後にリダイレクト 
                 })
                 .catch(error => {
                     console.log(error);
@@ -144,8 +186,145 @@
 
 #content2{
   z-index:2;
-  width:50%;
   padding: 1em;
-  background:#fff;
+  position:relative;
+}
+.close_btn{
+    font-size:40px;
+    margin:0 10px;
+    position:absolute;
+    top:0;
+    left:0;
+}
+.edit_btn{
+    border-radius:10px;
+    position:absolute;
+    top:15px;
+    right:15px;
+}
+.edit_button_phone{
+    width:100%;
+    text-align:center;
+    margin:10px auto;
+    float:right;
+}
+.edit_header{
+    margin:0 auto;
+    text-align:center;
+}
+.edit_user_icon{
+    font-size:100px;
+    display:inline-block;
+    width:100px;
+    height:100px;
+    border-radius:50%;
+}
+.edit_boxes{
+    width:100%;
+    height:35px;
+    margin:10px 0;
+}
+.edit_box{
+    float:left;
+    padding:2px;
+}
+
+.introduce{
+    width:100%;    
+}
+
+.edit_box p{
+    margin:0px;
+}
+
+textarea{
+    width:100%;    
+}
+
+input, select{
+    width:100%;
+    height:100%;
+}
+
+label {
+    width:100%;
+    padding: 5px 20px;
+    cursor: pointer;
+    background-color: white;
+}
+
+input[type="file"] {
+    display: none;
+}
+/*1170px以上(パソコン用)*/
+@media(min-width:1170px){
+    .modal_content{
+        width:55%;
+    }
+    .edit_icon, .edit_tool{
+        width:30%;
+    }
+    .edit_name{
+        width:40%;
+    }
+    .edit_button{
+        display:inline;
+    }
+    .edit_button_phone{
+        display:none;
+    }
+}
+/*1170px以下(パソコン用)*/
+@media(max-width:1170px){
+    .modal_content{
+        width:60%;
+    }
+    .edit_icon, .edit_tool{
+        width:30%;
+    }
+    .edit_name{
+        width:40%;
+    }
+    .edit_button{
+        display:inline;
+    }
+    .edit_button_phone{
+        display:none;
+    }
+}
+/*960px以下(タブレット用)*/
+@media(max-width:960px){
+    .modal_content{
+        width:70%;
+    }
+    .edit_name{
+        width:100%;
+    }
+    .edit_tool, .edit_icon{
+        width:50%;
+    }
+    .edit_button{
+        display:inline;
+    }
+    .edit_button_phone{
+        display:none;
+    }
+}
+/*520px以下(スマホ用)*/
+@media(max-width:520px){
+    .modal_content{
+        width:100%;
+        height:100%;
+        margin-top:82px;
+    }
+    .edit_icon, .edit_tool, .edit_name{
+        width:100%;
+    }
+    .edit_button{
+        display:none;
+    }
+    .edit_button_phone{
+        display:inline;
+    }
 }
 </style>

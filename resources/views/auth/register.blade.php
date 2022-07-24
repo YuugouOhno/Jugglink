@@ -67,6 +67,7 @@
                                     <option value=16>けん玉</option>
                                     <option value=17>ダイス</option>
                                     <option value=18>ダポクト</option>
+                                    <option value=19>その他</option>
                                 </select>
                                 @error('tool_id')
                                     <span class="invalid-feedback" role="alert">
