@@ -17,6 +17,9 @@
     .menue_text{
         display:inline;
     }
+    .miniJugglink_l{
+        display:none;
+    }
 }
 /*1170px以下(パソコン用)*/
 @media(max-width:1170px){
@@ -32,20 +35,27 @@
     .menue_text{
         display:inline;
     }
+    .miniJugglink_l{
+        display:none;
+    }
 }
 /*960px以下(タブレット用)*/
 @media(max-width:960px){
     .menues_container {
-        width:15%;
+        width:20%;
     }
     
     .main_container{
-        width:85%;
-        margin-left:15%;
+        width:80%;
+        margin-left:20%;
     }
     
     .menue_text{
         display:none;
+    }
+    
+    .miniJugglink_l{
+        display:inline;
     }
 }
 /*520px以下(スマホ用)*/
@@ -65,5 +75,9 @@
     
     .menue_text{
         display:inline;
+    }
+    
+    .miniJugglink_l{
+        display:none;
     }
 }

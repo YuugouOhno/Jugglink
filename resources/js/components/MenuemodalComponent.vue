@@ -13,7 +13,8 @@
                 <div class='menues BG_color_white'>
                     <div class='menue btnBox l_icon'>
                         <a class='color_black' :href="'/'">
-                            <img class="Jugglink_l":src="'https://jugglinkbucket.s3.amazonaws.com/jugglink_icon/l.PNG'">
+                            <img class="Jugglink_l menue_text" :src="'https://jugglinkbucket.s3.amazonaws.com/jugglink_icon/l.PNG'">
+                            <img class="miniJugglink_l" :src="'https://jugglinkbucket.s3.amazonaws.com/jugglink_icon/minil.PNG'">
                         </a>
                     </div>
                     
@@ -139,6 +140,7 @@
   left:0px;
   height:100%;
 }
+
 .menue a{
     padding:10px;
     border-radius:10px;
@@ -153,9 +155,15 @@
     width:auto;
 }
 
+.miniJugglink_l{
+    padding:0;
+    height:50px;
+    width:auto;
+}
+
 .mene_close_button{
-        display:none;
-    }
+    display:none;
+}
 
 /*1170px以上(パソコン用)*/
 @media(min-width:1170px){
@@ -177,14 +185,14 @@
         width:30%;
     }
 }
-    
+
 /*960px以下(タブレット用)*/
 @media(max-width:960px){
     #overlay_menue{
         height:0%;
     }
     #content_menue {
-        width:15%;
+        width:20%;
     }
 }
     
