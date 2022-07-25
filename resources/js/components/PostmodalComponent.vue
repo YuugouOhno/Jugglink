@@ -25,6 +25,9 @@
                                     <source :src="url" type="video/mp4">
                                 </video>
                             </div>
+                            <div v-else>
+                                <p>プレビュー</p>
+                            </div>
                         </div>
                         <div class="preview_post_title">
                             <p>{{selectNumber}}</p>
