@@ -12,10 +12,10 @@
 @section('main2')
 <div class="search">
     <div class="search_tab_container">
-        <div class="search_tab1">
+        <div class="search_tab1 BG_color_white">
             <p>投稿を検索</p>
         </div>
-        <div class="search_tab2">
+        <div class="search_tab2 BG_color_white">
             <p><a href="{{ route('search.user') }}">ユーザーを検索</a></p>
         </div>
         <div class="search_tab3">

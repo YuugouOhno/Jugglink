@@ -1,7 +1,7 @@
 <template>
     <div>
         <a v-on:click="openModal"　class='color_black'>
-            プロフィール編集のモーダル
+            プロフィールの編集
         </a>
         <div id="overlay_profile" v-show="showContent" v-on:click="closeModal">
             <div id="content_profile" class="modal_content BG_color_white" v-on:click="stopEvent">

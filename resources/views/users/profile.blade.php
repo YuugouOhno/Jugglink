@@ -10,33 +10,42 @@
 
 @section('main2')
     <div class='posts_container'>
-        <div>
-            @if($user->icon_path !=0)
-                <img  class='user_icon' src="{{ $user->icon_path }}">
-            @else
-                <i class="fa-solid fa-circle-user user_icon"></i>
-            @endif
-            <p class='user_name'>{{$user->name}}</p>
-            @if($user->tool)
-                <p class='tool'>道具:{{$user->tool->tool_name}}</p>
-            @else
-                <p class='tool'>道具:道具が未選択です</p>
-            @endif
-            @if($user->introduce==0)
-                <p class='tool'>コメント:コメントがありません</p>
-            @else
-                <p class='tool'>コメント:{{$user->introduce}}</p>
-            @endif
-            @if($user->id == Auth::user()->id)
-                <div>
+        <div class='profile_container'>
+            <div class="edit_profile">
+                @if($user->id == Auth::user()->id)
                     <profilemodal-component :user='{{ json_encode($user)}}'></profilemodal-component>
+                @endif
+            </div>
+            
+            <div class='profile_icon_content'>
+                @if($user->icon_path !=0)
+                    <img class='profile_user_icon border_color_purple' src="{{ $user->icon_path }}">
+                @else
+                    <i class="fa-solid fa-circle-user profile_user_icon border_color_purple"></i>
+                @endif
+            </div>
+            <div class='profile_contents'>
+                <div class='profile_user_name'>
+                    <p>{{$user->name}}</p>
                 </div>
-            @endif
-        </div>
-        <div>
-            <a href='{{ route("profile.posts", ["user" => $user->id]) }}' class='own_posts'>投稿</a>
-            <a href="" class='calendar'>カレンダー</a>
-            <a href='{{ route("profile.likes", ["user" => $user->id]) }}' class='favorite'>いいね</a>
+                <div class='profile_tool'>
+                    <p>メイン道具:{{$user->tool->tool_name}}</p>
+                </div>
+                
+                
+            </div>
+            <div class='profile_text'>
+                @if($user->introduce==0)
+                    <p>コメント:コメントがありません</p>
+                @else
+                    <p>コメント:{{$user->introduce}}</p>
+                @endif
+            </div>
+            <div>
+                <a href='{{ route("profile.posts", ["user" => $user->id]) }}' class='own_posts'>投稿</a>
+                <a href="" class='calendar'>カレンダー</a>
+                <a href='{{ route("profile.likes", ["user" => $user->id]) }}' class='favorite'>いいね</a>
+            </div>
         </div>
         @yield('main3')
     </div>

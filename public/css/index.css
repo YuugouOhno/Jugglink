@@ -304,3 +304,60 @@ h4{
 .post_titles{
     float:left;
 }
+/* プロフィールーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+.profile_container{
+    position:relative;
+}
+
+.edit_profile{
+    position:absolute;
+    top:15px;
+    right:15px;
+}
+
+.profile_icon_content{
+    width:100px;
+    height:100px;
+    display:inline-block;
+    position:absolute;
+    top:0;
+    left:0;
+    margin:10px;
+}
+
+.profile_user_icon{
+    font-size:100px;
+    display:inline-block;
+    width:100px;
+    height:100px;
+    border-radius:50%;
+}
+
+.profile_contents{
+    height:100px;
+    margin:auto 0px;
+    display:inline-block;
+    
+}
+
+.profile_contents p{
+    margin:0;
+}
+
+.profile_user_name{
+    font-size:30px;
+    margin-top:36px;
+    margin-left:120px;
+}
+
+.profile_tool{
+    font-size:15px;
+    margin-left:120px;
+}
+
+.profile_text{
+    display:inline-block;
+    width:100%;
+    font-size:15px;
+    margin-left:120px;
+}
