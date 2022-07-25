@@ -8,7 +8,8 @@ use App\Post;
 use App\Tool;
 use App\Like;
 use Storage;
-
+use Auth;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
@@ -55,30 +56,42 @@ class UserController extends Controller
         return view('users/edit')->with(['user'=>$user, 'tools'=>$tool->get()]);   
     }
     
-    public function update(UserRequest $request, User $user)
+    public function update(Request $request)
     {
-        // 解禁！！！
-        if($user->icon_delete != 0)
-        {
-            $icon = $user->icon_delete;
-            Storage::disk('s3')->delete($icon);
-        }
-        
-        $image = $request->file('icon');
-        
-        $user_id= $user->id;
-        
-        if(!empty($request->input('icon'))){
-            // // バケットの`example`フォルダへアップロードする
-            $path = Storage::disk('s3')->putFile('icon/'.$user_id, $image, 'public');
-             // // アップロードした画像のフルパスを取得
+        \Log::debug($request);
+        $user = Auth::user();
+       
+        $icon = $request->file("file");
+       
+        $name = $request["name"];
+        $tool_id = $request["tool_id"];
+        $introduce = $request["introduce"];
+        if($icon){ // 新しいアイコンを選択した場合
+            // 解禁！！！
+            \Log::debug('aaaaaaaa');
+            if($user->icon_delete){ // 元々アイコンを選択していた場合
+                $icon_delete = $user->icon_delete;
+                Storage::disk('s3')->delete($icon_delete);
+                $user->icon_delete = NULL;
+                $user->icon_path = NULL;
+            }
+            // バケットの`icon`フォルダへアップロードする
+            $path = Storage::disk('s3')->putFile('icon', $icon, 'public');
+            // アップロードした画像のフルパスを取得
             $user->icon_path = Storage::disk('s3')->url($path);
             $user->icon_delete = $path;
+        } 
+        $input = [];
+        if($name){
+            $input += ['name' => $name];
+        }
+        if($tool_id){
+            $input += ['tool_id' => $tool_id];
+        }
+        if($introduce){
+            $input += ['introduce' => $introduce];
         }
         
-        $input_user = $request['user'];
-        $user->fill($input_user)->save();
-        
-        return redirect()->route('profile.posts', ['user'=>$user->id]);
+        $user->fill($input)->save();
     }
 }

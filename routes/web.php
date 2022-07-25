@@ -62,7 +62,7 @@ Route::group(['middleware' => ['auth']], function(){
     //プロフィールの編集画面
     Route::get('/users/{user}/profile/edit', 'UserController@edit')->name('profile.edit');
     //プロフィールの変更
-    Route::put('/users/{user}/profile/update', 'UserController@update')->name('profile.update');
+    Route::post('/users/profile/update', 'UserController@update')->name('profile.update');
     
     //いいね
     Route::get('/posts/{post}/likes', 'LikeController@store')->name('likes');
