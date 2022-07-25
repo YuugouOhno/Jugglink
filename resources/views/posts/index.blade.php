@@ -2,7 +2,6 @@
 
 @section('title2')
     <title>ホーム/Jugglink</title>
-    <link href="{{secure_asset('css/postmodal.css')}}" rel="stylesheet">
 @endsection
 
 @section('header2')

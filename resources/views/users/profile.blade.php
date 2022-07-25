@@ -28,7 +28,6 @@
                 <p class='tool'>コメント:{{$user->introduce}}</p>
             @endif
             @if($user->id == Auth::user()->id)
-                <a href='{{ route("profile.edit", ["user" => ($user->id)]) }}'>プロフィールを編集</a>
                 <div>
                     <profilemodal-component :user='{{ json_encode($user)}}'></profilemodal-component>
                 </div>

@@ -31,7 +31,8 @@ class PostController extends Controller
         
         $video = $request->file("file");
         $technique = $request["technique"];
-        $tool_id = $request["tool_id"];
+        $tool_name = $request["tool_name"];
+        $tool_id = Tool::where('tool_name',$tool_name)->value("id");
         $text = $request["text"];
         $tool_number = $request["tool_number"];
         

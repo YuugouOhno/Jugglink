@@ -3,8 +3,8 @@
         <a v-on:click="openModal"　class='color_black'>
             プロフィール編集のモーダル
         </a>
-        <div id="overlay2" v-show="showContent" v-on:click="closeModal">
-            <div id="content2" class="modal_content BG_color_white" v-on:click="stopEvent">
+        <div id="overlay_profile" v-show="showContent" v-on:click="closeModal">
+            <div id="content_profile" class="modal_content BG_color_white" v-on:click="stopEvent">
                 <div class="edit_button">
                     <button class="btn" v-on:click="closeModal">
                         <i class="fa-solid fa-xmark close_btn color_black"></i>
@@ -30,12 +30,16 @@
                 <div class="edit_boxes">
                     <div class="edit_icon edit_box">
                         <p>プレビュー</p>
-                        <label class="color_black BG_color_lavender border_color_purple" v-if="fileData">
-                            <input type='file' ref="preview" @change="handleFile" name="file">アイコンを選択
-                        </label>
-                        <label class="color_black border_color_purple" v-else>
-                            <input type='file' ref="preview" @change="handleFile" name="file">アイコンを選択
-                        </label>
+                        <div class="color_black BG_color_lavender border_color_purple" v-if="fileData">
+                            <label>
+                                <input type='file' ref="preview" @change="handleFile" name="file">選択済み
+                            </label>
+                        </div>
+                        <div class="color_black BG_color__white border_color_purple" v-else>
+                            <label>
+                                <input type='file' ref="preview" @change="handleFile" name="file">アイコンを選択
+                            </label>
+                        </div>
                     </div>
                     <div class="edit_tool edit_box">
                         <p>メイン道具</p>
@@ -53,7 +57,7 @@
                         </div>
                         <div v-else>
                             <input type='text' class="border_color_red" v-model="name" placeholder="アカウント名">
-                            <p style="color:red">アカウント名は必須項目です。</p>
+                            <p class="color_red">アカウント名は必須項目です。</p>
                         </div>
                     </div>
             	</div>
@@ -89,7 +93,6 @@
                 selectTool: '',
                 introduce: '',
                 name: ''
-                
             }
         },
         mounted () {
@@ -130,7 +133,6 @@
             },
             handleFile(event){
           		this.fileData = event.target.files[0]
-          		// this.fileData = JSON.stringify(this.fileData.name);
                 console.log(this.fileData,"iconの中身")
                 const getPreview = this.$refs.preview.files[0];
                 this.url = URL.createObjectURL(getPreview)
@@ -166,9 +168,9 @@
     }
 </script>
 <style>
-#overlay2{
+#overlay_profile{
   /*　要素を重ねた時の順番　*/
-  z-index:1;
+  z-index:10;
 
   /*　画面全体を覆う設定　*/
   position:fixed;
@@ -184,8 +186,8 @@
   justify-content: center;
 }
 
-#content2{
-  z-index:2;
+#content_profile{
+  z-index:11;
   padding: 1em;
   position:relative;
 }
@@ -237,20 +239,20 @@
     margin:0px;
 }
 
-textarea{
+.introduce textarea{
     width:100%;    
 }
 
-input, select{
+.edit_icon input, .edit_name input, .edit_tool select{
     width:100%;
     height:100%;
 }
 
-label {
+.edit_icon label {
     width:100%;
     padding: 5px 20px;
+    margin:0;
     cursor: pointer;
-    background-color: white;
 }
 
 input[type="file"] {

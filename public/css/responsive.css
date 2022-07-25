@@ -59,7 +59,11 @@
         margin-left:0%;
     }
     
-    .display_menue{
+    .display_title{
+        display:none;
+    }
+    
+    .menue_text{
         display:inline;
     }
 }

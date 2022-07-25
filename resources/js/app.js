@@ -27,6 +27,7 @@ Vue.component('posts-component', require('./components/PostsComponent.vue').defa
 Vue.component('infinityposts-component', require('./components/InfinitypostsComponent.vue').default);
 Vue.component('postmodal-component', require('./components/PostmodalComponent.vue').default);
 Vue.component('profilemodal-component', require('./components/ProfilemodalComponent.vue').default);
+Vue.component('menuemodal-component', require('./components/MenuemodalComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -24,7 +24,7 @@ body{
 }
 
 .dropdown-menu-right{
-     z-index: 10;
+    z-index: 10;
 }
 
 .container{
@@ -38,10 +38,6 @@ body{
 }
 
 /*ヘッダーの下側*/
-.body_container{
-    
-}
-
 /* 大枠3つ*/
 .menues_container{
     height:100%;
@@ -63,7 +59,7 @@ body{
     top:50px; /* 上下の固定位置を上から0pxにする */
     right:0px; /* 左右の固定位置を左から0pxにする */
     border: 1px solid gray;
-    
+    z-index:-1;
 }
 
 /* 共通ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
@@ -83,8 +79,17 @@ body{
     color:#e7e7eb; /*白*/
 }
 
+.color_red{
+    color:red;
+    font-size:12px;
+}
+
 .BG_color_white{
     background-color:#e7e7eb; /*白*/
+}
+
+.BG_color__white{
+    background-color:white; /*まじ白*/
 }
 
 .BG_color_purple{
@@ -116,6 +121,8 @@ h4{
     color:#e7e7eb; /*白*/
     background-color:#65318e; /*紫*/
     margin:0;
+    display:inline-block;
+    font-size:20px;
 }
 
 /* メニューーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
@@ -128,6 +135,10 @@ h4{
 .display_menue{
     display:none;
 }
+.display_title{
+    display:inline;
+}
+
 
 /* 投稿ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
 .post_container{
