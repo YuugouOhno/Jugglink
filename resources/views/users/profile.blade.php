@@ -41,10 +41,16 @@
                     <p>コメント:{{$user->introduce}}</p>
                 @endif
             </div>
-            <div>
-                <a href='{{ route("profile.posts", ["user" => $user->id]) }}' class='own_posts'>投稿</a>
-                <a href="" class='calendar'>カレンダー</a>
-                <a href='{{ route("profile.likes", ["user" => $user->id]) }}' class='favorite'>いいね</a>
+            <div class="profile_menues">
+                <div>
+                    <a href='{{ route("profile.posts", ["user" => $user->id]) }}' class='own_posts'>投稿</a>
+                </div>
+                <div>
+                    <a href="" class='calendar'>カレンダー</a>
+                </div>
+                <div>
+                    <a href='{{ route("profile.likes", ["user" => $user->id]) }}' class='favorite'>いいね</a>
+                </div>
             </div>
         </div>
         @yield('main3')
