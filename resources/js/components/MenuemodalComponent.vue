@@ -196,7 +196,8 @@
     #content_menue {
         top:0;
         width:70%;
-        background-color:#e7e7eb;
+        background-color:#e7e7eb;/*白*/
+        border: 1px solid #65318e; /*紫*/
     }
     .mene_close_button{
         display:inline;

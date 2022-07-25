@@ -285,6 +285,10 @@
     text-align:center;
 }
 
+.preview_container p{
+    margin:0;
+}
+
 .preview_video{
     display:inline-block;
     height:300px;

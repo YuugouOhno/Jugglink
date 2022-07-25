@@ -317,7 +317,6 @@ input[type="file"] {
     .modal_content{
         width:100%;
         height:100%;
-        margin-top:82px;
     }
     .edit_icon, .edit_tool, .edit_name{
         width:100%;
