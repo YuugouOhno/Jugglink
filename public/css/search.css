@@ -6,6 +6,10 @@
     border: 1px solid gray;
 }
 
+.search select, .search input{
+    background-color:#e7e7eb; /*白*/
+}
+
 /*1170px以上(パソコン用)*/
 @media(min-width:1170px){
     .search{
@@ -150,13 +154,9 @@
 }
 
 .users {
-    padding:5px;
+    padding-top: 7px;
 }
 
-.user{
+.users .user{
     border-bottom: 1px solid gray;
-}
-
-.user:hover{
-    border: 1px solid #65318e;
 }

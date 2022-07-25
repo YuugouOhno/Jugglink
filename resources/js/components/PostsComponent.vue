@@ -19,7 +19,6 @@
                     <video controls loop autoplay muted>
                         <source :src=post.video_path type="video/mp4">
                     </video>
-                    <!--<iframe :src=post.video_path border=0></iframe>-->
                 </div>
                 <div class='post_titles'>
                     <p class='tool_number post_title color_black'>{{ post.tool_number }}</p>

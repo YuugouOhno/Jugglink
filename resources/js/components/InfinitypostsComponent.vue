@@ -16,10 +16,9 @@
                     </a>
                 </div>
                 <div class='video'>
-                    <!--<video controls loop autoplay muted>-->
-                    <!--    <source :src=post.video_path type="video/mp4">-->
-                    <!--</video>-->
-                    <iframe :src=post.video_path border=0></iframe>
+                    <video controls loop autoplay muted>
+                        <source :src=post.video_path type="video/mp4">
+                    </video>
                 </div>
                 <div class='post_titles'>
                     <p class='tool_number post_title color_black'>{{ post.tool_number }}</p>
@@ -34,9 +33,9 @@
                         <Like :post_id='post.id'></Like>
                     </div>
                     <div class='reaction_icon comment_btn'>
-                        <button v-on:click="post_comment(post.id)" class='btn'>
+                        <a :href="'/posts/' + post.id + '/comments'" class='btn'>
                             <i class="fa-regular fa-comment color_black"></i>
-                        </button>
+                        </a>
                     </div>
                     <div class='reaction_icon bookmark_btn'>
                         <Bookmark :post_id='post.id'></Bookmark>

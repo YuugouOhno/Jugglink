@@ -161,6 +161,11 @@ h4{
     border-radius:50%;
 }
 
+.user:hover{
+    background-color:#dbd0e6; /*薄紫*/
+    border-radius:10px;
+}
+
 .user_name{
     font-size:20px;
     margin:auto 0px;
@@ -176,6 +181,7 @@ h4{
     width:100%;
     height:auto;
     max-height:500px;
+    border-radius:10px;
 }
 
 .post_titles{
@@ -216,38 +222,38 @@ h4{
 }
 
 .like_btn:hover{  /*いいねをホバーしたときに変色*/
-    background-color:pink;
+    background-color:#e6cde3;
     z-index: 5;
 }
 
 .like_btn:hover i{
-    color:red;
+    color:#e95295;
 }
 
 .like_btn:hover span{
-    color:red;
+    color:#e95295;
 }
 
 .comment_btn:hover{ /*コメントをホバーしたときに変色*/
-    background-color:lavender;
+    background-color:#d8e698;
     z-index: 5;
 }
 
 .comment_btn:hover i{
-    color:purple;
+    color:#82ae46;
 }
 
 .bookmark_btn:hover{ /*ブックマークをホバーしたときに変色*/
-    background-color:lightblue;
+    background-color:#bbc8e6;
     z-index: 5;
 }
 
 .bookmark_btn:hover i{
-    color:blue;
+    color:#007bbb;
 }
 
 .delete_btn:hover{ /*削除をホバーしたときに変色*/
-    color:black;
+    background-color:#95949a;
 }
 
 .delete_btn:hover i{
