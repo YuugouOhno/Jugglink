@@ -16,10 +16,9 @@
                     </a>
                 </div>
                 <div class='video'>
-                    <!--<video controls loop autoplay muted>-->
-                    <!--    <source :src=post.video_path type="video/mp4">-->
-                    <!--</video>-->
-                    <iframe :src=post.video_path border=0></iframe>
+                    <video controls loop autoplay muted>
+                        <source :src=post.video_path type="video/mp4">
+                    </video>
                 </div>
                 <div class='post_titles'>
                     <p class='tool_number post_title color_black'>{{ post.tool_number }}</p>
@@ -34,9 +33,9 @@
                         <Like :post_id='post.id'></Like>
                     </div>
                     <div class='reaction_icon comment_btn'>
-                        <button v-on:click="post_comment(post.id)" class='btn'>
+                        <a :href="'/posts/' + post.id + '/comments'" class='btn'>
                             <i class="fa-regular fa-comment color_black"></i>
-                        </button>
+                        </a>
                     </div>
                     <div class='reaction_icon bookmark_btn'>
                         <Bookmark :post_id='post.id'></Bookmark>
@@ -62,7 +61,10 @@
         props: {
             technique: String,
             tool_id: Number,
-            tool_number: Number
+            tool_number: Number,
+            user_id: Number,
+            like_id: Number,
+            bookmark_id: Number,
         },
         components: { // 読み込むコンポーネントの指定
             Like,
@@ -119,7 +121,10 @@
                         page: this.page, // 現在のページ(読み込んだ回数)
                         technique: this.technique,
                         tool_id: this.tool_id,
-                        tool_number: this.tool_number
+                        tool_number: this.tool_number,
+                        user_id: this.user_id,
+                        like_id: this.like_id,
+                        bookmark_id: this.bookmark_id,
                     }
                 })
                 .then(response => {

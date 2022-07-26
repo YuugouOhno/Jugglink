@@ -16,10 +16,10 @@
             <div class="search_tab1">
                 <p><a href="{{ route('search.technique') }}">投稿を検索</a></p>
             </div>
-            <div class="search_tab2">
+            <div class="search_tab BG_color_white">
                 <p>ユーザーを検索</p>
             </div>
-            <div class="search_tab3">
+            <div class="search_tab3 BG_color_white">
                 <p class="color_white">.  </p>
             </div>
         </div>

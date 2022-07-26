@@ -10,7 +10,7 @@
 
 @section('main2')
     <div class='posts_container'>
-        <posts-component :url="{{ json_encode('/infinity_posts/')}}" :id="{{ json_encode(0)}}"></posts-component>
+        <infinityposts-component></infinityposts-component>
     </div>
 @endsection
 

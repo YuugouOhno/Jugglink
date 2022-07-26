@@ -4,6 +4,11 @@
     position:fixed; /* ウィンドウを基準に画面に固定 */
     top:50px; /* 上下の固定位置を上から0pxにする */
     border: 1px solid gray;
+    z-index:1;
+}
+
+.search select, .search input{
+    background-color:#e7e7eb; /*白*/
 }
 
 /*1170px以上(パソコン用)*/
@@ -76,7 +81,7 @@
         height:80px;
     }
     .searched{
-        margin-top:100px;
+        margin-top:106px;
     }
     .search_tool_number, .search_user_experience{
         width:20%;
@@ -100,7 +105,7 @@
         height:114px;
     }
     .searched{
-        margin-top:134px;
+        margin-top:140px;
     }
     .search_tool_number, .search_user_experience{
         width:40%;
@@ -150,13 +155,9 @@
 }
 
 .users {
-    padding:5px;
+    padding-top: 7px;
 }
 
-.user{
+.users .user{
     border-bottom: 1px solid gray;
-}
-
-.user:hover{
-    border: 1px solid #65318e;
 }

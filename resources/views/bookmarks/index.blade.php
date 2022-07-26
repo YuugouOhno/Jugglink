@@ -11,6 +11,6 @@
 
 @section('main2')
     <div>
-        <posts-component :url="{{ json_encode('/infinity_bookmarks/')}}" :id='{{ json_encode($user->id)}}'></posts-component>
+        <infinityposts-component :bookmark_id='{{ json_encode($user->id)}}'></infinityposts-component>
     </div>
 @endsection

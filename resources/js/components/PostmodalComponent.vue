@@ -25,6 +25,9 @@
                                     <source :src="url" type="video/mp4">
                                 </video>
                             </div>
+                            <div v-else>
+                                <p>プレビュー</p>
+                            </div>
                         </div>
                         <div class="preview_post_title">
                             <p>{{selectNumber}}</p>
@@ -146,7 +149,7 @@
                     
                     <div class="edit_button_phone">
                         <button  v-on:click="closeModal">キャンセル</button>
-                        <button class="BG_color_purple color_white" v-on:click="update()">保存</button>
+                        <button class="BG_color_purple color_white" v-on:click="update()">投稿</button>
                     </div>
                     
             </div>

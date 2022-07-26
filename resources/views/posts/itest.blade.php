@@ -48,7 +48,7 @@
             <div class='reaction_icon'>
                  <bookmark-component class='bookmark' :post="{{ json_encode($post)}}"></bookmark-component>
             </div>
-            <div class='reaction_icon'>
+            <div class='reaction_icon delete_btn'>
                 @if($post->user->id == Auth::user()->id)
                 <form id="posts_delete_form" action='{{ route("posts.delete", ["post" => ($post->id)]) }}' method='POST' enctype="multipart/form-data">
                     @csrf

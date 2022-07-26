@@ -23,11 +23,11 @@ window.Vue = require('vue');
 Vue.component('like-component', require('./components/LikeComponent.vue').default);
 Vue.component('bookmark-component', require('./components/BookmarkComponent.vue').default);
 Vue.component('map-component', require('./components/MapComponent.vue').default);
-Vue.component('posts-component', require('./components/PostsComponent.vue').default);
 Vue.component('infinityposts-component', require('./components/InfinitypostsComponent.vue').default);
 Vue.component('postmodal-component', require('./components/PostmodalComponent.vue').default);
 Vue.component('profilemodal-component', require('./components/ProfilemodalComponent.vue').default);
 Vue.component('menuemodal-component', require('./components/MenuemodalComponent.vue').default);
+Vue.component('comment-component', require('./components/CommentComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -1,15 +1,15 @@
 @extends('others.menue')
 
 @section('title2')
-    <title>道具/Jugglink</title>
+    <title>{{$tool->tool_name}}/Jugglink</title>
 @endsection
 
 @section('header2')
-    <h4>道具</h4>
+    <h4>{{$tool->tool_name}}</h4>
 @endsection
 
 @section('main2')
     <div class='posts_container'>
-        <posts-component :url="{{ json_encode('/infinity_tools/')}}" :id='{{ json_encode($tool_id)}}'></posts-component>
+        <infinityposts-component :tool_id="{{ json_encode($tool->id)}}"></infinityposts-component>
     </div>
 @endsection

@@ -9,8 +9,8 @@
 @endsection
 
 @section('main2')
-    <div class='post'>
-        <div class='post_container'>
+<div>
+    <div class='post_container'>
         <div>
             <a class='color_black' href='{{ route("profile.posts", ["user" => ($post->user->id)]) }}'>
                 <div class="user">
@@ -36,40 +36,39 @@
         <div class='post_text'>
             <p class='color_black'>{{ $post->text }}</p>
         </div>
-    </div>
-    </div>
-    <div class='create_comment'>
-        <form action="/posts/{{$post->id}}/comments/create" method="POST">
-            @csrf
-            <div>
-                <textarea name="comment[text]" placeholder="コメント"></textarea>
-                <p class="video__error" style="color:red">{{ $errors->first('post.video') }}</p>
-                <input type="submit" value="コメントを投稿"/>
+        <div class='post_reaction'>
+            <div class='reaction_icon like_btn'>
+                <like-component :post_id="{{ json_encode($post->id)}}"></like-component>
             </div>
-        </form>
+            <div class='reaction_icon comment_btn'>
+                <a href="/" class='btn'>
+                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                </a>
+            </div>
+            <div class='reaction_icon bookmark_btn'>
+                <bookmark-component :post_id="{{ json_encode($post->id)}}"></bookmark-component>
+            </div>
+            <div class='reaction_icon delete_btn'>
+                @if($post->user->id == Auth::user()->id)
+                <form id="posts_delete_form" action='{{ route("posts.delete", ["post" => ($post->id)]) }}' method='POST' enctype="multipart/form-data">
+                    @csrf
+                    @method('DELETE')
+                    <button class='btn' onclick="buttonClick()">
+                        <i class="fa-regular fa-trash-can color_gray"></i>
+                    </button>
+                </form>
+                @endif
+            </div>
+        </div>
+        
     </div>
-    <div class='comment'>
-        @foreach ($post->comments as $comment)
-            <p>{{ $comment->user->icon }}</p>
-            <a href='/profiles/users/{{$comment->user->id}}' class='user_name'>{{ $comment->user->name }}</a>
-            <p>{{ $comment->text }}</p>
-            @if($comment->user->id == Auth::user()->id)
-            <form id="comments_delete_form" action="/posts/comments/{{$comment->id}}/delete" method='POST'>
-                @csrf
-                @method('DELETE')
-                <input type='button' value='delete' onclick="buttonClick()">
-            </form>
-            @endif
-        @endforeach
+    <div>
+        <comment-component :post_id="{{ json_encode($post->id)}}"></comment-component>
     </div>
+</div>
+
+    
 @endsection
 
 @section('script2')
-    <script>
-        function buttonClick(){
-            if(confirm("削除しますか？")){
-                document.getElementById("comments_delete_form").submit();
-            }
-        }
-	</script>
 @endsection

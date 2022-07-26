@@ -10,6 +10,6 @@
 
 @section('main3')
     <div>
-        <posts-component :url="{{ json_encode('/infinity_likes/')}}" :id='{{ json_encode($user->id)}}'></posts-component>
+        <infinityposts-component :like_id='{{ json_encode($user->id)}}'></infinityposts-component>
     </div>
 @endsection
