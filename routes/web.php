@@ -12,19 +12,15 @@
 */
 Route::group(['middleware' => ['auth']], function(){
     
-    //無限スクロールはこれ一つにまとめていきたい（後々おいおい）
+    //無限スクロールはこれ一つにまとめた
     Route::get('/infinity', 'InfinityController@fetch');
     //無限スクロールに認証
     Route::get('/infinityauth', 'InfinityController@fetchAuth');
     
     //ホーム画面
     Route::get('/', 'PostController@index')->name('home');
-    //ホーム画面の無限スクロール
-    Route::get('/infinity_posts/0', 'PostController@fetch');
     //投稿の検索
     Route::get('/search/index/technique/', 'SearchController@search_technique')->name('search.technique');
-    //投稿の検索の無限スクロール
-    Route::get('/infinity_search_technique/{user}', 'LikeController@fetch');
     //ユーザーの検索
     Route::get('/search/index/user/', 'SearchController@search_user')->name('search.user');
     
@@ -36,16 +32,11 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/gettool', 'PostController@getTools');
     //道具ごとの投稿一覧
     Route::get('/tools/{tool}', 'ToolController@index')->name('tools.show');
-    //道具ごとの投稿一覧の無限スクロール
-    Route::get('/infinity_tools/{tool}', 'ToolController@fetch');
     //投稿の削除
     Route::delete('/posts/{post}/delete', 'PostController@delete')->name('posts.delete');
     
-    
     //コメント一覧＆コメントの作成
     Route::get('/posts/{post}/comments', 'CommentController@index')->name('comments.show');
-    //コメントにある投稿の無限スクロール
-    
     //コメントの投稿
     Route::post('/posts/{post}/comments/create', 'CommentController@store')->name('comments.create');
     //コメントの削除
@@ -53,12 +44,8 @@ Route::group(['middleware' => ['auth']], function(){
 
     //プロフィール（ユーザーの投稿一覧）
     Route::get('/users/{user}/profile/posts', 'UserController@index')->name('profile.posts');
-    //ユーザーの投稿一覧の無限スクロール
-    Route::get('/infinity_users/{user}', 'UserController@fetch');
     //プロフィール（ユーザーのいいね一覧）
     Route::get('/users/{user}/profile/likes', 'LikeController@index')->name('profile.likes');
-    //いいね一覧の無限スクロール
-    Route::get('/infinity_likes/{user}', 'LikeController@fetch');
     //プロフィールの編集画面
     Route::get('/users/{user}/profile/edit', 'UserController@edit')->name('profile.edit');
     //プロフィールの変更
@@ -81,8 +68,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/posts/{post}/hasbookmarks', 'BookmarkController@hasbookmarks');
     //ブックマークの一覧
     Route::get('/bookmarks/{user}/posts', 'BookmarkController@index')->name('bookmarks.show');
-    //いいね一覧の無限スクロール
-    Route::get('/infinity_bookmarks/{user}', 'BookmarkController@fetch');
     
     //ジャグラー分布図
     Route::get('/map', 'PlaceController@index')->name('map');

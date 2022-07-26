@@ -61,7 +61,10 @@
         props: {
             technique: String,
             tool_id: Number,
-            tool_number: Number
+            tool_number: Number,
+            user_id: Number,
+            like_id: Number,
+            bookmark_id: Number,
         },
         components: { // 読み込むコンポーネントの指定
             Like,
@@ -118,7 +121,10 @@
                         page: this.page, // 現在のページ(読み込んだ回数)
                         technique: this.technique,
                         tool_id: this.tool_id,
-                        tool_number: this.tool_number
+                        tool_number: this.tool_number,
+                        user_id: this.user_id,
+                        like_id: this.like_id,
+                        bookmark_id: this.bookmark_id,
                     }
                 })
                 .then(response => {
