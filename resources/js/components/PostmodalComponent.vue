@@ -149,7 +149,7 @@
                     
                     <div class="edit_button_phone">
                         <button  v-on:click="closeModal">キャンセル</button>
-                        <button class="BG_color_purple color_white" v-on:click="update()">保存</button>
+                        <button class="BG_color_purple color_white" v-on:click="update()">投稿</button>
                     </div>
                     
             </div>

@@ -37,8 +37,10 @@ Route::group(['middleware' => ['auth']], function(){
     
     //コメント一覧＆コメントの作成
     Route::get('/posts/{post}/comments', 'CommentController@index')->name('comments.show');
+    //コメントの無限スクロール
+    Route::get('/infinity_comment', 'CommentController@fetch');
     //コメントの投稿
-    Route::post('/posts/{post}/comments/create', 'CommentController@store')->name('comments.create');
+    Route::post('/posts/comments/create', 'CommentController@store')->name('comments.create');
     //コメントの削除
     Route::delete('/posts/comments/{comment}/delete', 'CommentController@delete')->name('comments.delete');
 
