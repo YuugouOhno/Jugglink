@@ -63,8 +63,12 @@
         
     </div>
     <div>
+        <commentmodal-component :post_id="{{ json_encode($post->id)}}"></commentmodal-component>
+    </div>
+    <div>
         <comment-component :post_id="{{ json_encode($post->id)}}"></comment-component>
     </div>
+    
 </div>
 
     

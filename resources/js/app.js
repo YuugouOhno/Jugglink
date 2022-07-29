@@ -28,7 +28,7 @@ Vue.component('postmodal-component', require('./components/PostmodalComponent.vu
 Vue.component('profilemodal-component', require('./components/ProfilemodalComponent.vue').default);
 Vue.component('menuemodal-component', require('./components/MenuemodalComponent.vue').default);
 Vue.component('comment-component', require('./components/CommentComponent.vue').default);
-
+Vue.component('commentmodal-component', require('./components/CommentmodalComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -37,6 +37,10 @@
                             <i class="fa-regular fa-comment color_black"></i>
                         </a>
                     </div>
+                    <div>
+                        <Commentmodal :post_id="post.id"></Commentmodal>
+                    </div>
+                   
                     <div class='reaction_icon bookmark_btn'>
                         <Bookmark :post_id='post.id'></Bookmark>
                     </div>
@@ -56,6 +60,7 @@
     Vue.component('infinite-loading', InfiniteLoading); // コンポーネント化
     import Like from './LikeComponent.vue';// いいね機能の読み込み
     import Bookmark from './BookmarkComponent.vue'; // ブックマーク機能の読み込み
+    import Commentmodal from './CommentmodalComponent.vue'; // コメント機能の読み込み
     
     export default {
         props: {
@@ -68,7 +73,8 @@
         },
         components: { // 読み込むコンポーネントの指定
             Like,
-            Bookmark
+            Bookmark,
+            Commentmodal
         },
         data() {
             return {
