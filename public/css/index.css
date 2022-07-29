@@ -221,6 +221,14 @@ h4{
     display:inline-block;
 }
 
+.comment_modal_btn{
+    display:none;
+}
+
+.comment_nomal_btn{
+    display:inline;
+}
+
 .like_btn:hover{  /*いいねをホバーしたときに変色*/
     background-color:#e6cde3;
     z-index: 5;
@@ -335,7 +343,7 @@ h4{
 }
 
 .profile_contents{
-    height:100px;
+    height:auto;
     margin:auto 0px;
     display:inline-block;
     
@@ -352,6 +360,11 @@ h4{
 }
 
 .profile_tool{
+    font-size:15px;
+    margin-left:120px;
+}
+
+.profile_date{
     font-size:15px;
     margin-left:120px;
 }

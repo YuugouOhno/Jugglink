@@ -42,7 +42,7 @@ Route::group(['middleware' => ['auth']], function(){
     //コメントの投稿
     Route::post('/posts/comments/create', 'CommentController@store')->name('comments.create');
     //コメントの削除
-    Route::delete('/posts/comments/{comment}/delete', 'CommentController@delete')->name('comments.delete');
+    Route::delete('/comments/{comment}/delete', 'CommentController@delete')->name('comments.delete');
 
     //プロフィール（ユーザーの投稿一覧）
     Route::get('/users/{user}/profile/posts', 'UserController@index')->name('profile.posts');

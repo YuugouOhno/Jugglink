@@ -31,7 +31,9 @@
                 <div class='profile_tool'>
                     <p>メイン道具:{{$user->tool->tool_name}}</p>
                 </div>
-                
+                <div class="profile_date">
+                     <p>歴:{{$user->created_at}}</p>
+                </div>
                 
             </div>
             <div class='profile_text'>
@@ -40,6 +42,9 @@
                 @else
                     <p>コメント:{{$user->introduce}}</p>
                 @endif
+            </div>
+            <div class="FF">
+                <p>{{$user->id}}フォロー{{$user->id}}フォロワ</p>
             </div>
             <div class="profile_menues">
                 <div>

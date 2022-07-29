@@ -32,15 +32,14 @@
                     <div class='reaction_icon like_btn'>
                         <Like :post_id='post.id'></Like>
                     </div>
-                    <div class='reaction_icon comment_btn'>
+                    <div class='reaction_icon comment_btn comment_nomal_btn'>
                         <a :href="'/posts/' + post.id + '/comments'" class='btn'>
                             <i class="fa-regular fa-comment color_black"></i>
                         </a>
                     </div>
                     <div>
-                        <Commentmodal :post_id="post.id"></Commentmodal>
+                        <Commentmodal :post="post"></Commentmodal>
                     </div>
-                   
                     <div class='reaction_icon bookmark_btn'>
                         <Bookmark :post_id='post.id'></Bookmark>
                     </div>
