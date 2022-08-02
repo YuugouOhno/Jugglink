@@ -2,11 +2,6 @@
     <div>
         <h1>ジャグラーの分布を確認しよう</h1>
         <div id='map' class='map'></div>
-        <!--<form enctype="multipart/form-data">-->
-        <!--<input type="text" name="place[lat]" v-model="lat">{{lat}}</imput>-->
-        <!--<input type="text" name="place[lng]" v-model="lng">{{lng}}</imput>-->
-        <!--<button @click="addpin()">現在地を追加</button>-->
-        <!--</form>-->
         <div>
             <div v-if="latitude !== 0">
                 <button @click="addPin()">現在地を追加</button>
