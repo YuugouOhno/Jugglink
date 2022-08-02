@@ -23,6 +23,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/search/index/technique/', 'SearchController@search_technique')->name('search.technique');
     //ユーザーの検索
     Route::get('/search/index/user/', 'SearchController@search_user')->name('search.user');
+    //ユーザーの無限スクロール
+    Route::get('/infinity_user', 'UserController@fetch');
     
     //投稿
     Route::post('/posts/create', 'PostController@store')->name('posts.create');
@@ -42,7 +44,7 @@ Route::group(['middleware' => ['auth']], function(){
     //コメントの投稿
     Route::post('/posts/comments/create', 'CommentController@store')->name('comments.create');
     //コメントの削除
-    Route::delete('/posts/comments/{comment}/delete', 'CommentController@delete')->name('comments.delete');
+    Route::delete('/comments/{comment}/delete', 'CommentController@delete')->name('comments.delete');
 
     //プロフィール（ユーザーの投稿一覧）
     Route::get('/users/{user}/profile/posts', 'UserController@index')->name('profile.posts');
@@ -75,8 +77,21 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/map', 'PlaceController@index')->name('map');
     Route::post('/map/addPin', 'PlaceController@store')->name('map.addPin');
     Route::delete('/map/delete', 'PlaceController@delete')->name('map.delete');
+    
+    //フォロー
+    Route::get('/users/{user}/follow', 'FollowUserController@store');
+    //フォロー解除
+    Route::delete('/users/{user}/unfollow', 'FollowUserController@delete');
+    //フォローフォロワーのカウント
+    Route::get('/users/{user}/countfollows', 'FollowUserController@countfollows');
+    //フォロワーの有無
+    Route::get('/users/{user}/hasfollowed', 'FollowUserController@hasfollowed');
+    
+   
 });
+
+//ウルカムページ
+Route::get('/home', 'PostController@home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');

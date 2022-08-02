@@ -31,7 +31,9 @@
                 <div class='profile_tool'>
                     <p>メイン道具:{{$user->tool->tool_name}}</p>
                 </div>
-                
+                <div class="profile_date">
+                     <p>歴:{{$user->created_at}}</p>
+                </div>
                 
             </div>
             <div class='profile_text'>
@@ -41,15 +43,19 @@
                     <p>コメント:{{$user->introduce}}</p>
                 @endif
             </div>
+            <div class="follows_container">
+                <follow-component :user_id = "{{ json_encode($user->id) }}"></follow-component>
+            </div>
+            
             <div class="profile_menues">
                 <div>
-                    <a href='{{ route("profile.posts", ["user" => $user->id]) }}' class='own_posts'>投稿</a>
+                    <a href='{{ route("profile.posts", ["user" => $user->id]) }}' class='color_black'>投稿</a>
                 </div>
                 <div>
-                    <a href="" class='calendar'>カレンダー</a>
+                    <a href="" class='color_black'>カレンダー</a>
                 </div>
                 <div>
-                    <a href='{{ route("profile.likes", ["user" => $user->id]) }}' class='favorite'>いいね</a>
+                    <a href='{{ route("profile.likes", ["user" => $user->id]) }}' class='color_black'>いいね</a>
                 </div>
             </div>
         </div>

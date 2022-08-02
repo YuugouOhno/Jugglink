@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a v-on:click="openModal"　class='color_black'>
+        <a v-on:click="openModal" class='color_black'>
             プロフィールの編集
         </a>
         <div id="overlay_profile" v-show="showContent" v-on:click="closeModal">

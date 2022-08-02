@@ -47,7 +47,7 @@
                 </div>
                 <div class='create_post btnBox'>
                     <div class='modaldada'>
-                        <postmodal-component></postmodal-component>
+                        <postmodal></postmodal>
                     </div>
                 </div>
             </div>

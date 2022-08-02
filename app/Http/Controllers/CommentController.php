@@ -30,7 +30,6 @@ class CommentController extends Controller
     public function delete(Comment $comment)
     {
         $comment->delete();
-        return redirect()->route('comments.show', ['post' => ($comment->post->id)]);
     }
     
     public function fetch(Request $request, Post $post, Comment $comment) { // vueからのリクエスト
@@ -49,7 +48,7 @@ class CommentController extends Controller
         // // $query = Comment::with('post','user')->where('post_id', $post_id)->get();
         // \Log::debug($comments);
  
-        $limit = 2; // 一度に取得する件数
+        $limit = 10; // 一度に取得する件数
         $offset = $page * $limit; // 現在の取得開始位置
         $comments = $query->offset($offset)->limit($limit)->get();
         \Log::debug($comments);

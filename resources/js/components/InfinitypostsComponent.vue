@@ -32,10 +32,13 @@
                     <div class='reaction_icon like_btn'>
                         <Like :post_id='post.id'></Like>
                     </div>
-                    <div class='reaction_icon comment_btn'>
+                    <div class='reaction_icon comment_btn comment_nomal_btn'>
                         <a :href="'/posts/' + post.id + '/comments'" class='btn'>
                             <i class="fa-regular fa-comment color_black"></i>
                         </a>
+                    </div>
+                    <div>
+                        <Commentmodal :post="post"></Commentmodal>
                     </div>
                     <div class='reaction_icon bookmark_btn'>
                         <Bookmark :post_id='post.id'></Bookmark>
@@ -48,7 +51,10 @@
                 </div>
             </div>
         </div>
-        <infinite-loading @infinite="fetchPosts"></infinite-loading>
+        <infinite-loading @infinite="fetchPosts">
+            <span slot="no-more"></span>
+            <span slot="no-results">投稿は存在しません</span>
+        </infinite-loading>
     </div>
 </template>
 <script>
@@ -56,6 +62,7 @@
     Vue.component('infinite-loading', InfiniteLoading); // コンポーネント化
     import Like from './LikeComponent.vue';// いいね機能の読み込み
     import Bookmark from './BookmarkComponent.vue'; // ブックマーク機能の読み込み
+    import Commentmodal from './CommentmodalComponent.vue'; // コメント機能の読み込み
     
     export default {
         props: {
@@ -68,7 +75,8 @@
         },
         components: { // 読み込むコンポーネントの指定
             Like,
-            Bookmark
+            Bookmark,
+            Commentmodal
         },
         data() {
             return {

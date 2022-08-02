@@ -14,6 +14,11 @@ use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
+    public function home()
+    {
+        return view('others/home');
+    }
+    
     public function getTools(Tool $tool)
     {
         return response()->json(['tools' => $tool->get()], 200); 
