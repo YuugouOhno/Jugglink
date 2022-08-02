@@ -9,6 +9,10 @@ body{
     background-color:#e7e7eb; /*白*/
 }
 
+video{
+    background-color:#302833; /*黒*/
+}
+
 /* ヘッダー */
 .navbar{
     width:100%;

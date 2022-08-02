@@ -17,7 +17,7 @@
                 </div>
                 <div class='video'>
                     <video controls loop autoplay muted>
-                        <source :src=post.video_path type="video/mp4">
+                        <source :src=post.video_path>
                     </video>
                 </div>
                 <div class='post_titles'>
