@@ -51,7 +51,10 @@
                 </div>
             </div>
         </div>
-        <infinite-loading @infinite="fetchPosts"></infinite-loading>
+        <infinite-loading @infinite="fetchPosts">
+            <span slot="no-more"></span>
+            <span slot="no-results">投稿は存在しません</span>
+        </infinite-loading>
     </div>
 </template>
 <script>

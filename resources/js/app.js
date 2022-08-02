@@ -27,8 +27,11 @@ Vue.component('infinityposts-component', require('./components/InfinitypostsComp
 Vue.component('postmodal-component', require('./components/PostmodalComponent.vue').default);
 Vue.component('profilemodal-component', require('./components/ProfilemodalComponent.vue').default);
 Vue.component('menuemodal-component', require('./components/MenuemodalComponent.vue').default);
-Vue.component('comment-component', require('./components/CommentComponent.vue').default);
 Vue.component('commentmodal-component', require('./components/CommentmodalComponent.vue').default);
+Vue.component('follow-component', require('./components/FollowComponent.vue').default);
+Vue.component('followmodal-component', require('./components/FollowmodalComponent.vue').default);
+Vue.component('infinitycomments-component', require('./components/InfinitycommentsComponent.vue').default);
+Vue.component('infinityusers-component', require('./components/InfinityusersComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

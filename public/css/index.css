@@ -100,6 +100,10 @@ body{
     background-color:#dbd0e6; /*薄紫*/
 }
 
+.BG_color_black{
+    background-color:#302833; /*黒*/
+}
+
 .border_color_purple{
     border: 1px solid #65318e; /*紫*/
 }
@@ -376,6 +380,45 @@ h4{
     margin-left:120px;
 }
 
+.follows_container{
+    display:inline-block;
+    width:100%;
+}
+
+.folowing_followed{
+    margin-left:50px;
+    float:left;
+}
+
+.following_btn{
+    margin-right:50px;
+    float:right;
+}
+
+.following_btn button{
+    width:110px;
+    height:30px;
+    border-radius:10px; 
+}
+
+.follow_btn:hover{
+    border: 1px solid #65318e; /*紫*/
+}
+
+/* 通常時はホバー時の文字を非表示にする */
+.unfollow_btn_hover{
+    display: none;
+}
+
+/* ホバー時は通常時の文字を非表示にする */
+.unfollow_btn:hover .unfollow_btn_nomal{
+    display: none;
+}
+
+/* ホバー時に、ホバー時の文字を表示する */
+.unfollow_btn:hover .unfollow_btn_hover{
+    display: inline;
+}
 .profile_menues{
     display:flex;
     margin:0 auto;
@@ -388,6 +431,7 @@ h4{
     margin:0 auto;
     text-align:center;
     position:relative;
+    border-radius:10px;
 }
 
 .profile_menues a{

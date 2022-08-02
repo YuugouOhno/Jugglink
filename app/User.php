@@ -50,6 +50,22 @@ class User extends Authenticatable
         return $this->posts()->with('tool', 'user')->orderBy('posts.created_at', 'desc')->offset($offset)->limit($limit)->get();
     }
     
+    // フォロワー→フォロー フォロワーを取得
+    public function followUsers()
+    {
+        return $this->belongsToMany('App\User', 'follow_users', 'followed_user_id', 'following_user_id');
+    }
+
+    // フォロー→フォロワー フォローしているユーザーを取得
+    public function follows()
+    {
+        return $this->belongsToMany('App\User', 'follow_users', 'following_user_id', 'followed_user_id');
+    }
+    // 第一引数には使用するモデル
+    // 第二引数には使用するテーブル名
+    // 第三引数にはリレーションを定義しているモデルの外部キー名
+    // 第四引数には結合するモデルの外部キー名
+    
     public function tool()
     {
         return $this->belongsTo('App\Tool');

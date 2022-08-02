@@ -11,12 +11,12 @@
 
 @section('main2')
 <div class='posts_container'>
-    <div class="search">
+    <div class="search BG_color_white">
         <div class="search_tab_container">
             <div class="search_tab1">
                 <p><a href="{{ route('search.technique') }}">投稿を検索</a></p>
             </div>
-            <div class="search_tab BG_color_white">
+            <div class="search_tab2 BG_color_white">
                 <p>ユーザーを検索</p>
             </div>
             <div class="search_tab3 BG_color_white">
@@ -49,20 +49,9 @@
         </div>
     </div>
     <div class="users searched">
-        @foreach ($users as $user)
         <div>
-            <a class='color_black' href='{{ route("profile.posts", ["user" => ($user->id)]) }}'>
-                <div class="user">
-                    @if($user->icon_path !=0)
-                    <img class="user_icon" src="{{ $user->icon_path }}">
-                    @else
-                        <i class="fa-solid fa-circle-user user_icon"></i>
-                    @endif
-                    <p class='user_name'>{{ $user->name }}</p>
-                </div>
-            </a>
+            <infinityusers-component :tool_id="{{json_encode($tool_id)}}" :user_name="{{json_encode($user_name)}}"></infinityusers-component>
         </div>
-        @endforeach
     </div>
 </div>
 @endsection

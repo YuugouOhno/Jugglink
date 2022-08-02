@@ -57,6 +57,6 @@ class SearchController extends Controller
         
         $tool = Tool::all();
         
-        return view('searches/user')->with(['users' => $users, 'tools' => $tool, 'user_name' => $user_name, 'tool_name' => $tool_name]);
+        return view('searches/user')->with(['users' => $users, 'tools' => $tool, 'user_name' => $user_name, 'tool_name' => $tool_name, 'tool_id' => $tool_id]);
     }
 }

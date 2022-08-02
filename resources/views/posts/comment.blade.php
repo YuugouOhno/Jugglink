@@ -62,7 +62,7 @@
         </div>
     </div>
     <div>
-        <comment-component :post_id="{{ json_encode($post->id)}}"></comment-component>
+        <infinitycomments-component :post_id="{{ json_encode($post->id)}}"></infinitycomments-component>
     </div>
     
 </div>

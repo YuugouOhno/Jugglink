@@ -8,20 +8,20 @@
         <div id="content_comment" class="modal_content right_container BG_color_white" v-show="showContent">
             <h3>{{post.tool_number}}{{post.tool.tool_name}}{{post.technique}}</h3>
             <div>
-                <comment-component :post_id="post.id"></comment-component>
+                <infinitycomments :post_id="post.id"></infinitycomments>
             </div>
             
         </div>
     </div>
 </template>
 <script>
-    import Comment from './CommentComponent.vue'; // コメント機能の読み込み
+    import Infinitycomments from './InfinitycommentsComponent.vue'; // コメント機能の読み込み
     export default {
         props: {
             post: [],
         },
         components: { // 読み込むコンポーネントの指定
-            Comment
+            Infinitycomments
         },
         data() {
             return {
