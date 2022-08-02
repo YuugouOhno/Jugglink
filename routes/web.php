@@ -91,7 +91,7 @@ Route::group(['middleware' => ['auth']], function(){
 });
 
 //ウルカムページ
-Route::get('/home', 'PostController@home');
+Route::get('/welcome', 'PostController@home')->name('welcome');
 
 Auth::routes();
 
