@@ -84,31 +84,31 @@
                     console.log(error)
                 });
             },
-            nowWindowWidth(){
+            nowWindowWidth(){ // 画面の横幅を取得
                 if(window.innerWidth>=520){
                     this.showMenueButton = false;
-                    this.showContent = true;
+                    this.showContent = true; // サイドメニューの表示
                 }else{
-                    this.showMenueButton = true;
+                    this.showMenueButton = true; // メニューボタンの表示
                     this.showContent = false;
                 }
             },
-            newWindowWidth() {
+            newWindowWidth() { // 変化後の画面の横幅を取得
                 this.windowWidth = window.innerWidth;
                 // console.log(this.windowWidth);
                 if(window.innerWidth>=520){
                     this.showMenueButton = false;
-                    this.showContent = true;
+                    this.showContent = true; // サイドメニューの表示
                 }else{
-                    this.showMenueButton = true;
+                    this.showMenueButton = true; // メニューボタンの表示
                     this.showContent = false;
                 }
             },
             openModal(){
-                this.showContent = true
+                this.showContent = true // サイドメニューの表示
             },
             closeModal(){
-                this.showContent = false
+                this.showContent = false // サイドメニューの非表示
             },
             stopEvent(){
                 event.stopPropagation()

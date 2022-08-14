@@ -24,7 +24,7 @@
             this.countlikes();
         },
         methods: {
-            like() {
+            like() { // いいね
                 axios.get('/posts/' + this.post_id +'/likes')
                 .then(res => {
                     this.result = res.data.result;
@@ -33,7 +33,7 @@
                     console.log(error);
                 });
             },
-            unlike() {
+            unlike() { // いいね解除
                 axios.delete('/posts/' + this.post_id +'/unlikes')
                 .then(res => {
                     this.result = res.data.result;
@@ -42,7 +42,7 @@
                     console.log(error);
                 });
             },
-            countlikes() {
+            countlikes() { // いいね数のカウント
                 axios.get('/posts/' + this.post_id +'/countlikes')
                 .then(res => {
                     this.count = res.data;
@@ -50,7 +50,7 @@
                     console.log(error);
                 });
             },
-            haslikes() {
+            haslikes() { // いいねの有無
                 axios.get('/posts/' + this.post_id +'/haslikes')
                 .then(res => {
                     this.result = res.data;

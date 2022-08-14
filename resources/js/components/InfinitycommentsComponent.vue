@@ -65,22 +65,22 @@
                     console.log(error)
                 });
             },
-            comment_delete(commnet_id) { // 投稿の削除
+            comment_delete(commnet_id) { // 　コメントの削除
                 axios.request({
                     method: 'delete',
                     url: 'comments/' + commnet_id + '/delete'
                 })
                 .then((res) => {
-                    this.comments.splice(0);
-                    this.page=0;
+                    this.comments.splice(0); // コメントの先頭に戻って
+                    this.page=0; // 読み込みをリセットして
                     this.$nextTick(() => {
-                        this.fetchComments();
+                        this.fetchComments(); // コメントを読み込み
                     })
                 }, (error) => {
                     console.log(error)
                 })
             },
-            comment() {
+            comment() { // コメント
                 //formDataをnewする
                 let formData = new FormData();
                 //appendでデータを追加(第一引数は任意のキー)
@@ -90,18 +90,18 @@
           	    axios.post('/posts/comments/create', formData)
                 .then(response => {
                     window.location.href = '/'; // 削除後にリダイレクト 
-                    this.text="";
-                    this.comments.splice(0);
-                    this.page=0;
+                    this.text=""; // 入力欄をリセット
+                    this.comments.splice(0); // コメントの先頭に戻って
+                    this.page=0; // 読み込みをリセットして
                     this.$nextTick(() => {
-                        this.fetchComments();
+                        this.fetchComments(); // コメントを読み込み
                     })
                 })
                 .catch(error => {
                     console.log(error);
                 })
             },
-            fetchedCommentIdList() { // すでに取得した投稿のIDリストを取得
+            fetchedCommentIdList() { // すでに取得したコメントのIDリストを取得
                 let fetchedCommentIdList = [];
                 for (let i = 0; i < this.comments.length; i++) { // 取得してきたコメントのデータ数でループ
                     fetchedCommentIdList.push(this.comments[i].id); // fetchedCommentIdListにコメントのIDを追加
@@ -109,22 +109,22 @@
                 return fetchedCommentIdList;
             },
             fetchComments($state) {
-                let fetchedCommentIdList = this.fetchedCommentIdList(); // すでに取得した投稿のIDリストを取得
+                let fetchedCommentIdList = this.fetchedCommentIdList(); // すでに取得したコメントのIDリストを取得
                 axios.get('/infinity_comment', { // コントローラーへ
                     params: {
-                        fetchedCommentIdList: JSON.stringify(fetchedCommentIdList), // すでに取得した投稿のIDリスト
+                        fetchedCommentIdList: JSON.stringify(fetchedCommentIdList), // すでに取得したコメントのIDリスト
                         page: this.page, // 現在のページ(読み込んだ回数)
                         post_id: this.post_id,
                     }
                 })
                 .then(response => {
-                    if (response.data.comments.length) { // 投稿データが存在するなら
+                    if (response.data.comments.length) { // コメントが存在するなら
                         this.page++; // 読み込んだ回数を増やす
                         response.data.comments.forEach (value => {
                             this.comments.push(value);
                         });
                         $state.loaded(); // まだ読み込める状態
-                    } else { // 投稿データが存在しないなら
+                    } else { // コメントが存在しないなら
                         $state.complete(); // 終了
                     }
                 })

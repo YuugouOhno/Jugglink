@@ -25,8 +25,8 @@
         data() {
             return{
                 result: "",
-                followedCount: 0,
-                followingCount: 0,
+                followedCount: 0, //フォロワー数
+                followingCount: 0, //フォロー数
                 auth_user: "", // 認証データ
             };
         },
@@ -44,7 +44,7 @@
                     console.log(error);
                 });
             },
-            follow() {
+            follow() { // フォロー
                 axios.get('/users/' + this.user_id + '/follow')
                 .then(res => {
                     this.result = res.data.result;
@@ -54,7 +54,7 @@
                     console.log(error);
                 });
             },
-            unfollow() {
+            unfollow() { // フォロー解除
                 axios.delete('/users/' + this.user_id + '/unfollow')
                 .then(res => {
                     this.result = res.data.result;
@@ -64,7 +64,7 @@
                     console.log(error);
                 });
             },
-            countfollows() {
+            countfollows() { //フォロー数のカウント
                 axios.get('/users/' + this.user_id +'/countfollows')
                 .then(res => {
                     this.followedCount = res.data.followedCount;
@@ -74,7 +74,7 @@
                     console.log(error);
                 });
             },
-            hasfollowed() {
+            hasfollowed() { //フォロワー数のカウント
                 axios.get('/users/' + this.user_id +'/hasfollowed')
                 .then(res => {
                     this.result = res.data;

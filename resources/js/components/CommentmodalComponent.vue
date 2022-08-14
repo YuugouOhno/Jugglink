@@ -31,16 +31,10 @@
         },
         methods:{
             openModal(){
-                this.showContent = false
+                this.showContent = false // 他の投稿に対するコメントが開かれていたら閉じて
                 this.$nextTick(() => {
-                    this.showContent = true
+                    this.showContent = true // コメント画面を開く
                 })
-            },
-            closeModal(){
-                this.showContent = false
-            },
-            stopEvent(){
-                event.stopPropagation()
             }
         }
     }

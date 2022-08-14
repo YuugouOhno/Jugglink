@@ -46,18 +46,18 @@
                     console.log(error)
                 });
             },
-            fetchedUserIdList() { // すでに取得した投稿のIDリストを取得
+            fetchedUserIdList() { // すでに取得したユーザーのIDリストを取得
                 let fetchedUserIdList = [];
-                for (let i = 0; i < this.users.length; i++) { // 取得してきたコメントのデータ数でループ
-                    fetchedUserIdList.push(this.users[i].id); // fetchedCommentIdListにコメントのIDを追加
+                for (let i = 0; i < this.users.length; i++) { // 取得してきたユーザーのデータ数でループ
+                    fetchedUserIdList.push(this.users[i].id); // fetchedCommentIdListにユーザーのIDを追加
                 }
                 return fetchedUserIdList;
             },
             fetchUsers($state) {
-                let fetchedUserIdList = this.fetchedUserIdList(); // すでに取得した投稿のIDリストを取得
+                let fetchedUserIdList = this.fetchedUserIdList(); // すでに取得したユーザーのIDリストを取得
                 axios.get('/infinity_user', { // コントローラーへ
                     params: {
-                        fetchedUserIdList: JSON.stringify(fetchedUserIdList), // すでに取得した投稿のIDリスト
+                        fetchedUserIdList: JSON.stringify(fetchedUserIdList), // すでに取得したユーザーのIDリスト
                         page: this.page, // 現在のページ(読み込んだ回数)
                         tool_id: this.tool_id,
                         user_name: this.user_name,
@@ -66,13 +66,13 @@
                     }
                 })
                 .then(response => {
-                    if (response.data.users.length) { // 投稿データが存在するなら
+                    if (response.data.users.length) { // ユーザーが存在するなら
                         this.page++; // 読み込んだ回数を増やす
                         response.data.users.forEach (value => {
                             this.users.push(value);
                         });
                         $state.loaded(); // まだ読み込める状態
-                    } else { // 投稿データが存在しないなら
+                    } else { // ユーザーが存在しないなら
                         $state.complete(); // 終了
                     }
                 })

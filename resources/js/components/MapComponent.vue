@@ -16,7 +16,6 @@
         props: ['place'],
         data() {
             return {
-                // result: "",
                 latitude: 0,
                 longitude: 0
             }
@@ -26,34 +25,7 @@
             this.getCurrent();
         },
         methods: {
-            addPin() {
-                axios.post('/map/addPin', {
-                    place:{
-                        latitude: this.latitude,
-                        longitude: this.longitude
-                    }
-                })
-                .then(res => {
-                    console.log(res);
-                    if(res.status==200){
-                        var map;
-                        var marker;
-                        var mapLatLng = new google.maps.LatLng({lat: this.latitude, lng: this.longitude }); // 緯度経度のデータ作成
-                    	map = new google.maps.Map(document.getElementById('map'), { // #mapに地図を埋め込む
-                    		center: mapLatLng, // 地図の中心を指定
-                    		zoom:8 // 地図のズームを指定
-                    	});
-                        const markerLatLng = new google.maps.LatLng({lat: this.latitude, lng:this.longitude}); // 緯度経度のデータ作成
-            	    	marker = new google.maps.Marker({ // マーカーの追加
-                			position: markerLatLng, // マーカーを立てる位置を指定
-                			map: map // マーカーを立てる地図を指定
-                		});
-                    }
-                }).catch(function(error) {
-                    console.log(error);
-                });
-            },
-            getCurrent() {
+            getCurrent() { // 現在地の取得
                 if (navigator.geolocation) {
                   navigator.geolocation.getCurrentPosition(
                     function(position){
@@ -61,7 +33,7 @@
                       // 緯度経度だけ取得
                       this.latitude = coords.latitude;
                       this.longitude = coords.longitude;
-                      console.log(this.latitude, this.longitude)
+                      console.log(this.latitude, this.longitude, '現在地') 
                     }.bind(this),
                     function(error) {
                         switch (err.code) {
@@ -88,11 +60,11 @@
                 var marker = [];
                 var infoWindow = [];
                 var markerData = place;
-            	// 地図の作成
-            	if (this.latitude != 0){
-            	    var mapLatLng = new google.maps.LatLng({lat: this.latitude, lng: this.longitude });
-            	}else{
-            	    var mapLatLng = new google.maps.LatLng({lat: 35.68157417189571, lng: 139.76701766444776 }); // 緯度経度のデータ作成
+            	// 地図の作成 
+            	if (this.latitude != 0){ // 現在地が取得できている時
+            	    var mapLatLng = new google.maps.LatLng({lat: this.latitude, lng: this.longitude }); // 地図の中心を現在地に
+            	}else{ // 現在地が取得できていない時
+            	    var mapLatLng = new google.maps.LatLng({lat: 35.68157417189571, lng: 139.76701766444776 }); // 地図の中心を東京に
             	}
             	map = new google.maps.Map(document.getElementById('map'), { // #mapに地図を埋め込む
             		center: mapLatLng, // 地図の中心を指定
@@ -106,6 +78,33 @@
             			map: map // マーカーを立てる地図を指定
             		});
             	}
+            },
+            addPin() { // ピンの追加
+                axios.post('/map/addPin', {
+                    place:{ 
+                        latitude: this.latitude,
+                        longitude: this.longitude
+                    }
+                })
+                .then(res => {
+                    console.log(res);
+                    if(res.status==200){
+                        var map;
+                        var marker;
+                        var mapLatLng = new google.maps.LatLng({lat: this.latitude, lng: this.longitude }); // 緯度経度のデータ作成
+                    	map = new google.maps.Map(document.getElementById('map'), { // #mapに地図を埋め込む
+                    		center: mapLatLng, // 地図の中心を指定
+                    		zoom:8 // 地図のズームを指定
+                    	});
+                        const markerLatLng = new google.maps.LatLng({lat: this.latitude, lng:this.longitude}); // 緯度経度のデータ作成
+            	    	marker = new google.maps.Marker({ // マーカーの追加
+                			position: markerLatLng, // マーカーを立てる位置を指定
+                			map: map // マーカーを立てる地図を指定
+                		});
+                    }
+                }).catch(function(error) {
+                    console.log(error);
+                });
             }
         }
     }

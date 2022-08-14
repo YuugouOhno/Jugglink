@@ -55,19 +55,19 @@
                     console.log(error)
                 });
             },
-            openFollowingModal(){
-                this.showFollowed = false;
+            openFollowingModal(){ // フォローしているユーザーの一覧
+                this.showFollowed = false; // フォロワー一覧が開かれていたら閉じて
                 this.$nextTick(() => {
-                    this.showFollowing = true;
+                    this.showFollowing = true; // フォロー一覧を開く
                 })
             },
             openFollowedModal(){
-                this.showFollowing = false;
+                this.showFollowing = false; // フォロー一覧が開かれていたら閉じて
                 this.$nextTick(() => {
-                    this.showFollowed = true;
+                    this.showFollowed = true; // フォロワー一覧を開く
                 })
             },
-            closeModal(){
+            closeModal(){ // 一覧を閉じる
                 this.showFollowing = false;
                 this.showFollowed = false;
             },
