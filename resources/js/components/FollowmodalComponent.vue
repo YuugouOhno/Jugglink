@@ -51,9 +51,8 @@
                 axios.get('/infinityauth')
                 .then(res => {
                     this.auth_user = res.data.auth_user; // resのdataのauth_user
-                    console.log(res.data,"Authの中身")
                 }).catch(function(error) {
-                    console.log(this.auth_user,"Authの取得失敗")
+                    console.log(error)
                 });
             },
             openFollowingModal(){

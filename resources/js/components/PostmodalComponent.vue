@@ -179,9 +179,8 @@
                 axios.get('/gettool')
                 .then(res => {
                     this.tools = res.data.tools; // resのdataのauth_user
-                    console.log(this.tools,"Toolsの中身")
                 }).catch(function(error) {
-                    console.log(this.tools)
+                    console.log(error)
                 });
             },
             openModal(){
@@ -195,10 +194,8 @@
             },
             handleFile(event){
           		this.fileData = event.target.files[0]
-                console.log(this.fileData,"Videoの中身")
                 const getPreview = this.$refs.preview.files[0];
                 this.url = URL.createObjectURL(getPreview)
-                console.log(this.url,"videoのプレビューURL")
           	},
           	selectSequence(){
           	    this.technique = "シークエンス"
@@ -211,13 +208,11 @@
                 let formData = new FormData();
                 //appendでデータを追加(第一引数は任意のキー)
                 //他に送信したいデータがある場合にはその分appendする
-                
                 formData.append('file', this.fileData);
                 formData.append('tool_name', this.selectTool);
                 formData.append('tool_number', this.selectNumber);
                 formData.append('technique', this.technique);
                 formData.append('text', this.text);
-                console.log(this.fileData)
           	    // ヘッダー定義
                 const config = {
                     headers: {
@@ -227,7 +222,6 @@
           	    
                 axios.post('/posts/create', formData, config)
                 .then(response => {
-                    console.log("成功");
                     window.location.href = '/'; // 削除後にリダイレクト 
                 })
                 .catch(error => {

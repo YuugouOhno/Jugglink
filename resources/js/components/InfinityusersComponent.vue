@@ -42,10 +42,8 @@
                 axios.get('/infinityauth')
                 .then(res => {
                     this.auth_user = res.data.auth_user; // resのdataのauth_user
-                    console.log(res.data,"Authの中身")
-                    console.log(this.url,"URLの中身")
                 }).catch(function(error) {
-                    console.log(this.auth_user,"Authの取得失敗")
+                    console.log(error)
                 });
             },
             fetchedUserIdList() { // すでに取得した投稿のIDリストを取得
@@ -56,7 +54,6 @@
                 return fetchedUserIdList;
             },
             fetchUsers($state) {
-                console.log(" ユーザーの無限");
                 let fetchedUserIdList = this.fetchedUserIdList(); // すでに取得した投稿のIDリストを取得
                 axios.get('/infinity_user', { // コントローラーへ
                     params: {
@@ -74,10 +71,8 @@
                         response.data.users.forEach (value => {
                             this.users.push(value);
                         });
-                        console.log(this.users,"usersの中身");
                         $state.loaded(); // まだ読み込める状態
                     } else { // 投稿データが存在しないなら
-                        console.log("おしまい");
                         $state.complete(); // 終了
                     }
                 })

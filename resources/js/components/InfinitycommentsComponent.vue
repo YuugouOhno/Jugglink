@@ -60,11 +60,9 @@
                 axios.get('/infinityauth')
                 .then(res => {
                     this.auth_user = res.data.auth_user; // resのdataのauth_user
-                    console.log(res.data,"Authの中身")
-                    console.log(this.url,"URLの中身")
                     this.fetchComments();
                 }).catch(function(error) {
-                    console.log(this.auth_user,"Authの取得失敗")
+                    console.log(error)
                 });
             },
             comment_delete(commnet_id) { // 投稿の削除
@@ -73,14 +71,13 @@
                     url: 'comments/' + commnet_id + '/delete'
                 })
                 .then((res) => {
-                    console.log('削除成功')
                     this.comments.splice(0);
                     this.page=0;
                     this.$nextTick(() => {
                         this.fetchComments();
                     })
                 }, (error) => {
-                    console.log('削除失敗')
+                    console.log(error)
                 })
             },
             comment() {
@@ -90,12 +87,9 @@
                 //他に送信したいデータがある場合にはその分appendする
                 formData.append('text', this.text);
                 formData.append('post_id', this.post_id);
-                console.log(this.fileData)
-                console.log(this.text);
           	    axios.post('/posts/comments/create', formData)
                 .then(response => {
-                    console.log("成功");
-                    //window.location.href = '/'; // 削除後にリダイレクト 
+                    window.location.href = '/'; // 削除後にリダイレクト 
                     this.text="";
                     this.comments.splice(0);
                     this.page=0;
@@ -115,7 +109,6 @@
                 return fetchedCommentIdList;
             },
             fetchComments($state) {
-                console.log("コメントの無限");
                 let fetchedCommentIdList = this.fetchedCommentIdList(); // すでに取得した投稿のIDリストを取得
                 axios.get('/infinity_comment', { // コントローラーへ
                     params: {
@@ -130,10 +123,8 @@
                         response.data.comments.forEach (value => {
                             this.comments.push(value);
                         });
-                        console.log(this.comments,"commentsの中身");
                         $state.loaded(); // まだ読み込める状態
                     } else { // 投稿データが存在しないなら
-                        console.log("おしまい");
                         $state.complete(); // 終了
                     }
                 })

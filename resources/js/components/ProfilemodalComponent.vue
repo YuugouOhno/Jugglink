@@ -104,22 +104,19 @@
                 axios.get('/infinityauth')
                 .then(res => {
                     this.auth_user = res.data.auth_user; // resのdataのauth_user
-                    console.log(res.data.auth_user,"Authの中身どや")
-                    console.log(this.auth_user.tool.id,"Authの中身どや")
                     this.selectTool = this.auth_user.tool.id;
                     this.introduce = this.auth_user.introduce;
                     this.name = this.auth_user.name;
                 }).catch(function(error) {
-                    console.log("Authの取得失敗")
+                    console.log(error)
                 });
             },
             getTools() { // 道具データの取得
                 axios.get('/gettool')
                 .then(res => {
                     this.tools = res.data.tools; // resのdataのauth_user
-                    console.log(this.tools,"Toolsの中身")
                 }).catch(function(error) {
-                    console.log(this.tools)
+                    console.log(error)
                 });
             },
             openModal(){
@@ -133,10 +130,8 @@
             },
             handleFile(event){
           		this.fileData = event.target.files[0]
-                console.log(this.fileData,"iconの中身")
                 const getPreview = this.$refs.preview.files[0];
                 this.url = URL.createObjectURL(getPreview)
-                console.log(this.url,"iconのプレビューURL")
           	},
           	update() {
           	    //formDataをnewする
@@ -146,8 +141,6 @@
                 formData.append('name', this.name);
                 formData.append('tool_id', this.selectTool);
                 formData.append('introduce', this.introduce);
-                console.log(formData,"formDataの中身")
-                console.log(this.fileData)
           	    // ヘッダー定義
                 const config = {
                     headers: {
@@ -157,7 +150,6 @@
                 
                 axios.post('/users/profile/update', formData, config)
                 .then(response => {
-                    console.log("成功");
                     window.location.href = '/users/' + this.auth_user.id + '/profile/posts'; // 保存後にリダイレクト 
                 })
                 .catch(error => {

@@ -81,17 +81,16 @@
                 axios.get('/infinityauth')
                 .then(res => {
                     this.auth_user = res.data.auth_user; // resのdataのauth_user
-                    console.log(res.data.auth_user,"Authの中身")
                 }).catch(function(error) {
-                    console.log(this.auth_user,"Authの取得失敗")
+                    console.log(error)
                 });
             },
             post_comment(comment_post_id) {
                 axios.get('/posts/' + comment_post_id + '/comments')
                 .then(res => {
-                    console.log("成功")
+                    console.log(success)
                 }).catch(function(error) {
-                    console.log("失敗")
+                    console.log(error)
                 });
             },
             post_delete(post_id) { // 投稿の削除
@@ -101,10 +100,9 @@
                         url: '/posts/' + post_id + '/delete'
                     })
                     .then((res) => {
-                        console.log(post_id, '削除成功')
                         window.location.href = '/'; // 削除後にリダイレクト 
                     }, (error) => {
-                        console.log(post_id, '削除失敗')
+                        console.log(error)
                     })
                 }
             },
@@ -129,10 +127,8 @@
                         response.data.posts.forEach (value => {
                             this.posts.push(value);
                         });
-                        console.log(this.posts,"postsの中身");
                         $state.loaded(); // まだ読み込める状態
                     } else { // 投稿データが存在しないなら
-                        console.log("おしまい");
                         $state.complete(); // 終了
                     }
                 })

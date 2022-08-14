@@ -40,19 +40,15 @@
                 axios.get('/infinityauth')
                 .then(res => {
                     this.auth_user = res.data.auth_user; // resのdataのauth_user
-                    console.log(res.data,"Authの中身")
-                    console.log(this.url,"URLの中身")
                 }).catch(function(error) {
-                    console.log(this.auth_user,"Authの取得失敗")
+                    console.log(error);
                 });
             },
             follow() {
                 axios.get('/users/' + this.user_id + '/follow')
                 .then(res => {
-                    
                     this.result = res.data.result;
                     this.followedCount = res.data.followedCount;
-                    console.log(this.result);
                 })
                 .catch(error => {
                     console.log(error);
@@ -73,7 +69,6 @@
                 .then(res => {
                     this.followedCount = res.data.followedCount;
                     this.followingCount = res.data.followingCount;
-                    console.log(res.data, "FF");
                 })
                 .catch(function(error){
                     console.log(error);

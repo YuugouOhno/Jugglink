@@ -77,13 +77,11 @@
                 axios.get('/infinityauth')
                 .then(res => {
                     this.auth_user = res.data.auth_user; // resのdataのauth_user
-                    console.log(res.data.auth_user,"Authの中身どや")
-                    console.log(this.auth_user.tool.id,"Authの中身どや")
                     this.selectTool = this.auth_user.tool.id;
                     this.introduce = this.auth_user.introduce;
                     this.name = this.auth_user.name;
                 }).catch(function(error) {
-                    console.log("Authの取得失敗")
+                    console.log(error)
                 });
             },
             nowWindowWidth(){
