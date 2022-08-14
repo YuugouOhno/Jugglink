@@ -1,6 +1,7 @@
 @extends('others.menue')
 
 @section('title2')
+    <link href="{{secure_asset('css/profile.css')}}" rel="stylesheet">
     <title>@yield('title3')プロフィール/Jugglink</title>
 @endsection
 

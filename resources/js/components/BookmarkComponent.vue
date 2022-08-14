@@ -22,7 +22,7 @@
             this.hasbookmarks();
         },
         methods: {
-            bookmark() {
+            bookmark() { // ブックマーク
                 axios.get('/posts/' + this.post_id +'/bookmarks')
                 .then(res => {
                     this.result = res.data.result;
@@ -30,7 +30,7 @@
                     console.log(error);
                 });
             },
-            unbookmark() {
+            unbookmark() { // ブックマーク解除
                 axios.delete('/posts/' + this.post_id +'/unbookmarks')
                 .then(res => {
                     this.result = res.data.result;
@@ -38,7 +38,7 @@
                     console.log(error);
                 });
             },
-            hasbookmarks() {
+            hasbookmarks() { // ブックマークの有無
                 axios.get('/posts/' + this.post_id +'/hasbookmarks')
                 .then(res => {
                     this.result = res.data;

@@ -1,6 +1,7 @@
 @extends('layouts.app')　
 
 @section('title1')
+    <link href="{{secure_asset('css/post.css')}}" rel="stylesheet">
     @yield('title2')
 @endsection
 

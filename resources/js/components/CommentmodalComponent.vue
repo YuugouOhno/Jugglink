@@ -45,15 +45,3 @@
         }
     }
 </script>
-<style>
-#content_comment{
-  z-index:301;
-  padding: 1em;
-  margin:0;
-  position:fixed;
-  top:50px;
-  right:0px;
-  height:100%;
-  overflow-y: scroll;
-}
-</style>

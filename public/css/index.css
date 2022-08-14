@@ -147,6 +147,52 @@ h4{
     display:inline;
 }
 
+#overlay_menue{
+  /*　要素を重ねた時の順番　*/
+  z-index:2;
+
+  /*　画面全体を覆う設定　*/
+  
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+}
+
+#content_menue{
+  z-index:3;
+  padding: 1em;
+  margin:0;
+  position:absolute;
+  top:20px;
+  left:0px;
+  height:100%;
+}
+
+.menue a{
+    padding:10px;
+    border-radius:10px;
+}
+
+.menue a:hover{
+    border: 1px solid #65318e; /*紫*/
+}
+
+.Jugglink_l{
+    height:50px;
+    width:auto;
+}
+
+.miniJugglink_l{
+    padding:0;
+    height:50px;
+    width:auto;
+}
+
+.mene_close_button{
+    display:none;
+}
+
 
 /* 投稿ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
 .post_container{
@@ -451,4 +497,84 @@ h4{
 
 .profile_menues div:hover{
     background-color:#dbd0e6; /*薄紫*/
+}
+
+/* コメントーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+#content_comment{
+  z-index:301;
+  padding: 1em;
+  margin:0;
+  position:fixed;
+  top:50px;
+  right:0px;
+  height:100%;
+  overflow-y: scroll;
+}
+
+.comment_container{
+    height:auto;
+    width:100%;
+    display:inline-block;
+    position:relative;
+    
+}
+.comment_container p{
+    margin:0;
+}
+.comment_user_icon{
+    text-align:left;
+}
+.comment_user_icon img, .comment_user_icon i{
+    font-size:20px;
+    display:inline-block;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+}
+.comment_user_icon, .comment_user_name{
+    float:left;
+}
+.comment_user p:hover{
+    text-decoration:underline;
+}
+.comment_delet{
+    float:right;
+}
+.comment_user_name{
+    font:bold;
+}
+.comment_text{
+    text-align:left;
+    width:100%;
+    display:inline-block;
+}
+
+/* フォローーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+#overlay_following, #overlay_followed{
+/*　要素を重ねた時の順番　*/
+z-index:10;
+/*　画面全体を覆う設定　*/
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-color:rgba(0,0,0,0.5);
+
+/*　画面の中央に要素を表示させる設定　*/
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+#content_following, #content_followed{
+z-index:11;
+width:50%;
+padding: 1em;
+background:white;
+}
+
+.follow_tab{
+    display:inline-block;
+    border-radius:10px;
 }

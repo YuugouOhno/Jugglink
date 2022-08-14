@@ -78,33 +78,3 @@
         }
     }
 </script>
-<style>
-    #overlay_following, #overlay_followed{
-    /*　要素を重ねた時の順番　*/
-    z-index:10;
-    /*　画面全体を覆う設定　*/
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background-color:rgba(0,0,0,0.5);
-    
-    /*　画面の中央に要素を表示させる設定　*/
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    }
-    
-    #content_following, #content_followed{
-    z-index:11;
-    width:50%;
-    padding: 1em;
-    background:white;
-    }
-    
-    .follow_tab{
-        display:inline-block;
-        border-radius:10px;
-    }
-</style>

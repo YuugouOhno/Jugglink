@@ -28,6 +28,14 @@
     .comment_nomal_btn{
         display:none;
     }
+    
+    #overlay_menue{
+        height:0%;
+    }
+    
+    #content_menue {
+        width:25%;
+    }
 }
 /*1170px以下(パソコン用)*/
 @media(max-width:1170px){
@@ -51,6 +59,13 @@
     .miniJugglink_l{
         display:none;
     }
+    
+    #overlay_menue{
+        height:0%;
+    }
+    #content_menue {
+        width:30%;
+    }
 }
 /*960px以下(タブレット用)*/
 @media(max-width:960px){
@@ -69,6 +84,13 @@
     
     .miniJugglink_l{
         display:inline;
+    }
+    
+    #overlay_menue{
+        height:0%;
+    }
+    #content_menue {
+        width:20%;
     }
 }
 /*520px以下(スマホ用)*/
@@ -92,5 +114,18 @@
     
     .miniJugglink_l{
         display:none;
+    }
+    
+    #overlay_menue{
+        height:100%;
+    }
+    #content_menue {
+        top:0;
+        width:70%;
+        background-color:#e7e7eb;/*白*/
+        border: 1px solid #65318e; /*紫*/
+    }
+    .mene_close_button{
+        display:inline;
     }
 }
