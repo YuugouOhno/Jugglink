@@ -20,7 +20,6 @@ class CreatePlacesTable extends Migration
                     ->references('id')
                     ->on('users')
                     ->onDelete('cascade');
-            // $table->string('tool_name', 30);
             $table->double('latitude',20,17);
             $table->double('longitude',20,17);
             $table->timestamps();
