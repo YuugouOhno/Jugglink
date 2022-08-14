@@ -12,19 +12,22 @@
 */
 Route::group(['middleware' => ['auth']], function(){
     
-    //無限スクロールはこれ一つにまとめた
+    //投稿の無限スクロール
     Route::get('/infinity', 'InfinityController@fetch');
+    //ユーザーの無限スクロール
+    Route::get('/infinity_user', 'UserController@fetch');
+    //コメントの無限スクロール
+    Route::get('/infinity_comment', 'CommentController@fetch');
     //無限スクロールに認証
     Route::get('/infinityauth', 'InfinityController@fetchAuth');
     
     //ホーム画面
     Route::get('/', 'PostController@index')->name('home');
+    
     //投稿の検索
     Route::get('/search/index/technique/', 'SearchController@search_technique')->name('search.technique');
     //ユーザーの検索
     Route::get('/search/index/user/', 'SearchController@search_user')->name('search.user');
-    //ユーザーの無限スクロール
-    Route::get('/infinity_user', 'UserController@fetch');
     
     //投稿
     Route::post('/posts/create', 'PostController@store')->name('posts.create');
@@ -39,8 +42,6 @@ Route::group(['middleware' => ['auth']], function(){
     
     //コメント一覧＆コメントの作成
     Route::get('/posts/{post}/comments', 'CommentController@index')->name('comments.show');
-    //コメントの無限スクロール
-    Route::get('/infinity_comment', 'CommentController@fetch');
     //コメントの投稿
     Route::post('/posts/comments/create', 'CommentController@store')->name('comments.create');
     //コメントの削除
@@ -75,7 +76,9 @@ Route::group(['middleware' => ['auth']], function(){
     
     //ジャグラー分布図
     Route::get('/map', 'PlaceController@index')->name('map');
+    //ピンの追加
     Route::post('/map/addPin', 'PlaceController@store')->name('map.addPin');
+    //ピンの削除
     Route::delete('/map/delete', 'PlaceController@delete')->name('map.delete');
     
     //フォロー
@@ -86,8 +89,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/users/{user}/countfollows', 'FollowUserController@countfollows');
     //フォロワーの有無
     Route::get('/users/{user}/hasfollowed', 'FollowUserController@hasfollowed');
-    
-   
 });
 
 //ウルカムページ
