@@ -2,7 +2,6 @@
 
 @section('title2')
     <title>ブックマーク/Jugglink</title>
-    <link href="{{secure_asset('css/menue.css')}}" rel="stylesheet" >
 @endsection
 
 @section('header2')

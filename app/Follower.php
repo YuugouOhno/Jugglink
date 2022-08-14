@@ -1,12 +1,12 @@
-<?php
+// <?php
 
-namespace App;
+// namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Database\Eloquent\Model;
 
-class Follower extends Model
-{public function user()
-    {
-        return $this->belongsTo('ASpp\User');
-    }
-}
+// class Follower extends Model
+// {public function user()
+//     {
+//         return $this->belongsTo('ASpp\User');
+//     }
+// }

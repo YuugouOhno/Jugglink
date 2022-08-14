@@ -18,18 +18,23 @@
                 <h2>アイコン</h2>
                 <input type='file' name="icon">
             </div>
-            
-            <h2>名前</h2>
-            <input type='text' name='user[name]' value="{{ $user->name }}">
-            <h2>道具</h2>
-            <select name="user[tool_id]">
-                <option value="">未選択</option>
-                @foreach($tools as $tool)
-                    <option value="{{ $tool->id }}">{{ $tool->tool_name }}</option>
-                @endforeach
-            </select>
-            <h2>コメント(サブ道具などあれば)</h2>
-            <textarea name="user[introduce]"></textarea>
+            <div>
+                <h2>名前</h2>
+                <input type='text' name='user[name]' value="{{ $user->name }}">
+            </div>
+            <div>
+                <h2>道具</h2>
+                <select name="user[tool_id]">
+                    <option value="">未選択</option>
+                    @foreach($tools as $tool)
+                        <option value="{{ $tool->id }}">{{ $tool->tool_name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
+                <h2>コメント(サブ道具などあれば)</h2>
+                <textarea name="user[introduce]"></textarea>
+            </div>
             <input type="submit" value="保存">
         </form>
     </div>
