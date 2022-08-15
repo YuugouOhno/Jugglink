@@ -41,59 +41,42 @@
                     
                     <div class="post_box">
                         <p class="post_label"></p>
-                        <div v-if="radioValue">
-                            <input type="radio" v-model="radioValue" value="technique" @change="selectTechnique"> 技
-                    	    <input type="radio" v-model="radioValue" value="sequence" @change="selectSequence"> シークエンス
-                        </div>
-                        <div v-else>
-                            <input type="radio" v-model="radioValue" value="technique" @change="selectTechnique"> 技
-                    	    <input type="radio" v-model="radioValue" value="sequence" @change="selectSequence"> シークエンス
+                        <input type="radio" v-model="radioValue" value="technique" @change="selectTechnique"> 技
+                	    <input type="radio" v-model="radioValue" value="sequence" @change="selectSequence"> シークエンス
+                        <div v-if="!radioValue">
                     	    <p class="color_red">どちらかを選択してください。</p>
                         </div>
                     </div>
                     
                     <div class="post_video post_box">
                         <p class="post_label">動画</p>
-                        <div class="color_black BG_color_lavender border_color_purple" v-if="fileData">
+                        <div v-bind:class="fileData ? 'color_black BG_color_lavender border_color_purple' : 'color_black BG_color__white border_color_red'">
                             <label>
-                                <input type='file' ref="preview" @change="handleFile" name="file">選択済み
+                                <input type='file' ref="preview" @change="handleFile" name="file">
+                                <p v-if="fileData">選択済み</p>
+                                <p v-else>ファイルを選択してください</p>
                             </label>
                         </div>
-                        <div v-else>
-                            <div class="color_black BG_color__white border_color_red">
-                                <label>
-                                    <input type='file' ref="preview" @change="handleFile" name="file">ファイルを選択してください
-                                </label>
-                            </div>
-                            <p class="color_red">動画は必須項目です。</p>
-                        </div>
+                        <p class="color_red" v-if="!fileData">動画は必須項目です。</p>
                     </div>
                     
-                	<div class="post_tool post_box">
+                    <div class="post_tool post_box">
                 	    <p class="post_label">道具</p>
-                	    <div v-if="selectTool">
-                	        <select class="border_color_purple BG_color_lavender" v-model="selectTool">
+                	    <div v-if="">
+                	        <select v-bind:class="selectTool ? 'border_color_purple BG_color_lavender' : 'border_color_red' " v-model="selectTool">
                         	    <option disabled value="">道具を選択</option>
                         		<option v-for="tool in tools" :key="tool.id" :value="tool.tool_name">
                                     {{ tool.tool_name }}
                                 </option>
                         	</select>
+                        	<p class="color_red" v-if="!selectTool">道具は必須項目です。</p>
                 	    </div>
-                    	<div v-else>
-                    	    <select class="border_color_red" v-model="selectTool">
-                        	    <option disabled value="">道具を選択</option>
-                        		<option v-for="tool in tools" :key="tool.id" :value="tool.tool_name">
-                                    {{ tool.tool_name }}
-                                </option>
-                        	</select>
-                        	<p class="color_red">道具は必須項目です。</p>
-                    	</div>
                     </div>
                     
                 	<div class="post_toolnumber post_box">
                 	    <p class="post_label">道具数</p>
-                	    <div v-if="selectNumber">
-                	        <select class="border_color_purple BG_color_lavender" v-model="selectNumber">
+                	    <div>
+                	        <select v-bind:class="selectNumber ? 'border_color_purple BG_color_lavender' : 'border_color_red'" v-model="selectNumber">
                                 <option disabled value="">道具数を選択</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -106,44 +89,22 @@
                                 <option value="9">9</option>
                                 <option value="10">10</option>
                             </select>
+                            <p class="color_red" v-if="!selectNumber">道具数は必須項目です。</p>
                 	    </div>
-                        <div v-else>
-                            <select class="border_color_red" v-model="selectNumber">
-                        	    <option disabled value="">道具数を選択</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                        	</select>
-                        	<p class="color_red">道具数は必須項目です。</p>
-                        </div>
                     </div>
                     
                     <div class="post_technique post_box" v-if="radioValue==='technique'">
                         <p class="post_label">技名</p>
-                        <div v-if="technique">
-                            <input type='text' class="border_color_purple BG_color_lavender" v-model="technique" placeholder="技名を入力">
-                        </div>
-                        <div v-else>
-                            <input type='text' class="border_color_red" v-model="technique" placeholder="技名を入力">
-                            <p style="color:red">技名は必須項目です。</p>
+                        <div>
+                            <input type='text' v-bind:class="technique ? 'border_color_purple BG_color_lavender' : 'border_color_red'" v-model="technique" placeholder="技名を入力">
+                            <p style="color:red" v-if="!technique">技名は必須項目です。</p>
                         </div>
                     </div>
                     
-                    
                     <div　class="post_box">
                         <p class="post_label">コメント</p>
-                        <div class="text" v-if="text">
-                            <textarea class="BG_color_lavender" v-model="text" placeholder="コメント（サブ道具などあれば）"></textarea>
-                        </div>
-                        <div class="text" v-else>
-                            <textarea v-model="text" placeholder="この技のコツは..."></textarea>
+                        <div class="text">
+                            <textarea v-bind:class="text ? 'BG_color_lavender' : ''" v-model="text" placeholder="この技のコツは..."></textarea>
                         </div>
                     </div>
                     
