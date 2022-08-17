@@ -30,14 +30,11 @@
                 <div class="edit_boxes">
                     <div class="edit_icon edit_box">
                         <p>プレビュー</p>
-                        <div class="color_black BG_color_lavender border_color_purple" v-if="fileData">
+                        <div v-bind:class="fileData ? 'color_black BG_color_lavender border_color_purple' : 'color_black BG_color__white border_color_purple' ">
                             <label>
-                                <input type='file' ref="preview" @change="handleFile" name="file">選択済み
-                            </label>
-                        </div>
-                        <div class="color_black BG_color__white border_color_purple" v-else>
-                            <label>
-                                <input type='file' ref="preview" @change="handleFile" name="file">アイコンを選択
+                                <input type='file' ref="preview" @change="handleFile" name="file">
+                                <p v-if="fileData">選択済み</p>
+                                <p v-else>アイコンを選択</p>
                             </label>
                         </div>
                     </div>
@@ -52,23 +49,16 @@
                     </div>
                     <div class="edit_name edit_box">
                         <p>アカウント名</p>
-                        <div v-if="name">
-                            <input type='text' class="border_color_purple BG_color_lavender" v-model="name" placeholder="アカウント名">
-                        </div>
-                        <div v-else>
-                            <input type='text' class="border_color_red" v-model="name" placeholder="アカウント名">
-                            <p class="color_red">アカウント名は必須項目です。</p>
+                        <div>
+                            <input type='text' v-bind:class="name ? 'border_color_purple BG_color_lavender' : 'border_color_red'" v-model="name" placeholder="アカウント名">
+                            <p class="color_red" v-if="!name">アカウント名は必須項目です。</p>
                         </div>
                     </div>
             	</div>
             	<div>
-                    <div class="introduce edit_box" v-if="introduce">
+                    <div class="introduce edit_box">
                         <p>コメント</p>
-                        <textarea class="BG_color_lavender" v-model="introduce" placeholder="コメント（サブ道具などあれば）"></textarea>
-                    </div>
-                    <div class="introduce edit_box" v-else>
-                        <p>コメント</p>
-                        <textarea v-model="introduce" placeholder="コメント（サブ道具などあれば）"></textarea>
+                        <textarea v-bind:class="introduce ? 'BG_color_lavender' : ''" v-model="introduce" placeholder="コメント（サブ道具などあれば）"></textarea>
                     </div>
                 </div>
                 <div class="edit_button_phone">
