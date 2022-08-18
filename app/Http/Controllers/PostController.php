@@ -31,9 +31,6 @@ class PostController extends Controller
         
     public function store(Post $post, Request $request)
     {
-        //\Log::debug(print_r($request, true));
-        \Log::debug($request);
-        
         $video = $request->file("file");
         $technique = $request["technique"];
         $tool_name = $request["tool_name"];

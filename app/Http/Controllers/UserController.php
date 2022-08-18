@@ -66,9 +66,6 @@ class UserController extends Controller
     
     public function fetch(Request $request, User $user, FollowUser $followuser) { // vueからのリクエスト
         $fetchedUserIdList = json_decode($request->fetchedUserIdList, true); // すでに取得した投稿のIDリストを取得
-        // if (json_last_error() !== JSON_ERROR_NONE) { // jsonにエラーがあるときにエラーメッセージ
-        //     return response()->json(['errorMessage' => json_last_error_msg()],500);
-        // }
         $page = $request->page;
         $tool_id = $request->tool_id;
         $user_name = $request->user_name;

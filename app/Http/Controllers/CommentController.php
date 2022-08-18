@@ -44,9 +44,6 @@ class CommentController extends Controller
     {
         $query = Comment::with('post','user')->latest();
         $query->where('post_id', $post_id);
-        // $comments = $comment->get();
-        // // $query = Comment::with('post','user')->where('post_id', $post_id)->get();
-        // \Log::debug($comments);
  
         $limit = 10; // 一度に取得する件数
         $offset = $page * $limit; // 現在の取得開始位置

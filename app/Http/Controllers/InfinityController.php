@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\DB;
 class InfinityController extends Controller
 {
     public function fetchAuth(Request $request) { // 認証データを取得
-        // $auth_user = Auth::user();
         $auth_id = Auth::id();
         $auth_user = User::with('tool')->find($auth_id);
         return response()->json(['auth_user' => $auth_user], 200);
@@ -22,9 +21,7 @@ class InfinityController extends Controller
     
     public function fetch(Request $request, Post $post, Like $like, Bookmark $bookmark) { // vueからのリクエスト
         $fetchedPostIdList = json_decode($request->fetchedPostIdList, true); // すでに取得した投稿のIDリストを取得
-        // if (json_last_error() !== JSON_ERROR_NONE) { // jsonにエラーがあるときにエラーメッセージ
-        //     return response()->json(['errorMessage' => json_last_error_msg()],500);
-        // }
+        
         $page = $request->page;
         $technique = $request->technique;
         $tool_id = $request->tool_id;
