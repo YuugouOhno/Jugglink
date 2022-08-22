@@ -12,12 +12,18 @@ use Storage;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UserRequest;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
     public function index(User $user, Request $request)
     {
-        return view('users.index')->with(['user' => $user]);
+        $datework = Carbon::createFromDate($user->start_date);
+        $now = Carbon::now();
+        $months = $datework->diffInMonths($now);
+        $years = floor($months / 12);
+        $months = $months % 12;
+        return view('users.index')->with(['user' => $user, 'years' => $years, 'months' => $months]);
     }
     
     public function edit(User $user, Tool $tool)
