@@ -33,7 +33,7 @@
                     <p>メイン道具:{{$user->tool->tool_name}}</p>
                 </div>
                 <div class="profile_date">
-                     <p>歴:{{$user->created_at}}</p>
+                     <p>歴:{{$user->start_date}}</p>
                 </div>
                 
             </div>

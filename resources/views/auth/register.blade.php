@@ -58,11 +58,11 @@
                                     <option value=7>デビルスティック</option>
                                     <option value=8>ヨーヨー</option>
                                     <option value=9>コンタクト</option>
-                                    <option value=10>ハット</option>
-                                    <option value=11>スピニングブレード</option>
-                                    <option value=12>スタッフ</option>
-                                    <option value=13>シェイカーカップ</option>
-                                    <option value=14>リング</option>
+                                    <option value=10>スピニングブレード</option>
+                                    <option value=11>シェイカーカップ</option>
+                                    <option value=12>ハット</option>
+                                    <option value=13>リング</option>
+                                    <option value=14>スタッフ</option>
                                     <option value=15>エイトリング</option>
                                     <option value=16>けん玉</option>
                                     <option value=17>ダイス</option>
@@ -70,6 +70,19 @@
                                     <option value=19>その他</option>
                                 </select>
                                 @error('tool_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="start_date" class="col-md-4 col-form-label text-md-right">{{ __('始めたのはいつ？') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="start_date" type="date" class="form-control @error('start_date') is-invalid @enderror" name="start_date" value="{{ old('start_date') }}" required autocomplete="start_date">
+                                @error('start_date')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

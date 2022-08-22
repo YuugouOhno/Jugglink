@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('icon_path', 100)->nullable();
             $table->string('icon_delete', 100)->nullable();
             $table->string('introduce', 100)->nullable();
-            $table->DateTime('start_date')->nullable();
+            $table->Date('start_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
