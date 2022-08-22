@@ -53,6 +53,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'tool_id' => ['required'],
+            'start_date' => ['required', 'date'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -69,6 +70,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'tool_id' => $data['tool_id'],
+            'start_date' => $data['start_date'],
             'password' => Hash::make($data['password']),
         ]);
     }
