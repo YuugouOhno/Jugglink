@@ -13,7 +13,8 @@ class Post extends Model
         'technique',
         'tool_id',
         'tool_number',
-        'text'
+        'text',
+        'years'
     ];
     
     public function getPaginateByLimit(int $limit_count = 10)

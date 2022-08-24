@@ -129,17 +129,19 @@
                 selectTool: '',
                 selectNumber: '',
                 technique: '',
-                text: ''
+                text: '',
+                years: '',
             }
         },
         mounted () {
             this.getTools(); // 道具データ
         },
         methods:{
-            getTools() { // 道具データの取得
+            getTools() { // データの取得
                 axios.get('/gettool')
                 .then(res => {
-                    this.tools = res.data.tools; // resのdataのauth_user
+                    this.tools = res.data.tools; // resのdataのtools
+                    this.years = res.data.years; // resのdataのyears
                 }).catch(function(error) {
                     console.log(error)
                 });
@@ -174,6 +176,7 @@
                 formData.append('tool_number', this.selectNumber);
                 formData.append('technique', this.technique);
                 formData.append('text', this.text);
+                formData.append('years', this.years);
           	    // ヘッダー定義
                 const config = {
                     headers: {

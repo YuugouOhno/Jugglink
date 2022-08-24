@@ -29,6 +29,7 @@ class CreatePostsTable extends Migration
             $table->string('video_path', 100);
             $table->string('video_delete', 100);
             $table->string('text', 100)->nullable();
+            $table->integer('years');
             $table->timestamps();
             $table->softDeletes();
         });
