@@ -69,6 +69,8 @@
             technique: String,
             tool_id: Number,
             tool_number: Number,
+            minyear: Number,
+            maxyear: Number,
             user_id: Number,
             like_id: Number,
             bookmark_id: Number,
@@ -129,6 +131,8 @@
                         user_id: this.user_id,
                         like_id: this.like_id,
                         bookmark_id: this.bookmark_id,
+                        minyear: this.minyear,
+                        maxyear: this.maxyear
                     }
                 })
                 .then(response => {

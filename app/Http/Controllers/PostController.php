@@ -11,6 +11,7 @@ use Auth;
 use Storage;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\PostRequest;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -21,7 +22,11 @@ class PostController extends Controller
     
     public function getTools(Tool $tool)
     {
-        return response()->json(['tools' => $tool->get()], 200); 
+        $datework = Carbon::createFromDate(Auth::user()->start_date);
+        $now = Carbon::now();
+        $months = $datework->diffInMonths($now);
+        $years = floor($months / 12);
+        return response()->json(['tools' => $tool->get(), 'years' => $years], 200); 
     }
     
     public function create(Tool $tool)
@@ -37,6 +42,7 @@ class PostController extends Controller
         $tool_id = Tool::where('tool_name',$tool_name)->value("id");
         $text = $request["text"];
         $tool_number = $request["tool_number"];
+        $years = $request["years"];
         
         // バケットの`example`フォルダへアップロードする
         $path = Storage::disk('s3')->putFile('video', $video, 'public');
@@ -51,6 +57,7 @@ class PostController extends Controller
         $input += ['tool_number' => $tool_number];
         $input += ['technique' => $technique];
         $input += ['text' => $text];
+        $input += ['years' => $years];
 
         $post->fill($input)->save();
     }

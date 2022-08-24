@@ -25,6 +25,18 @@
     <div class="search_container">
         <form action="{{ route('search.technique') }}" method="GET">
             @csrf
+            <div class="search_minyear">
+                <input type='number' name='minyear' value="{{ old('minyear', $minyear) }}" placeholder='歴何年以上'>
+            </div>
+            <div class="search_text">
+                <p>年以上</p>
+            </div>
+            <div class="search_maxyear">
+                <input type='number' name='maxyear' value="{{ old('maxyear', $maxyear) }}" placeholder='歴何年以下'>
+            </div>
+            <div class="search_text">
+                <p>年以下</p>
+            </div>
             <div class="search_tool_number">
                 <select name="tool_number" data-toggle="select">
                     <option value="">道具数</option>
@@ -49,6 +61,6 @@
     </div>
 </div>
 <div class="searched">
-    <infinityposts-component :technique="{{ json_encode($technique)}}" :tool_id="{{ json_encode($tool_id)}}" :tool_number="{{ json_encode($tool_number)}}"></infinityposts-component>
+    <infinityposts-component :technique="{{ json_encode($technique)}}" :tool_id="{{ json_encode($tool_id)}}" :tool_number="{{ json_encode($tool_number)}}" :minyear="{{ json_encode($minyear)}}" :maxyear="{{ json_encode($maxyear)}}"></infinityposts-component>
 </div>
 @endsection
