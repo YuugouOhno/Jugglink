@@ -18,8 +18,10 @@ class SearchController extends Controller
         $tool_name = $request->input('tool_name');
         $tool_id = Tool::where('tool_name', $tool_name)->value('id');
         $tool_number = $request->input('tool_number');
+        $minyear = $request->input('minyear');
+        $maxyear = $request->input('maxyear');
         $tool = $tool->get();
-        return view('searches/technique')->with(['tools' => $tool, 'technique' => $technique, 'tool_id' => $tool_id, 'tool_number' => $tool_number]);
+        return view('searches/technique')->with(['tools' => $tool, 'technique' => $technique, 'tool_id' => $tool_id, 'tool_number' => $tool_number, 'minyear' => $minyear, 'maxyear' => $maxyear]);
     }
     
     public function search_user(Request $request)

@@ -29,11 +29,13 @@ class InfinityController extends Controller
         $user_id = $request->user_id;
         $like_id = $request->like_id;
         $bookmark_id = $request->bookmark_id;
-        $posts = $this->searchPosts($fetchedPostIdList, $post, $like, $bookmark, $page, $technique, $tool_id, $tool_number, $user_id, $like_id, $bookmark_id); // 投稿を取得
+        $minyear = $request->minyear;
+        $maxyear = $request->maxyear;
+        $posts = $this->searchPosts($fetchedPostIdList, $post, $like, $bookmark, $page, $technique, $tool_id, $tool_number, $user_id, $like_id, $bookmark_id, $minyear, $maxyear); // 投稿を取得
         return response()->json(['posts' => $posts], 200); // 投稿のデータをvueへ
     }
     
-    public function searchPosts($fetchedPostIdList, $post, $like, $bookmark, $page, $technique, $tool_id, $tool_number, $user_id, $like_id, $bookmark_id) // 投稿を取得
+    public function searchPosts($fetchedPostIdList, $post, $like, $bookmark, $page, $technique, $tool_id, $tool_number, $user_id, $like_id, $bookmark_id, $minyear, $maxyear) // 投稿を取得
     {
         $query = Post::with('tool','user')->latest();
         
@@ -47,6 +49,14 @@ class InfinityController extends Controller
         
         if($tool_number) {
             $query->where('tool_number', $tool_number);
+        }
+        
+        if($minyear) {
+            $query->where('years', '>=', $minyear);
+        }
+        
+        if($maxyear) {
+            $query->where('years', '<=', $maxyear);
         }
         
         if($user_id) {

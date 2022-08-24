@@ -26,7 +26,6 @@ class PostController extends Controller
         $now = Carbon::now();
         $months = $datework->diffInMonths($now);
         $years = floor($months / 12);
-        $months = $months % 12;
         return response()->json(['tools' => $tool->get(), 'years' => $years], 200); 
     }
     
@@ -51,8 +50,6 @@ class PostController extends Controller
         $post->video_path = Storage::disk('s3')->url($path);
         // 発明！！
         $post->video_delete = $path;
-        
-        \Log::debug($years);
         
         $input = [];
         $input += ['user_id' => $request->user()->id];
