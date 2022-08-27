@@ -1,4 +1,4 @@
-@extends('users.profile')
+@extends('others.menue')
 
 @section('title2')
     <title>ブックマーク/Jugglink</title>
