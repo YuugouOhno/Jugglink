@@ -57,6 +57,11 @@ class likeController extends Controller
     
     public function index(User $user)
     {
-        return view('likes.index')->with(['user' => $user]);
+        $datework = Carbon::createFromDate($user->start_date);
+        $now = Carbon::now();
+        $months = $datework->diffInMonths($now);
+        $years = floor($months / 12);
+        $months = $months % 12;
+        return view('likes.index')->with(['user' => $user, 'years' => $years, 'months' => $months]);
     }
 }
