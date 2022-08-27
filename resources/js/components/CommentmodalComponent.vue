@@ -5,7 +5,7 @@
                 <i class="fa-regular fa-comment color_black"></i>
             </a>
         </div>
-        <div id="content_comment" class="modal_content right_container BG_color_white" v-show="showContent">
+        <div id="content_comment" class="right_container BG_color_white" v-show="showContent">
             <h3>{{post.tool_number}}{{post.tool.tool_name}}{{post.technique}}</h3>
             <div>
                 <infinitycomments :post_id="post.id"></infinitycomments>

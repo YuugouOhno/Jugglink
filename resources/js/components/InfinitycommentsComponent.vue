@@ -89,7 +89,7 @@
                 formData.append('post_id', this.post_id);
           	    axios.post('/posts/comments/create', formData)
                 .then(response => {
-                    window.location.href = '/'; // 削除後にリダイレクト 
+                    //window.location.href = '/'; // 削除後にリダイレクト 
                     this.text=""; // 入力欄をリセット
                     this.comments.splice(0); // コメントの先頭に戻って
                     this.page=0; // 読み込みをリセットして
