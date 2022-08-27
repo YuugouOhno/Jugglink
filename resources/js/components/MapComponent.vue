@@ -101,6 +101,7 @@
                 			position: markerLatLng, // マーカーを立てる位置を指定
                 			map: map // マーカーを立てる地図を指定
                 		});
+                		window.location.href = '/map';
                     }
                 }).catch(function(error) {
                     console.log(error);

@@ -76,6 +76,8 @@ Route::group(['middleware' => ['auth']], function(){
     
     //ジャグラー分布図
     Route::get('/map', 'PlaceController@index')->name('map');
+    //位置情報の取得
+    Route::post('/fetchplace', 'PlaceController@fetchPlace');
     //ピンの追加
     Route::post('/map/addPin', 'PlaceController@store')->name('map.addPin');
     //ピンの削除

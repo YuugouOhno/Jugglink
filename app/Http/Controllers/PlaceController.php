@@ -14,6 +14,11 @@ class PlaceController extends Controller
         return view('maps/index')->with(['place'=>$place->get()]);
     }
     
+    public function fetchPlace(Place $place)
+    {
+        $place = $place->get();
+         return response()->json(['place' => $place], 200); // 投稿のデータをvueへ
+    }
     public function store(Request $request, Place $place)
     {
         $input_place = $request['place'];
