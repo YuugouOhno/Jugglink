@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>ジャグラーの分布を確認しよう</h1>
+        <h1>ジャグラーの分布を確認しよう!!!</h1>
         <div id='map' class='map'></div>
         <div>
             <div v-if="latitude !== 0">
