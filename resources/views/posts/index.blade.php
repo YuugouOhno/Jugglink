@@ -5,7 +5,7 @@
 @endsection
 
 @section('header2')
-    <h4>ホームです</h4>
+    <h4>ホーム</h4>
 @endsection
 
 @section('main2')

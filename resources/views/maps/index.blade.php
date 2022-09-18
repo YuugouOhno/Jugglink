@@ -22,7 +22,7 @@
 
 @section('script2')
 <script type="application/javascript">const place = @json($place);</script>
-<script type="application/javascript" src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ config('services.google.maps_key') }}&callback=initMap" async defer>
+<script type="application/javascript" src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ config('services.google.maps_key') }}" async defer>
 </script>
 <script>
     function buttonClick(){
