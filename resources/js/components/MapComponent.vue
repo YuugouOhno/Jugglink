@@ -62,9 +62,9 @@
                 var markerData = place;
             	// 地図の作成 
             	if (this.latitude != 0){ // 現在地が取得できている時
-            	    var mapLatLng = new google.maps.LatLng({lat: this.latitude, lng: this.longitude }); // 地図の中心を現在地に
+            	    var mapLatLng = new google.maps.LatLng({lat: Number(this.latitude), lng: Number(this.longitude) }); // 地図の中心を現在地に
             	}else{ // 現在地が取得できていない時
-            	    var mapLatLng = new google.maps.LatLng({lat: 35.68157417189571, lng: 139.76701766444776 }); // 地図の中心を東京に
+            	    var mapLatLng = new google.maps.LatLng({lat: Number(35.68157417189571), lng: Number(139.76701766444776) }); // 地図の中心を東京に
             	}
             	map = new google.maps.Map(document.getElementById('map'), { // #mapに地図を埋め込む
             		center: mapLatLng, // 地図の中心を指定
@@ -91,12 +91,12 @@
                     if(res.status==200){
                         var map;
                         var marker;
-                        var mapLatLng = new google.maps.LatLng({lat: this.latitude, lng: this.longitude }); // 緯度経度のデータ作成
+                        var mapLatLng = new google.maps.LatLng({lat: Number(this.latitude), lng: Number(this.longitude) }); // 緯度経度のデータ作成
                     	map = new google.maps.Map(document.getElementById('map'), { // #mapに地図を埋め込む
                     		center: mapLatLng, // 地図の中心を指定
                     		zoom:8 // 地図のズームを指定
                     	});
-                        const markerLatLng = new google.maps.LatLng({lat: this.latitude, lng:this.longitude}); // 緯度経度のデータ作成
+                        const markerLatLng = new google.maps.LatLng({lat: Number(this.latitude), lng: Number(this.longitude) }); // 緯度経度のデータ作成
             	    	marker = new google.maps.Marker({ // マーカーの追加
                 			position: markerLatLng, // マーカーを立てる位置を指定
                 			map: map // マーカーを立てる地図を指定
